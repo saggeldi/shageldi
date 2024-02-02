@@ -1,5 +1,4 @@
 import { Box, Button, Stack } from "@mui/material";
-import React from "react";
 
 const Navbar = () => {
   const MenuBarButton = (props: { text: string }) => {
