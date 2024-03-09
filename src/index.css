@@ -4,14 +4,102 @@
   box-sizing: border-box;
 }
 
-.esbJQc {
-  display: none !important;
+@font-face {
+  font-family: 'Yandex';
+  font-style: normal;
+  font-weight: 100;
+  /* Thin */
+  font-display: swap;
+  src: url('./assets/fonts/yandex/thin.ttf') format('truetype');
 }
 
-.kuResK {
-  background: transparent !important;
+@font-face {
+  font-family: 'Yandex';
+  font-style: normal;
+  font-weight: 200;
+  /* Extra Light */
+  font-display: swap;
+  src: url('./assets/fonts/yandex/extra-light.ttf') format('truetype');
 }
 
-.kuResK span{
-  background: transparent !important;
+@font-face {
+  font-family: 'Yandex';
+  font-style: normal;
+  font-weight: 300;
+  /* Light */
+  font-display: swap;
+  src: url('./assets/fonts/yandex/light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yandex';
+  font-style: normal;
+  font-weight: 400;
+  /* Regular */
+  font-display: swap;
+  src: url('./assets/fonts/yandex/regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yandex';
+  font-style: normal;
+  font-weight: 500;
+  /* Medium */
+  font-display: swap;
+  src: url('./assets/fonts/yandex/medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yandex';
+  font-style: normal;
+  font-weight: 700;
+  /* Bold */
+  font-display: swap;
+  src: url('./assets/fonts/yandex/bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Yandex';
+  font-style: normal;
+  font-weight: 800;
+  /* Extra Bold */
+  font-display: swap;
+  src: url('./assets/fonts/yandex/extra-bold.ttf') format('truetype');
+}
+
+
+@font-face {
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 400;
+  /* Regular */
+  font-display: swap;
+  src: url('./assets/fonts/gotham/regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 500;
+  /* Medium */
+  font-display: swap;
+  src: url('./assets/fonts/gotham/medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 700;
+  /* Bold */
+  font-display: swap;
+  src: url('./assets/fonts/gotham/bold.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Gotham';
+  font-style: normal;
+  font-weight: 300;
+  /* Light */
+  font-display: swap;
+  src: url('./assets/fonts/gotham/light.otf') format('opentype');
 }

@@ -1,17 +1,12 @@
-import { ThemeProvider, createTheme } from "@mui/material";
-import MainLayout from "./components/MainLayout";
+import { ConfigProvider } from "antd";
+import { lightTheme } from "./theme/theme";
+import Router from "./page/Router";
 
 function App() {
-  const theme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
-
   return (
-    <ThemeProvider theme={theme}>
-      <MainLayout />
-    </ThemeProvider>
+    <ConfigProvider theme={lightTheme}>
+      <Router />
+    </ConfigProvider>
   );
 }
 
