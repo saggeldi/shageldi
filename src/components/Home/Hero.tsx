@@ -9,6 +9,7 @@ import {
 import { AndroidModelViewer } from "./AndroidLoader";
 import { Col, Row } from "antd";
 import HeroText from "./HeroText";
+import Loader from "./Loader";
 
 const Hero = () => {
   return (
@@ -35,7 +36,7 @@ const Hero = () => {
               shadow-mapSize={256}
               castShadow
             />
-            <Suspense fallback={null}>
+            <Suspense fallback={<Loader />}>
               <Center top>
                 <AndroidModelViewer scale={0.6} />
               </Center>
