@@ -1,18 +1,33 @@
 import { useLoader } from "@react-three/fiber";
+import { useSelector } from "react-redux";
 import { OBJLoader, MTLLoader } from "three-stdlib";
+import { RootState } from "../../features/store";
 
 interface AndroidModelViewerProps {
   [key: string]: any;
 }
 
 export function AndroidModelViewer(props: AndroidModelViewerProps) {
-  const materials = useLoader(MTLLoader, "models/Android/android.mtl");
+  const theme = useSelector((state: RootState) => state.theme);
 
-  const obj = useLoader(OBJLoader, "models/Android/android.obj", (loader) => {
-    materials.preload();
+  const materials = useLoader(
+    MTLLoader,
+    `models/Android/${
+      theme.value == "dark" ? "android dark.mtl" : "android.mtl"
+    }`
+  );
 
-    loader.setMaterials(materials);
-  });
+  const obj = useLoader(
+    OBJLoader,
+    `models/Android/${
+      theme.value == "dark" ? "android dark.obj" : "android.obj"
+    }`,
+    (loader) => {
+      materials.preload();
+
+      loader.setMaterials(materials);
+    }
+  );
   //   const mtlLoader = useLoader(MTLLoader, "models/Android/android.mtl");
 
   //   useLayoutEffect(() => {
