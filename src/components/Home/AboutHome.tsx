@@ -13,7 +13,6 @@ const AboutHome = () => {
     return (
       <Row
         style={{
-          height: "100%",
           marginLeft: "83px",
           marginRight: "113px",
           padding: 0,
@@ -28,7 +27,7 @@ const AboutHome = () => {
   return (
     <div
       style={{
-        marginBottom: "22px",
+        paddingBottom: "22px",
         marginTop: isDesktop ? "0px" : "60px",
       }}
     >
