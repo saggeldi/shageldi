@@ -1,13 +1,33 @@
 import { Col, Row, Typography } from "antd";
-import { useToken } from "../../theme/config-theme";
 import useResponsive from "../../hooks/useResponsive";
-import { useMediaQuery } from "react-responsive";
+import CodeView from "./CodeView";
+import CodeTitle from "./CodeTitle";
+
+const code = `<!DOCTYPE html>
+<html>
+      <head>
+          <mine><title>About me</title>
+      </head>
+      <body>
+           <mine><h1>Shageldi Alyyev</h1>
+           <img url="Picture.1"/>
+        <textarea>
+        <mine>Results-driven Full Stack Developer with expertise 
+        <mine>in building robust and scalable applications across 
+        <mine>various technology stacks. 
+        <mine>Proficient in front-end and back-end development, 
+        <mine>I bring a strong skill set in Java, Android XML, 
+        <mine>Kotlin, Jetpack Compose, ReactJS, Typescript, NestJS, Express JS,
+        <mine>PostgreSQL, ELK Stack, 
+        <mine>Adonis JS, TypeORM, MySQL, MUI, Ant Design, and Web Scraping. Passionate about 
+        <mine>reating efficient, user-friendly solutions that meet 
+        <mine>and exceed client expectations.
+           </textarea>
+       </body>
+</html>`;
 
 const AboutHome = () => {
-  const { token } = useToken();
-  const { isDesktop, isTablet } = useResponsive();
-
-  const isMatch = useMediaQuery({ minWidth: 990, maxWidth: 1200 });
+  const { isDesktop } = useResponsive();
 
   const AboutPicture = () => {
     return (
@@ -16,10 +36,89 @@ const AboutHome = () => {
           marginLeft: "83px",
           marginRight: "113px",
           padding: 0,
+          overflow: "auto",
         }}
       >
-        <Col xs={16}></Col>
-        <Col xs={8}></Col>
+        <Col
+          xs={16}
+          style={{
+            padding: "16px",
+            paddingLeft: "28px",
+          }}
+        >
+          <CodeView code={code} />
+        </Col>
+        <Col xs={8}>
+          <br />
+          <img
+            src="/logo.png"
+            style={{
+              width: "90%",
+              maxHeight: "100%",
+              minHeight: "45%",
+              backgroundColor: `rgb(18,255,247)`,
+              background: `linear-gradient(180deg, rgba(18,255,247,0) 0%, rgba(179,255,171,1) 100%)`,
+              objectFit: "cover",
+              borderRadius: "100%",
+              borderColor: "#B3FFAB",
+              borderStyle: "solid",
+              borderWidth: "3px",
+            }}
+          />
+          <div
+            style={{
+              width: "95%",
+              backgroundColor: `rgb(18,255,247)`,
+              background: `linear-gradient(266deg, rgba(18,255,247,0) 0%, rgba(105,255,206,0.40798326166404064) 94%, rgba(179,255,171,0.5788516090029762) 100%)`,
+              objectFit: "cover",
+              borderRadius: "20px",
+              borderColor: "#B3FFAB",
+              borderStyle: "solid",
+              borderWidth: "3px",
+              backdropFilter: `blur(5px)`,
+            }}
+          >
+            <Typography
+              style={{
+                fontFamily: "Yandex",
+                fontWeight: "700",
+                fontSize: "24px",
+                width: "100%",
+                textAlign: "center",
+              }}
+            >
+              Shageldi Alyyev
+            </Typography>
+            <Row
+              align={"stretch"}
+              justify={"center"}
+              style={{
+                gap: "6px",
+              }}
+            >
+              <img
+                src="/icons/mdi_github.svg"
+                style={{ width: "40px", height: "40px", cursor: "pointer" }}
+              />
+              <img
+                src="/icons/mdi_instagram.svg"
+                style={{ width: "40px", height: "40px", cursor: "pointer" }}
+              />
+              <img
+                src="/icons/mdi_linkedin.svg"
+                style={{ width: "40px", height: "40px", cursor: "pointer" }}
+              />
+              <img
+                src="/icons/ic_baseline-phone.svg"
+                style={{ width: "40px", height: "40px", cursor: "pointer" }}
+              />
+              <img
+                src="/icons/mdi_gmail.svg"
+                style={{ width: "40px", height: "40px", cursor: "pointer" }}
+              />
+            </Row>
+          </div>
+        </Col>
       </Row>
     );
   };
@@ -29,50 +128,40 @@ const AboutHome = () => {
       style={{
         paddingBottom: "22px",
         marginTop: isDesktop ? "0px" : "60px",
+        overflow: "hidden",
       }}
     >
       <div
         style={{
-          backgroundImage: `url(/images/${
-            isDesktop ? "light_bg.svg" : "mobile_light.svg"
-          })`,
+          backgroundColor: "gray",
           width: "100%",
-          height: "60vh",
           paddingTop: "8px",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "top",
-          backgroundSize: "contain",
         }}
       >
-        <Typography
-          style={{
-            fontSize: isMatch
-              ? "35px"
-              : isDesktop
-              ? "48px"
-              : isTablet
-              ? "30px"
-              : "4vw",
-            marginTop: isDesktop ? "0px" : isTablet ? "-22px" : "-12px",
-            fontWeight: 700,
-            fontFamily: "Yandex",
-            textAlign: "center",
-          }}
-        >
-          <label
+        <CodeTitle text="About me" />
+        {isDesktop ? (
+          <AboutPicture />
+        ) : (
+          <div
             style={{
-              color: token.colorPrimary,
+              padding: "16px",
+              paddingLeft: "68px",
+              paddingRight: "58px",
             }}
-          >{`<`}</label>
-          {`About me `}
-          <label
-            style={{
-              color: token.colorPrimary,
-            }}
-          >{`/>`}</label>
-        </Typography>
-        {isDesktop ? <AboutPicture /> : null}
+          >
+            <CodeView code={code} />
+          </div>
+        )}
       </div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
     </div>
   );
 };

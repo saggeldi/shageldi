@@ -36,7 +36,13 @@ const MainLayout = () => {
     >
       <Container fixed>
         <Navbar />
-        <Outlet />
+        <div
+          style={{
+            paddingTop: "80px",
+          }}
+        >
+          <Outlet />
+        </div>
         <Footer />
       </Container>
       <div
