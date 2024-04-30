@@ -1,5 +1,6 @@
 import { Col, Row, Typography } from "antd";
 import CodeTitle from "./CodeTitle";
+import useResponsive from "../../hooks/useResponsive";
 
 const texts = [
   {
@@ -20,12 +21,13 @@ const texts = [
 ];
 
 const Advantages = () => {
+  const { isMobile } = useResponsive();
   return (
     <div>
       <CodeTitle text="Advantages" />
       <br />
       <br />
-      <Row gutter={24}>
+      <Row gutter={[24, 24]}>
         {texts.map((item, index) => {
           return (
             <Col key={`adv-${index}`} xs={24} sm={12} md={8}>
@@ -33,8 +35,7 @@ const Advantages = () => {
                 style={{
                   width: "100%",
                   padding: "12px",
-                  backgroundColor: `rgb(18,255,247)`,
-                  background: `linear-gradient(180deg, rgba(18,255,247,0) 0%, rgba(179,255,171,1) 100%)`,
+                  background: `linear-gradient(180deg, rgba(18, 255, 247, 0.0625) 0%, rgba(179, 255, 171, 0.125) 100%)`,
                   objectFit: "cover",
                   borderRadius: "20px",
                   borderColor: "#B3FFAB",
@@ -55,7 +56,8 @@ const Advantages = () => {
                   style={{
                     fontFamily: "Yandex",
                     fontWeight: "500",
-                    fontSize: "36px",
+                    fontSize: isMobile ? "24px" : "2.3vw",
+                    textAlign: "center",
                   }}
                 >
                   {item.title}
@@ -65,7 +67,7 @@ const Advantages = () => {
                   style={{
                     fontFamily: "Gotham",
                     fontWeight: "400",
-                    fontSize: "16px",
+                    fontSize: isMobile ? "12px" : "1.0vw",
                     textAlign: "center",
                   }}
                 >

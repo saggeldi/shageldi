@@ -1,5 +1,6 @@
 import { Col, Row, Typography } from "antd";
 import CodeTitle from "./CodeTitle";
+import useResponsive from "../../hooks/useResponsive";
 
 const imagesArray = [
   "adonisjs.svg",
@@ -20,17 +21,18 @@ const imagesArray = [
 ];
 
 const Skills = () => {
+  const { isMobile } = useResponsive();
   return (
     <div>
       <CodeTitle text="Skills" />
       <br />
-      <Row>
+      <Row gutter={[24, 24]}>
         <Col xs={24} sm={24} md={12}>
           <Typography
             style={{
               fontFamily: "Gotham",
               fontWeight: "400",
-              fontSize: "36px",
+              fontSize: isMobile ? "14px" : "2.4vw",
             }}
           >
             Skills I possess as a specialist
@@ -50,7 +52,7 @@ const Skills = () => {
                 style={{
                   fontFamily: "Gotham",
                   fontWeight: "400",
-                  fontSize: "24px",
+                  fontSize: isMobile ? "12px" : "1.6vw",
                 }}
               >
                 Front-end
@@ -61,7 +63,7 @@ const Skills = () => {
                 style={{
                   fontFamily: "Gotham",
                   fontWeight: "400",
-                  fontSize: "24px",
+                  fontSize: isMobile ? "12px" : "1.6vw",
                 }}
               >
                 Back-end
@@ -72,7 +74,7 @@ const Skills = () => {
                 style={{
                   fontFamily: "Gotham",
                   fontWeight: "400",
-                  fontSize: "24px",
+                  fontSize: isMobile ? "12px" : "1.6vw",
                 }}
               >
                 Working with servers
@@ -83,7 +85,7 @@ const Skills = () => {
                 style={{
                   fontFamily: "Gotham",
                   fontWeight: "400",
-                  fontSize: "24px",
+                  fontSize: isMobile ? "12px" : "1.6vw",
                 }}
               >
                 Database development
@@ -96,9 +98,9 @@ const Skills = () => {
             {imagesArray.map((icon, index) => {
               return (
                 <Col
-                  xs={12}
+                  xs={6}
                   sm={6}
-                  md={4}
+                  md={6}
                   key={`icon-${index}`}
                   style={{
                     display: "flex",
@@ -107,12 +109,17 @@ const Skills = () => {
                     alignItems: "center",
                   }}
                 >
-                  <img src={`/skills/${icon}`} />
+                  <img
+                    src={`/skills/${icon}`}
+                    style={{
+                      width: isMobile ? "26px" : "44px",
+                    }}
+                  />
                   <Typography
                     style={{
                       fontFamily: "Gotham",
                       fontWeight: "400",
-                      fontSize: "18px",
+                      fontSize: isMobile ? "12px" : "1.1vw",
                     }}
                   >
                     {icon.replace(".svg", "")}

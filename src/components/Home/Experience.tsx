@@ -1,9 +1,11 @@
 import { Row, Typography } from "antd";
 import { useToken } from "../../theme/config-theme";
 import CodeTitle from "./CodeTitle";
+import useResponsive from "../../hooks/useResponsive";
 
 const Experience = () => {
   const { token } = useToken();
+  const { isMobile } = useResponsive();
   return (
     <div>
       <br />
@@ -30,7 +32,7 @@ const Experience = () => {
             style={{
               fontFamily: "Yandex",
               fontWeight: "500",
-              fontSize: "36px",
+              fontSize: isMobile ? "12px" : "2.4vw",
             }}
           >
             Mobile Developer
@@ -41,49 +43,54 @@ const Experience = () => {
               style={{
                 fontFamily: "Yandex",
                 fontWeight: "500",
-                fontSize: "36px",
+                fontSize: isMobile ? "12px" : "2.4vw",
               }}
             >
               2019-2021
             </Typography>
-            <img src="/icons/zondicons_minus-outline.svg" />
+            <img
+              src="/icons/zondicons_minus-outline.svg"
+              style={{
+                width: isMobile ? "15px" : "24px",
+              }}
+            />
           </Row>
         </Row>
         <hr />
         <br />
-        <Row style={{ gap: "24px" }}>
-          <Row style={{ gap: "12px" }}>
+        <Row style={{ gap: isMobile ? "8px" : "24px" }}>
+          <Row style={{ gap: "12px", alignItems: "center" }}>
             <img
               src="/icons/mingcute_location-line.svg"
               style={{
-                width: "24px",
-                height: "24px",
+                width: isMobile ? "15px" : "24px",
+                height: isMobile ? "15px" : "24px",
               }}
             />
             <Typography
               style={{
                 fontFamily: "Gotham",
                 fontWeight: "400",
-                fontSize: "16px",
+                fontSize: isMobile ? "12px" : "16px",
               }}
             >
               Ashgabat,Turkmenistan
             </Typography>
           </Row>
 
-          <Row style={{ gap: "12px", rowGap: "24px" }}>
+          <Row style={{ gap: "12px", rowGap: "24px", alignItems: "center" }}>
             <img
               src="/icons/ph_link-bold.svg"
               style={{
-                width: "24px",
-                height: "24px",
+                width: isMobile ? "15px" : "24px",
+                height: isMobile ? "15px" : "24px",
               }}
             />
             <Typography
               style={{
                 fontFamily: "Gotham",
                 fontWeight: "400",
-                fontSize: "16px",
+                fontSize: isMobile ? "12px" : "16px",
                 textDecoration: "underline",
                 cursor: "pointer",
               }}

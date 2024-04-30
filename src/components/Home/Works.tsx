@@ -1,8 +1,10 @@
 import { Col, Row, Typography } from "antd";
 import CodeTitle from "./CodeTitle";
 import { Button } from "@mui/material";
+import useResponsive from "../../hooks/useResponsive";
 
 const Works = () => {
+  const { isMobile, isTablet } = useResponsive();
   return (
     <div>
       <CodeTitle text="Works" />
@@ -10,12 +12,19 @@ const Works = () => {
       <Row gutter={[16, 16]}>
         {new Array(5).fill(0).map((_, index) => {
           return (
-            <Col key={`work-${index}`} xs={24} sm={12} md={8}>
+            <Col
+              key={`work-${index}`}
+              xs={24}
+              sm={12}
+              md={isTablet ? 12 : 8}
+              style={{
+                marginTop: isMobile ? 0 : index * 34 + "px",
+              }}
+            >
               <div
                 style={{
                   width: "100%",
-                  backgroundColor: `rgb(18,255,247)`,
-                  background: `linear-gradient(180deg, rgba(18,255,247,0) 0%, rgba(179,255,171,1) 100%)`,
+                  background: `linear-gradient(180deg, rgba(18, 255, 247, 0.0625) 46.27%, rgba(179, 255, 171, 0.25) 100%)`,
                   objectFit: "cover",
                   borderRadius: "20px",
                   borderColor: "#B3FFAB",
@@ -45,7 +54,7 @@ const Works = () => {
                   style={{
                     fontFamily: "Yandex",
                     fontWeight: "500",
-                    fontSize: "48px",
+                    fontSize: isMobile ? "24px" : "3.2vw",
                   }}
                 >
                   TmMuse
@@ -54,7 +63,7 @@ const Works = () => {
                   style={{
                     fontFamily: "Gotham",
                     fontWeight: "400",
-                    fontSize: "16px",
+                    fontSize: isMobile ? "12px" : "16px",
                     textAlign: "center",
                     margin: "12px",
                   }}

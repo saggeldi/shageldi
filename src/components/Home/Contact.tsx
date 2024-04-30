@@ -1,9 +1,11 @@
 import { Col, Row, Typography } from "antd";
 import CodeTitle from "./CodeTitle";
 import { useToken } from "../../theme/config-theme";
+import useResponsive from "../../hooks/useResponsive";
 
 const Contact = () => {
   const { token } = useToken();
+  const { isMobile } = useResponsive();
   return (
     <div>
       <br />
@@ -15,7 +17,7 @@ const Contact = () => {
           width: "100%",
           fontFamily: "Gotham",
           fontWeight: "500",
-          fontSize: "20px",
+          fontSize: isMobile ? "7px" : "20px",
         }}
       >
         Just give me a message whenever and howeveryou want and we well start
@@ -24,8 +26,8 @@ const Contact = () => {
 
       <br />
 
-      <Row gutter={[32, 32]}>
-        <Col sm={24} md={12}>
+      <Row gutter={isMobile ? [17, 17] : [32, 32]}>
+        <Col xs={12}>
           <input
             style={{
               borderStyle: "solid",
@@ -33,19 +35,19 @@ const Contact = () => {
               outline: "none",
               borderColor: token.colorText,
               borderRadius: "35px",
-              padding: "22px",
+              padding: isMobile ? "7px" : "22px",
               backgroundColor: `rgba(0, 0, 0, 0.05)`,
               width: "100%",
               color: token.colorText,
               fontFamily: "Gotham",
               fontWeight: "400",
-              fontSize: "24px",
+              fontSize: isMobile ? "10px" : "1.7vw",
             }}
             placeholder="NAME"
             type="text"
           />
         </Col>
-        <Col sm={24} md={12}>
+        <Col xs={12}>
           <input
             style={{
               borderStyle: "solid",
@@ -53,13 +55,13 @@ const Contact = () => {
               outline: "none",
               borderColor: token.colorText,
               borderRadius: "35px",
-              padding: "22px",
+              padding: isMobile ? "7px" : "22px",
               backgroundColor: `rgba(0, 0, 0, 0.05)`,
               width: "100%",
               color: token.colorText,
               fontFamily: "Gotham",
               fontWeight: "400",
-              fontSize: "24px",
+              fontSize: isMobile ? "10px" : "1.7vw",
             }}
             placeholder="EMAIL"
             type="email"
@@ -72,17 +74,17 @@ const Contact = () => {
               borderWidth: "1px",
               borderColor: token.colorText,
               outline: "none",
-              borderRadius: "20px",
-              padding: "22px",
+              borderRadius: isMobile ? "10px" : "20px",
+              padding: isMobile ? "7px" : "22px",
               backgroundColor: `rgba(0, 0, 0, 0.05)`,
               width: "100%",
               color: token.colorText,
               fontFamily: "Gotham",
               fontWeight: "400",
-              fontSize: "24px",
+              fontSize: isMobile ? "10px" : "1.7vw",
               maxWidth: "100%",
               minWidth: "100%",
-              minHeight: "250px",
+              minHeight: isMobile ? "120px" : "250px",
             }}
             placeholder="MESSAGE"
           />
@@ -108,7 +110,7 @@ const Contact = () => {
             paddingBottom: "6px",
             paddingLeft: "32px",
             paddingRight: "32px",
-            borderRadius: "20px",
+            borderRadius: isMobile ? "10px" : "20px",
             cursor: "pointer",
           }}
         >
@@ -123,7 +125,7 @@ const Contact = () => {
             style={{
               fontFamily: "Yandex",
               fontWeight: "700",
-              fontSize: "24px",
+              fontSize: isMobile ? "16px" : "24px",
               color: `rgba(32, 33, 36, 1)`,
             }}
           >

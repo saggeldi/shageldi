@@ -1,13 +1,16 @@
 import { Button, Space, Typography } from "antd";
 import { useToken } from "../../theme/config-theme";
+import useResponsive from "../../hooks/useResponsive";
 
 const HeroText = () => {
   const { token } = useToken();
+  const { isMobile } = useResponsive();
+
   return (
     <Space direction="vertical" size={"large"}>
       <Typography
         style={{
-          fontSize: "24px",
+          fontSize: isMobile ? "12px" : "2vw",
           fontWeight: 500,
           fontFamily: "Gotham",
           backgroundColor: token.colorPrimary,
@@ -22,7 +25,7 @@ const HeroText = () => {
       <div>
         <Typography
           style={{
-            fontSize: "52px",
+            fontSize: isMobile ? "24px" : "3.2vw",
             fontWeight: 600,
             fontFamily: "Gotham",
           }}
@@ -31,7 +34,7 @@ const HeroText = () => {
         </Typography>
         <Typography
           style={{
-            fontSize: "52px",
+            fontSize: isMobile ? "24px" : "3.2vw",
             fontWeight: 600,
             fontFamily: "Gotham",
           }}
@@ -42,7 +45,7 @@ const HeroText = () => {
       </div>
       <Typography
         style={{
-          fontSize: "20px",
+          fontSize: isMobile ? "12px" : "1.4vw",
           fontWeight: 400,
           fontFamily: "Gotham",
         }}
@@ -58,7 +61,7 @@ const HeroText = () => {
         <Typography
           style={{
             textDecoration: "underline",
-            fontSize: "20px",
+            fontSize: isMobile ? "12px" : "1.5vw",
             fontWeight: 500,
             fontFamily: "Gotham",
             color: token.colorPrimary,

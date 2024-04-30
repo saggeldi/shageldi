@@ -9,13 +9,14 @@ import { RootState } from "../../features/store";
 
 const Navbar = () => {
   const { token } = useToken();
-  const { isMobile } = useResponsive();
+  const { isMobile, isTablet } = useResponsive();
   const theme = useSelector((state: RootState) => state.theme);
   return (
     <Stack
       id="navbar"
       justifyContent={"space-between"}
       direction={"row"}
+      alignItems={"center"}
       style={{
         left: 0,
         paddingLeft: "4%",
@@ -30,16 +31,22 @@ const Navbar = () => {
         zIndex: 10,
       }}
     >
-      <Typography id="logo-text">
+      <Typography
+        id="logo-text"
+        style={{
+          fontFamily: "Yandex",
+          fontSize: isMobile ? "12px" : "1.7vw",
+        }}
+      >
         <label
           style={{
             color: token.colorPrimary,
             fontWeight: 700,
           }}
         >
-          Name
+          Shageldi
         </label>{" "}
-        Surname
+        Alyyev
       </Typography>
       <NavbarMenu />
       {isMobile ? (
@@ -48,7 +55,7 @@ const Navbar = () => {
         <Button type="link">
           <Typography
             style={{
-              fontSize: "24px",
+              fontSize: isTablet ? "18px" : "24px",
               fontWeight: 700,
               fontFamily: "Yandex",
               color: token.colorPrimary,

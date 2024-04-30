@@ -27,7 +27,90 @@ const code = `<!DOCTYPE html>
 </html>`;
 
 const AboutHome = () => {
-  const { isDesktop } = useResponsive();
+  const { isDesktop, isMobile } = useResponsive();
+
+  const About = () => {
+    const size = isMobile ? "20px" : "40px";
+    return (
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <br />
+        <img
+          src="/logo.png"
+          style={{
+            width: isMobile ? "60%" : "90%",
+            maxHeight: "100%",
+            minHeight: "45%",
+            background: `linear-gradient(0deg, rgba(179, 255, 171, 0.35) 0%, rgba(18, 255, 247, 0) 100%)`,
+            objectFit: "cover",
+            borderRadius: "100%",
+            borderColor: "#B3FFAB",
+            borderStyle: "solid",
+            borderWidth: "3px",
+          }}
+        />
+        <div
+          style={{
+            marginTop: "-30px",
+            width: isMobile ? "65%" : "95%",
+            background: `linear-gradient(95.14deg, rgba(179, 255, 171, 0.35) 1.06%, rgba(18, 255, 247, 0) 100%)`,
+            objectFit: "cover",
+            borderRadius: "20px",
+            borderColor: "#B3FFAB",
+            borderStyle: "solid",
+            borderWidth: "3px",
+            backdropFilter: `blur(5px)`,
+          }}
+        >
+          <Typography
+            style={{
+              fontFamily: "Yandex",
+              fontWeight: "700",
+              fontSize: isMobile ? "14px" : "2vw",
+              width: "100%",
+              textAlign: "center",
+            }}
+          >
+            Shageldi Alyyev
+          </Typography>
+          <Row
+            align={"stretch"}
+            justify={"center"}
+            style={{
+              gap: "6px",
+            }}
+          >
+            <img
+              src="/icons/mdi_github.svg"
+              style={{ width: size, height: size, cursor: "pointer" }}
+            />
+            <img
+              src="/icons/mdi_instagram.svg"
+              style={{ width: size, height: size, cursor: "pointer" }}
+            />
+            <img
+              src="/icons/mdi_linkedin.svg"
+              style={{ width: size, height: size, cursor: "pointer" }}
+            />
+            <img
+              src="/icons/ic_baseline-phone.svg"
+              style={{ width: size, height: size, cursor: "pointer" }}
+            />
+            <img
+              src="/icons/mdi_gmail.svg"
+              style={{ width: size, height: size, cursor: "pointer" }}
+            />
+          </Row>
+        </div>
+      </div>
+    );
+  };
 
   const AboutPicture = () => {
     return (
@@ -49,75 +132,7 @@ const AboutHome = () => {
           <CodeView code={code} />
         </Col>
         <Col xs={8}>
-          <br />
-          <img
-            src="/logo.png"
-            style={{
-              width: "90%",
-              maxHeight: "100%",
-              minHeight: "45%",
-              backgroundColor: `rgb(18,255,247)`,
-              background: `linear-gradient(180deg, rgba(18,255,247,0) 0%, rgba(179,255,171,1) 100%)`,
-              objectFit: "cover",
-              borderRadius: "100%",
-              borderColor: "#B3FFAB",
-              borderStyle: "solid",
-              borderWidth: "3px",
-            }}
-          />
-          <div
-            style={{
-              width: "95%",
-              backgroundColor: `rgb(18,255,247)`,
-              background: `linear-gradient(266deg, rgba(18,255,247,0) 0%, rgba(105,255,206,0.40798326166404064) 94%, rgba(179,255,171,0.5788516090029762) 100%)`,
-              objectFit: "cover",
-              borderRadius: "20px",
-              borderColor: "#B3FFAB",
-              borderStyle: "solid",
-              borderWidth: "3px",
-              backdropFilter: `blur(5px)`,
-            }}
-          >
-            <Typography
-              style={{
-                fontFamily: "Yandex",
-                fontWeight: "700",
-                fontSize: "24px",
-                width: "100%",
-                textAlign: "center",
-              }}
-            >
-              Shageldi Alyyev
-            </Typography>
-            <Row
-              align={"stretch"}
-              justify={"center"}
-              style={{
-                gap: "6px",
-              }}
-            >
-              <img
-                src="/icons/mdi_github.svg"
-                style={{ width: "40px", height: "40px", cursor: "pointer" }}
-              />
-              <img
-                src="/icons/mdi_instagram.svg"
-                style={{ width: "40px", height: "40px", cursor: "pointer" }}
-              />
-              <img
-                src="/icons/mdi_linkedin.svg"
-                style={{ width: "40px", height: "40px", cursor: "pointer" }}
-              />
-              <img
-                src="/icons/ic_baseline-phone.svg"
-                style={{ width: "40px", height: "40px", cursor: "pointer" }}
-              />
-              <img
-                src="/icons/mdi_gmail.svg"
-                style={{ width: "40px", height: "40px", cursor: "pointer" }}
-              />
-            </Row>
-          </div>
+          <About />
         </Col>
       </Row>
     );
@@ -150,6 +165,7 @@ const AboutHome = () => {
             }}
           >
             <CodeView code={code} />
+            <About />
           </div>
         )}
       </div>

@@ -36,7 +36,7 @@ const NavbarMenu = () => {
               <Typography
                 key={`navbar-button-${value.text}`}
                 style={{
-                  fontSize: "18px",
+                  fontSize: isTablet ? "14px" : "18px",
                   fontWeight: 500,
                   fontFamily: "Yandex",
                   cursor: "pointer",

@@ -22,7 +22,7 @@ const CodeTitle: React.FC<IProps> = (props) => {
           ? "48px"
           : isTablet
           ? "30px"
-          : "4vw",
+          : "24px",
         marginTop: isDesktop ? "0px" : isTablet ? "-22px" : "-12px",
         fontWeight: 700,
         fontFamily: "Yandex",

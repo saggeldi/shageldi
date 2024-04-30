@@ -10,8 +10,10 @@ import { AndroidModelViewer } from "./AndroidLoader";
 import { Col, Row } from "antd";
 import HeroText from "./HeroText";
 import Loader from "./Loader";
+import useResponsive from "../../hooks/useResponsive";
 
 const Hero = () => {
+  const { isMobile } = useResponsive();
   return (
     <div>
       <Row
@@ -21,37 +23,39 @@ const Hero = () => {
           paddingTop: "100px",
         }}
       >
-        <Col xs={12}>
+        <Col xs={24} md={12}>
           <HeroText />
         </Col>
-        <Col xs={12} style={{ height: "70vh" }}>
-          <Canvas shadows camera={{ position: [0, 1.5, -10], fov: 35 }}>
-            <ambientLight intensity={Math.PI} />
-            <spotLight
-              position={[5, 2, 5]}
-              angle={0.2}
-              penumbra={1}
-              decay={0}
-              intensity={1}
-              shadow-mapSize={256}
-              castShadow
-            />
-            <Suspense fallback={<Loader />}>
-              <Center top>
-                <AndroidModelViewer scale={0.6} />
-              </Center>
-              <AccumulativeShadows
-                frames={100}
-                temporal
-                alphaTest={0.75}
-                color="pink"
-              >
-                <RandomizedLight radius={8} position={[5, 3, -5]} />
-              </AccumulativeShadows>
-            </Suspense>
-            <OrbitControls />
-          </Canvas>
-        </Col>
+        {!isMobile ? (
+          <Col xs={24} md={12} style={{ height: "70vh" }}>
+            <Canvas shadows camera={{ position: [0, 1.5, -10], fov: 35 }}>
+              <ambientLight intensity={Math.PI} />
+              <spotLight
+                position={[5, 2, 5]}
+                angle={0.2}
+                penumbra={1}
+                decay={0}
+                intensity={1}
+                shadow-mapSize={256}
+                castShadow
+              />
+              <Suspense fallback={<Loader />}>
+                <Center top>
+                  <AndroidModelViewer scale={0.6} />
+                </Center>
+                <AccumulativeShadows
+                  frames={100}
+                  temporal
+                  alphaTest={0.75}
+                  color="pink"
+                >
+                  <RandomizedLight radius={8} position={[5, 3, -5]} />
+                </AccumulativeShadows>
+              </Suspense>
+              <OrbitControls />
+            </Canvas>
+          </Col>
+        ) : null}
       </Row>
     </div>
   );

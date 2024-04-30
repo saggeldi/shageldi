@@ -1,9 +1,11 @@
 import { Row, Typography } from "antd";
 import "./style/footer.css";
 import { useToken } from "../../theme/config-theme";
+import useResponsive from "../../hooks/useResponsive";
 
 const Footer = () => {
   const { token } = useToken();
+  const { isMobile, isTablet } = useResponsive();
   return (
     <div>
       <br />
@@ -16,16 +18,22 @@ const Footer = () => {
         }}
         justify={"space-between"}
       >
-        <Typography id="logo-text">
+        <Typography
+          id="logo-text"
+          style={{
+            fontFamily: "Yandex",
+            fontSize: isMobile ? "12px" : "1.5vw",
+          }}
+        >
           <label
             style={{
               color: token.colorPrimary,
               fontWeight: 700,
             }}
           >
-            Name
+            Shageldi
           </label>{" "}
-          Surname
+          Alyyev
         </Typography>
 
         <Row
@@ -35,25 +43,29 @@ const Footer = () => {
           }}
           gutter={[12, 12]}
         >
-          <Typography
-            style={{
-              fontFamily: "Gotham",
-              fontWeight: "400",
-              fontSize: "18px",
-            }}
-          >
-            +993 65 55 55 55
-          </Typography>
+          {isMobile || isTablet ? null : (
+            <Typography
+              style={{
+                fontFamily: "Gotham",
+                fontWeight: "400",
+                fontSize: "18px",
+              }}
+            >
+              +993 61 29 87 82
+            </Typography>
+          )}
 
-          <Typography
-            style={{
-              fontFamily: "Gotham",
-              fontWeight: "400",
-              fontSize: "18px",
-            }}
-          >
-            abc673322@gmail.com
-          </Typography>
+          {isMobile || isTablet ? null : (
+            <Typography
+              style={{
+                fontFamily: "Gotham",
+                fontWeight: "400",
+                fontSize: "18px",
+              }}
+            >
+              multiplatform00@gmail.com
+            </Typography>
+          )}
           <img
             src="/icons/mdi_github.svg"
             style={{ width: "40px", height: "40px", cursor: "pointer" }}

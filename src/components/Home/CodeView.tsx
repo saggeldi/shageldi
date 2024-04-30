@@ -4,13 +4,13 @@ import useResponsive from "../../hooks/useResponsive";
 
 const CodeView = (props: { code: string }) => {
   const { token } = useToken();
-  const { isDesktop } = useResponsive();
+  const { isDesktop, isMobile } = useResponsive();
   return (
     <div
       style={{
         width: "100%",
         display: "flex",
-        gap: "22px",
+        gap: isDesktop ? "22px" : "2px",
         overflow: "auto",
       }}
     >
@@ -20,9 +20,9 @@ const CodeView = (props: { code: string }) => {
             <Typography
               key={`code-line-${index}`}
               style={{
-                width: "30px",
+                width: isMobile ? "11px" : "30px",
                 fontFamily: "Gotham",
-                fontSize: isDesktop ? "16px" : "12px",
+                fontSize: isMobile ? "7px" : "16px",
                 fontWeight: 400,
               }}
             >
@@ -38,7 +38,7 @@ const CodeView = (props: { code: string }) => {
               key={`code-value-${index}`}
               style={{
                 fontFamily: "Gotham",
-                fontSize: isDesktop ? "16px" : "12px",
+                fontSize: isMobile ? "7px" : "16px",
                 fontWeight: val.includes("<mine>") ? 500 : 400,
                 color: val.includes("<mine>") ? token.colorPrimary : "",
               }}
