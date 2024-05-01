@@ -9,6 +9,11 @@ const lightTheme: ThemeConfig = {
     colorBgBase: "#FFFFFF",
     colorBgLayout: "#E7EDFF",
   },
+  components: {
+    Collapse: {
+      contentBg: "transparent",
+    },
+  },
 };
 
 const darkTheme: ThemeConfig = {

@@ -1,27 +1,27 @@
-import { Row, Typography } from "antd";
+import { Collapse, CollapseProps, Row, Typography } from "antd";
 import { useToken } from "../../theme/config-theme";
 import CodeTitle from "./CodeTitle";
 import useResponsive from "../../hooks/useResponsive";
+import Link from "../../assets/icons/Link";
+import Location from "../../assets/icons/Location";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const Experience = () => {
   const { token } = useToken();
   const { isMobile } = useResponsive();
-  return (
-    <div>
-      <br />
-      <br />
-      <CodeTitle text="Experience" />
-      <br />
-      <div
-        style={{
-          width: "100%",
-          borderRadius: "20px",
-          borderStyle: "solid",
-          borderColor: token.colorText,
-          borderWidth: "1px",
-          padding: "12px",
-        }}
-      >
+
+  const items: CollapseProps["items"] = [
+    {
+      key: "1",
+      style: {
+        width: "100%",
+        borderRadius: "20px",
+        borderStyle: "solid",
+        borderColor: token.colorText,
+        borderWidth: "1px",
+        padding: "12px",
+      },
+      label: (
         <Row
           justify={"space-between"}
           style={{
@@ -48,20 +48,14 @@ const Experience = () => {
             >
               2019-2021
             </Typography>
-            <img
-              src="/icons/zondicons_minus-outline.svg"
-              style={{
-                width: isMobile ? "15px" : "24px",
-              }}
-            />
           </Row>
         </Row>
-        <hr />
-        <br />
+      ),
+      children: (
         <Row style={{ gap: isMobile ? "8px" : "24px" }}>
           <Row style={{ gap: "12px", alignItems: "center" }}>
-            <img
-              src="/icons/mingcute_location-line.svg"
+            <Location
+              color={token.colorText}
               style={{
                 width: isMobile ? "15px" : "24px",
                 height: isMobile ? "15px" : "24px",
@@ -79,8 +73,8 @@ const Experience = () => {
           </Row>
 
           <Row style={{ gap: "12px", rowGap: "24px", alignItems: "center" }}>
-            <img
-              src="/icons/ph_link-bold.svg"
+            <Link
+              color={token.colorText}
               style={{
                 width: isMobile ? "15px" : "24px",
                 height: isMobile ? "15px" : "24px",
@@ -99,9 +93,42 @@ const Experience = () => {
             </Typography>
           </Row>
         </Row>
-      </div>
+      ),
+    },
+  ];
+  return (
+    <div>
+      <CodeTitle text="Experience" />
       <br />
-      <br />
+
+      <ScrollAnimation animateIn="fadeIn">
+        <Collapse
+          items={items}
+          expandIconPosition="end"
+          expandIcon={(props) =>
+            props.isActive ? (
+              <img
+                src="/icons/zondicons_minus-outline.svg"
+                style={{
+                  width: isMobile ? "15px" : "24px",
+                }}
+              />
+            ) : (
+              <img
+                src="/icons/zondicons_add-outline.svg"
+                style={{
+                  width: isMobile ? "15px" : "24px",
+                }}
+              />
+            )
+          }
+          defaultActiveKey={["1"]}
+          style={{
+            width: "100%",
+            borderRadius: "20px",
+          }}
+        />
+      </ScrollAnimation>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 import { Col, Row, Typography } from "antd";
 import CodeTitle from "./CodeTitle";
 import useResponsive from "../../hooks/useResponsive";
+import { Tilt } from "react-tilt";
+import { defaultOptions } from "./Advantages";
+import ScrollAnimation from "react-animate-on-scroll";
 
 const imagesArray = [
   "adonisjs.svg",
@@ -97,33 +100,35 @@ const Skills = () => {
           <Row style={{ rowGap: "22px" }}>
             {imagesArray.map((icon, index) => {
               return (
-                <Col
-                  xs={6}
-                  sm={6}
-                  md={6}
-                  key={`icon-${index}`}
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <img
-                    src={`/skills/${icon}`}
-                    style={{
-                      width: isMobile ? "26px" : "44px",
-                    }}
-                  />
-                  <Typography
-                    style={{
-                      fontFamily: "Gotham",
-                      fontWeight: "400",
-                      fontSize: isMobile ? "12px" : "1.1vw",
-                    }}
-                  >
-                    {icon.replace(".svg", "")}
-                  </Typography>
+                <Col xs={6} sm={6} md={6} key={`icon-${index}`}>
+                  <ScrollAnimation animateIn="zoomIn">
+                    <Tilt options={defaultOptions}>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <img
+                          src={`/skills/${icon}`}
+                          style={{
+                            width: isMobile ? "26px" : "44px",
+                          }}
+                        />
+                        <Typography
+                          style={{
+                            fontFamily: "Gotham",
+                            fontWeight: "400",
+                            fontSize: isMobile ? "12px" : "1.1vw",
+                          }}
+                        >
+                          {icon.replace(".svg", "")}
+                        </Typography>
+                      </div>
+                    </Tilt>
+                  </ScrollAnimation>
                 </Col>
               );
             })}

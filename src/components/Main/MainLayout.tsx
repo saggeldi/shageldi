@@ -60,7 +60,12 @@ const MainLayout = () => {
         }}
       >
         <DarkModeSwitch
-          style={{ marginBottom: "2rem", marginLeft: "6px", marginTop: "4px" }}
+          style={{
+            marginBottom: "2rem",
+            marginLeft: "6px",
+            marginTop: "4px",
+            borderColor: "red",
+          }}
           checked={theme.value == "dark"}
           onChange={toggleThemeHandler}
           size={30}

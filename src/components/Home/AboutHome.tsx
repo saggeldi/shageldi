@@ -1,7 +1,14 @@
-import { Col, Row, Typography } from "antd";
+import { Col, Row, Space, Typography } from "antd";
 import useResponsive from "../../hooks/useResponsive";
 import CodeView from "./CodeView";
 import CodeTitle from "./CodeTitle";
+import { useSelector } from "react-redux";
+import { RootState } from "../../features/store";
+import Github from "../../assets/icons/Github";
+import Instagram from "../../assets/icons/Instagram";
+import Linkedin from "../../assets/icons/Linkedin";
+import Phone from "../../assets/icons/Phone";
+import Gmail from "../../assets/icons/Gmail";
 
 const code = `<!DOCTYPE html>
 <html>
@@ -29,15 +36,33 @@ const code = `<!DOCTYPE html>
 const AboutHome = () => {
   const { isDesktop, isMobile } = useResponsive();
 
+  const theme = useSelector((state: RootState) => state.theme);
+
+  const color =
+    theme.value == "light" ? "rgba(30, 73, 97, 1)" : "rgba(35, 140, 199, 1)";
+  const textColor =
+    theme.value == "light" ? "rgba(255, 215, 0, 1)" : "rgba(32, 33, 36, 1)";
+  const codeColor =
+    theme.value == "light" ? "rgba(34, 54, 231, 1)" : "rgba(255, 215, 0, 1)";
+  const bgColor =
+    theme.value == "light"
+      ? "rgba(18, 255, 247, 0.15)"
+      : "rgba(18, 255, 247, 0.15)";
   const About = () => {
     const size = isMobile ? "20px" : "40px";
     return (
       <div
         style={{
           width: "100%",
+          height: "100%",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: color,
+          borderTopRightRadius: isMobile ? "0px" : "20px",
+          borderBottomRightRadius: "20px",
+          borderBottomLeftRadius: isMobile ? "20px" : "0px",
         }}
       >
         <br />
@@ -50,7 +75,7 @@ const AboutHome = () => {
             background: `linear-gradient(0deg, rgba(179, 255, 171, 0.35) 0%, rgba(18, 255, 247, 0) 100%)`,
             objectFit: "cover",
             borderRadius: "100%",
-            borderColor: "#B3FFAB",
+            borderColor: "rgba(179, 255, 171, 1)",
             borderStyle: "solid",
             borderWidth: "3px",
           }}
@@ -62,7 +87,7 @@ const AboutHome = () => {
             background: `linear-gradient(95.14deg, rgba(179, 255, 171, 0.35) 1.06%, rgba(18, 255, 247, 0) 100%)`,
             objectFit: "cover",
             borderRadius: "20px",
-            borderColor: "#B3FFAB",
+            borderColor: "rgba(179, 255, 171, 1)",
             borderStyle: "solid",
             borderWidth: "3px",
             backdropFilter: `blur(5px)`,
@@ -75,6 +100,7 @@ const AboutHome = () => {
               fontSize: isMobile ? "14px" : "2vw",
               width: "100%",
               textAlign: "center",
+              color: textColor,
             }}
           >
             Shageldi Alyyev
@@ -86,24 +112,24 @@ const AboutHome = () => {
               gap: "6px",
             }}
           >
-            <img
-              src="/icons/mdi_github.svg"
+            <Github
+              color={textColor}
               style={{ width: size, height: size, cursor: "pointer" }}
             />
-            <img
-              src="/icons/mdi_instagram.svg"
+            <Instagram
+              color={textColor}
               style={{ width: size, height: size, cursor: "pointer" }}
             />
-            <img
-              src="/icons/mdi_linkedin.svg"
+            <Linkedin
+              color={textColor}
               style={{ width: size, height: size, cursor: "pointer" }}
             />
-            <img
-              src="/icons/ic_baseline-phone.svg"
+            <Phone
+              color={textColor}
               style={{ width: size, height: size, cursor: "pointer" }}
             />
-            <img
-              src="/icons/mdi_gmail.svg"
+            <Gmail
+              color={textColor}
               style={{ width: size, height: size, cursor: "pointer" }}
             />
           </Row>
@@ -116,8 +142,7 @@ const AboutHome = () => {
     return (
       <Row
         style={{
-          marginLeft: "83px",
-          marginRight: "113px",
+          width: "100%",
           padding: 0,
           overflow: "auto",
         }}
@@ -129,7 +154,7 @@ const AboutHome = () => {
             paddingLeft: "28px",
           }}
         >
-          <CodeView code={code} />
+          <CodeView code={code} color={codeColor} style={{}} />
         </Col>
         <Col xs={8}>
           <About />
@@ -139,46 +164,42 @@ const AboutHome = () => {
   };
 
   return (
-    <div
+    <Space
+      size={"large"}
+      direction="vertical"
       style={{
         paddingBottom: "22px",
         marginTop: isDesktop ? "0px" : "60px",
         overflow: "hidden",
       }}
     >
+      <CodeTitle text="About me" />
       <div
         style={{
-          backgroundColor: "gray",
+          backgroundColor: bgColor,
+          borderRadius: "30px",
+          borderStyle: "solid",
+          borderWidth: "4px",
+          borderColor: color,
           width: "100%",
-          paddingTop: "8px",
         }}
       >
-        <CodeTitle text="About me" />
         {isDesktop ? (
           <AboutPicture />
         ) : (
-          <div
-            style={{
-              padding: "16px",
-              paddingLeft: "68px",
-              paddingRight: "58px",
-            }}
-          >
-            <CodeView code={code} />
+          <div>
+            <CodeView
+              code={code}
+              color={codeColor}
+              style={{
+                padding: "16px",
+              }}
+            />
             <About />
           </div>
         )}
       </div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-    </div>
+    </Space>
   );
 };
 

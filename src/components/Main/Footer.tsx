@@ -2,6 +2,9 @@ import { Row, Typography } from "antd";
 import "./style/footer.css";
 import { useToken } from "../../theme/config-theme";
 import useResponsive from "../../hooks/useResponsive";
+import Github from "../../assets/icons/Github";
+import Instagram from "../../assets/icons/Instagram";
+import Linkedin from "../../assets/icons/Linkedin";
 
 const Footer = () => {
   const { token } = useToken();
@@ -66,16 +69,16 @@ const Footer = () => {
               multiplatform00@gmail.com
             </Typography>
           )}
-          <img
-            src="/icons/mdi_github.svg"
+          <Github
+            color={token.colorText}
             style={{ width: "40px", height: "40px", cursor: "pointer" }}
           />
-          <img
-            src="/icons/mdi_instagram.svg"
+          <Instagram
+            color={token.colorText}
             style={{ width: "40px", height: "40px", cursor: "pointer" }}
           />
-          <img
-            src="/icons/mdi_linkedin.svg"
+          <Linkedin
+            color={token.colorText}
             style={{ width: "40px", height: "40px", cursor: "pointer" }}
           />
         </Row>

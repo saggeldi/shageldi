@@ -1,9 +1,13 @@
 import { Typography } from "antd";
-import { useToken } from "../../theme/config-theme";
 import useResponsive from "../../hooks/useResponsive";
+import React from "react";
+import { TypeAnimation } from "react-type-animation";
 
-const CodeView = (props: { code: string }) => {
-  const { token } = useToken();
+const CodeView = (props: {
+  code: string;
+  color: string;
+  style: React.CSSProperties | undefined;
+}) => {
   const { isDesktop, isMobile } = useResponsive();
   return (
     <div
@@ -12,6 +16,7 @@ const CodeView = (props: { code: string }) => {
         display: "flex",
         gap: isDesktop ? "22px" : "2px",
         overflow: "auto",
+        ...props.style,
       }}
     >
       <div>
@@ -31,22 +36,25 @@ const CodeView = (props: { code: string }) => {
           );
         })}
       </div>
-      <div>
-        {props.code.split("\n").map((val: string, index: number) => {
-          return (
-            <Typography
-              key={`code-value-${index}`}
-              style={{
-                fontFamily: "Gotham",
-                fontSize: isMobile ? "7px" : "16px",
-                fontWeight: val.includes("<mine>") ? 500 : 400,
-                color: val.includes("<mine>") ? token.colorPrimary : "",
-              }}
-            >
-              {val.replace("<mine>", "")}
-            </Typography>
-          );
-        })}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          rowGap: "0px",
+        }}
+      >
+        <TypeAnimation
+          style={{
+            fontFamily: "Gotham",
+            fontSize: isMobile ? "7px" : "16px",
+            fontWeight: 400,
+            color: props.color,
+            whiteSpace: "pre-line",
+          }}
+          sequence={[props.code, 10]}
+          speed={90}
+          repeat={Infinity}
+        />
       </div>
     </div>
   );

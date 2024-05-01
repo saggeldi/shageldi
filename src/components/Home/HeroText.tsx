@@ -67,7 +67,7 @@ const HeroText = () => {
             color: token.colorPrimary,
           }}
         >
-          LET’S CHAT!
+          READ BLOGS
         </Typography>
       </Button>
     </Space>

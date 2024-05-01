@@ -1,3 +1,4 @@
+import { Space } from "antd";
 import AboutHome from "../components/Home/AboutHome";
 import Advantages from "../components/Home/Advantages";
 import Contact from "../components/Home/Contact";
@@ -8,7 +9,7 @@ import Works from "../components/Home/Works";
 
 const Home = () => {
   return (
-    <div>
+    <Space direction="vertical" size={"large"}>
       <Hero />
       <AboutHome />
       <Skills />
@@ -16,7 +17,7 @@ const Home = () => {
       <Works />
       <Experience />
       <Contact />
-    </div>
+    </Space>
   );
 };
 

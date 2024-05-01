@@ -3,6 +3,7 @@ import React from "react";
 import { useToken } from "../../theme/config-theme";
 import useResponsive from "../../hooks/useResponsive";
 import { useMediaQuery } from "react-responsive";
+import ScrollAnimation from "react-animate-on-scroll";
 
 interface IProps {
   text: string;
@@ -14,33 +15,35 @@ const CodeTitle: React.FC<IProps> = (props) => {
 
   const isMatch = useMediaQuery({ minWidth: 990, maxWidth: 1200 });
   return (
-    <Typography
-      style={{
-        fontSize: isMatch
-          ? "35px"
-          : isDesktop
-          ? "48px"
-          : isTablet
-          ? "30px"
-          : "24px",
-        marginTop: isDesktop ? "0px" : isTablet ? "-22px" : "-12px",
-        fontWeight: 700,
-        fontFamily: "Yandex",
-        textAlign: "center",
-      }}
-    >
-      <label
+    <ScrollAnimation animateIn="bounceIn">
+      <Typography
         style={{
-          color: token.colorPrimary,
+          fontSize: isMatch
+            ? "35px"
+            : isDesktop
+            ? "48px"
+            : isTablet
+            ? "30px"
+            : "24px",
+          marginTop: isDesktop ? "0px" : isTablet ? "-22px" : "-12px",
+          fontWeight: 700,
+          fontFamily: "Yandex",
+          textAlign: "center",
         }}
-      >{`<`}</label>
-      {props.text}
-      <label
-        style={{
-          color: token.colorPrimary,
-        }}
-      >{`/>`}</label>
-    </Typography>
+      >
+        <label
+          style={{
+            color: token.colorPrimary,
+          }}
+        >{`<`}</label>
+        {props.text}
+        <label
+          style={{
+            color: token.colorPrimary,
+          }}
+        >{`/>`}</label>
+      </Typography>
+    </ScrollAnimation>
   );
 };
 

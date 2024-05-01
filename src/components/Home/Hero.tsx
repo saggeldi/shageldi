@@ -20,7 +20,7 @@ const Hero = () => {
         align={"stretch"}
         justify={"center"}
         style={{
-          paddingTop: "100px",
+          paddingTop: isMobile ? "50px" : "100px",
         }}
       >
         <Col xs={24} md={12}>
@@ -28,7 +28,10 @@ const Hero = () => {
         </Col>
         {!isMobile ? (
           <Col xs={24} md={12} style={{ height: "70vh" }}>
-            <Canvas shadows camera={{ position: [0, 1.5, -10], fov: 35 }}>
+            <Canvas
+              shadows
+              camera={{ position: [0, 1.5, -10], fov: 35, zoom: 1.1 }}
+            >
               <ambientLight intensity={Math.PI} />
               <spotLight
                 position={[5, 2, 5]}
@@ -52,7 +55,7 @@ const Hero = () => {
                   <RandomizedLight radius={8} position={[5, 3, -5]} />
                 </AccumulativeShadows>
               </Suspense>
-              <OrbitControls />
+              <OrbitControls enableZoom={false} autoRotate={true} />
             </Canvas>
           </Col>
         ) : null}

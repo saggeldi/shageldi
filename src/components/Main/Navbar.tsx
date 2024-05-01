@@ -6,6 +6,7 @@ import NavbarMenu from "./NavbarMenu";
 import useResponsive from "../../hooks/useResponsive";
 import { useSelector } from "react-redux";
 import { RootState } from "../../features/store";
+import MenuIcon from "../../assets/icons/Menu";
 
 const Navbar = () => {
   const { token } = useToken();
@@ -19,10 +20,10 @@ const Navbar = () => {
       alignItems={"center"}
       style={{
         left: 0,
-        paddingLeft: "4%",
-        paddingRight: "4%",
-        position: "fixed",
-        top: 0,
+        // paddingLeft: "4%",
+        // paddingRight: "4%",
+        // position: "fixed",
+        // top: 0,
         backgroundColor:
           theme.value == "dark"
             ? "rgba(32, 33, 36, 0.4)"
@@ -35,7 +36,7 @@ const Navbar = () => {
         id="logo-text"
         style={{
           fontFamily: "Yandex",
-          fontSize: isMobile ? "12px" : "1.7vw",
+          fontSize: isMobile ? "12px" : "24px",
         }}
       >
         <label
@@ -50,7 +51,7 @@ const Navbar = () => {
       </Typography>
       <NavbarMenu />
       {isMobile ? (
-        <img src="/icons/menu.svg" />
+        <MenuIcon color={token.colorText} style={{}} />
       ) : (
         <Button type="link">
           <Typography
