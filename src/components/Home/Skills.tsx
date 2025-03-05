@@ -121,7 +121,7 @@ const Skills = () => {
                           style={{
                             fontFamily: "Gotham",
                             fontWeight: "400",
-                            fontSize: isMobile ? "12px" : "1.1vw",
+                            fontSize: isMobile ? "12px" : "0.7vw",
                           }}
                         >
                           {icon.replace(".svg", "")}

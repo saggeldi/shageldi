@@ -23,11 +23,11 @@ const Hero = () => {
           paddingTop: isMobile ? "50px" : "100px",
         }}
       >
-        <Col xs={24} md={12}>
+        <Col xs={24} md={14}>
           <HeroText />
         </Col>
         {!isMobile ? (
-          <Col xs={24} md={12} style={{ height: "70vh" }}>
+          <Col xs={24} md={10} style={{ height: "70vh" }}>
             <Canvas
               shadows
               camera={{ position: [0, 1.5, -10], fov: 35, zoom: 1.1 }}
