@@ -27,7 +27,7 @@ const Hero = () => {
           <HeroText />
         </Col>
         {!isMobile ? (
-          <Col xs={24} md={10} style={{ height: "70vh" }}>
+          <Col xs={24} md={10} style={{ height: "60vh" }}>
             <Canvas
               shadows
               camera={{ position: [0, 1.5, -10], fov: 35, zoom: 1.1 }}

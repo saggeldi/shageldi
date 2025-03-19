@@ -21,7 +21,7 @@ const Works = () => {
                             sm={12}
                             md={isTablet ? 12 : 8}
                             style={{
-                                marginTop: isMobile ? 0 : index * 34 + "px",
+                                marginTop: isMobile ? 0 : 34 + "px",
                             }}
                         >
                             <ScrollAnimation animateIn="backInLeft">
@@ -63,7 +63,7 @@ const Works = () => {
                                         style={{
                                             fontFamily: "Yandex",
                                             fontWeight: "500",
-                                            fontSize: isMobile ? "24px" : "2.0vw",
+                                            fontSize: isMobile ? "24px" : "1.6vw",
                                             textAlign:"center"
                                         }}
                                     >

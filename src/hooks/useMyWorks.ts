@@ -148,7 +148,7 @@ export function useMyWorks() {
                 "Wakant aims to be one of the largest social network apps for online jobs. Here you can find\n" +
                 "right jobs suiting your profession and skills.",
             images: [
-                "http://wakant.com.tm/images/phones.png",
+                "/images/wakant.png",
             ],
             links: [
                 {

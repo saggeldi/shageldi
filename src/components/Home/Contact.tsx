@@ -2,6 +2,7 @@ import { Col, Row, Typography } from "antd";
 import CodeTitle from "./CodeTitle";
 import { useToken } from "../../theme/config-theme";
 import useResponsive from "../../hooks/useResponsive";
+import TelegramChanel from "./TelegramChanell.tsx";
 
 const Contact = () => {
   const { token } = useToken();
@@ -41,7 +42,7 @@ const Contact = () => {
               color: token.colorText,
               fontFamily: "Gotham",
               fontWeight: "400",
-              fontSize: isMobile ? "10px" : "1.7vw",
+              fontSize: isMobile ? "10px" : "1.4vw",
             }}
             placeholder="NAME"
             type="text"
@@ -61,7 +62,7 @@ const Contact = () => {
               color: token.colorText,
               fontFamily: "Gotham",
               fontWeight: "400",
-              fontSize: isMobile ? "10px" : "1.7vw",
+              fontSize: isMobile ? "10px" : "1.4vw",
             }}
             placeholder="EMAIL"
             type="email"
@@ -81,7 +82,7 @@ const Contact = () => {
               color: token.colorText,
               fontFamily: "Gotham",
               fontWeight: "400",
-              fontSize: isMobile ? "10px" : "1.7vw",
+              fontSize: isMobile ? "10px" : "1.4vw",
               maxWidth: "100%",
               minWidth: "100%",
               minHeight: isMobile ? "120px" : "250px",
@@ -135,6 +136,7 @@ const Contact = () => {
         </Row>
       </Row>
       <br />
+        <TelegramChanel title={"Native Mobile Development"} image={"/images/tg_gr.jpeg"} url={"https://t.me/kotlin_multiplatform_tm"}/>
       <br />
     </div>
   );

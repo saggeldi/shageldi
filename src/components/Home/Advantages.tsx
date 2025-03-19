@@ -66,7 +66,7 @@ const Advantages = () => {
                       style={{
                         fontFamily: "Yandex",
                         fontWeight: "500",
-                        fontSize: isMobile ? "24px" : "2.3vw",
+                        fontSize: isMobile ? "24px" : "1.6vw",
                         textAlign: "center",
                       }}
                     >
@@ -77,7 +77,7 @@ const Advantages = () => {
                       style={{
                         fontFamily: "Gotham",
                         fontWeight: "400",
-                        fontSize: isMobile ? "12px" : "1.0vw",
+                        fontSize: isMobile ? "12px" : "0.6vw",
                         textAlign: "center",
                       }}
                     >
