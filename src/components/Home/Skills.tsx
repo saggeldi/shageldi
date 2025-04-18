@@ -14,6 +14,10 @@ const imagesArray = [
     "typescript.svg",
     "nestjs.svg",
     "postgresql.svg",
+    "github_actions.svg",
+    "bitrise.svg",
+    "JUnit.svg",
+    "Android Instrumental Test.svg",
 ];
 
 const Skills = () => {
@@ -51,7 +55,18 @@ const Skills = () => {
                                     fontSize: isMobile ? "12px" : "1.0vw",
                                 }}
                             >
-                                Mobile development
+                                Senior android developer
+                            </Typography>
+                        </li>
+                        <li>
+                            <Typography
+                                style={{
+                                    fontFamily: "Gotham",
+                                    fontWeight: "400",
+                                    fontSize: isMobile ? "12px" : "1.0vw",
+                                }}
+                            >
+                                Cross platform mobile developer
                             </Typography>
                         </li>
                         <li>

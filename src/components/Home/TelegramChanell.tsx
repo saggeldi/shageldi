@@ -39,7 +39,7 @@ const TelegramChanel: React.FC<Props> = (props) => {
                             fontSize: "12px",
                             textAlign: "center",
                         }}>
-                             53 members
+                             56 members
                         </span>
                     </Typography>
 

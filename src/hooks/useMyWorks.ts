@@ -159,6 +159,20 @@ export function useMyWorks() {
             ]
         },
         {
+            name: "Turkmen Sites Search",
+            description: "Search from turkmen sites using Gemini AI",
+            images: [
+                "/images/search_tm.png",
+            ],
+            links: [
+                {
+                    url: "https://search-from-turkmen-sites.vercel.app/search",
+                    title: "Website",
+                    image: "/icons/ph_link-bold.svg"
+                }
+            ]
+        },
+        {
             name: "Game Launcher",
             description: "Turkmen Game Launcher using Compose for Desktop",
             images: [
