@@ -1,0 +1,66 @@
+{
+  "navbar": {
+    "name": "Şageldi",
+    "surname": "Alyýew",
+    "contact": "Habarlaşmak",
+    "menu": {
+      "home": "Baş sahypa",
+      "aboutMe": "Men barada",
+      "skills": "Başarnyklar",
+      "works": "Işlerim",
+      "experience": "Tejribe",
+      "blogs": "Bloglar"
+    }
+  },
+  "footer": {
+    "name": "Şageldi",
+    "surname": "Alyýew",
+    "phone": "+993 61 29 87 82",
+    "email": "multiplatform00@gmail.com"
+  },
+  "blogs": {
+    "title": "Meniň bloglarym",
+    "loading": "Bloglar ýüklenýär...",
+    "notFound": "Blog tapylmady.",
+    "readMore": "Dowamyny oka →"
+  },
+  "blogDetail": {
+    "loading": "Blog ýüklenýär...",
+    "notFound": "Blog tapylmady.",
+    "backToBlogs": "Bloglara dolan"
+  },
+  "hero": {
+    "jobTitle": "Mobil programmaçy",
+    "talkIsCheap": "Gürrüň arzan.",
+    "showMeTheProject": "Proýekti görkeziň!",
+    "description": "Men owadan we ýönekeý zatlary kodlaýaryn we işimi söýýärin",
+    "readBlogs": "BLOGLARY OKA"
+  },
+  "about": {
+    "title": "Men barada",
+    "name": "Şageldi Alyýew",
+    "description": "Güýçli we ölçegli mobil programmalar döretmekde tejribeli Android programmaçysy. Häzirki zaman Android programmirlemesinde ökde, Kotlin, Jetpack Compose, Android XML, Coroutines, Ktor, Room, Firebase, Retrofit, WorkManager we Compose Multiplatform ýaly güýçli enjamlar bilen işleýärin. Amatly UI/UX dizaýn etmekde we mobil tejribeler üçin öndürijiligi optimizasiýa etmekde tejribeli. Ulanyjylaryň garaşýan zatlaryny kanagatlandyrýan we geçýän netijeli, ulanyjy-dostlukly çözgütleri döretmäge höwesli."
+  },
+  "advantages": {
+    "title": "Artykmaçlyklar",
+    "communication": {
+      "title": "Aragatnaşyk",
+      "description": "Işimiz wagtynda habarlaşmalaryňyza çalt jogap berýärin, sebäbi köplenç onlaýn, şonuň üçin hyzmatdaşlyk öndürijilikli."
+    },
+    "businessAwareness": {
+      "title": "Biznes düşünjesi",
+      "description": "Siziň biznes modeliňize çuňňur düşünýärin. Proýekti diňe programmaçy däl-de, müşderiniň görmek isleýşi ýaly amala aşyryp bilýärin."
+    },
+    "privacy": {
+      "title": "Gizlinlik",
+      "description": "Käbir proýektleriň amala aşyrylýança ýa-da hatda ondan soň hem köpçülige açylmaly bolmadyk aýratyn häsiýetleri bar"
+    }
+  },
+  "skills": {
+    "title": "Başarnyklar",
+    "subtitle": "Hünärmen hökmünde eýe bolan başarnyklarym",
+    "seniorAndroid": "Ýokary derejeli Android programmaçysy",
+    "crossPlatform": "Köp platformaly mobil programmaçy",
+    "juniorFrontendBackend": "Başlangyç derejeli öň we arka tarap programmaçysy"
+  }
+}

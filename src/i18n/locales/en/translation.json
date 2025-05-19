@@ -1,0 +1,66 @@
+{
+  "navbar": {
+    "name": "Shageldi",
+    "surname": "Alyyev",
+    "contact": "Contact",
+    "menu": {
+      "home": "Home",
+      "aboutMe": "About me",
+      "skills": "Skills",
+      "works": "Works",
+      "experience": "Experience",
+      "blogs": "Blogs"
+    }
+  },
+  "footer": {
+    "name": "Shageldi",
+    "surname": "Alyyev",
+    "phone": "+993 61 29 87 82",
+    "email": "multiplatform00@gmail.com"
+  },
+  "blogs": {
+    "title": "My Blogs",
+    "loading": "Loading blogs...",
+    "notFound": "No blogs found.",
+    "readMore": "Read More →"
+  },
+  "blogDetail": {
+    "loading": "Loading blog...",
+    "notFound": "Blog not found.",
+    "backToBlogs": "Back to Blogs"
+  },
+  "hero": {
+    "jobTitle": "Mobile Developer",
+    "talkIsCheap": "Talk is cheap.",
+    "showMeTheProject": "Show me the project!",
+    "description": "I code beautifully simple things, and I love what I do",
+    "readBlogs": "READ BLOGS"
+  },
+  "about": {
+    "title": "About me",
+    "name": "Shageldi Alyyev",
+    "description": "Results-driven Android Developer with expertise in building robust and scalable mobile applications. Proficient in modern Android development, I bring a strong skill set in Kotlin, Jetpack Compose, Android XML, Coroutines, Ktor, Room, Firebase, Retrofit, WorkManager, and Compose Multiplatform. Experienced in designing intuitive UI/UX and optimizing performance for seamless mobile experiences. Passionate about creating efficient, user-friendly solutions that meet and exceed user expectations."
+  },
+  "advantages": {
+    "title": "Advantages",
+    "communication": {
+      "title": "Communication",
+      "description": "I quickly reply to your messages during our work, since I am online most of time, so cooperation is productive."
+    },
+    "businessAwareness": {
+      "title": "Business awareness",
+      "description": "Immersing in your business model. I can realize a project the way a client wants to see it, not just a developer."
+    },
+    "privacy": {
+      "title": "Privacy",
+      "description": "Some projects have unique properties that shouldn't be public until the end of implementation or even after"
+    }
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Skills I possess as a specialist",
+    "seniorAndroid": "Senior android developer",
+    "crossPlatform": "Cross platform mobile developer",
+    "juniorFrontendBackend": "Junior at frontend and backend development"
+  }
+}

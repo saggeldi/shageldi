@@ -4,6 +4,7 @@ import useResponsive from "../../hooks/useResponsive";
 import {Tilt} from "react-tilt";
 import {defaultOptions} from "./Advantages";
 import ScrollAnimation from "react-animate-on-scroll";
+import { useTranslation } from "react-i18next";
 
 const imagesArray = [
     "kotlin.svg",
@@ -22,9 +23,10 @@ const imagesArray = [
 
 const Skills = () => {
     const {isMobile} = useResponsive();
+    const { t } = useTranslation();
     return (
-        <div>
-            <CodeTitle text="Skills"/>
+        <div id={"#skills"}>
+            <CodeTitle text={t('skills.title')}/>
             <br/>
             <Row gutter={[24, 24]}>
                 <Col xs={24} sm={24} md={12}>
@@ -35,7 +37,7 @@ const Skills = () => {
                             fontSize: isMobile ? "14px" : "1.6vw",
                         }}
                     >
-                        Skills I possess as a specialist
+                        {t('skills.subtitle')}
                     </Typography>
                     <br/>
                     <br/>
@@ -55,7 +57,7 @@ const Skills = () => {
                                     fontSize: isMobile ? "12px" : "1.0vw",
                                 }}
                             >
-                                Senior android developer
+                                {t('skills.seniorAndroid')}
                             </Typography>
                         </li>
                         <li>
@@ -66,7 +68,7 @@ const Skills = () => {
                                     fontSize: isMobile ? "12px" : "1.0vw",
                                 }}
                             >
-                                Cross platform mobile developer
+                                {t('skills.crossPlatform')}
                             </Typography>
                         </li>
                         <li>
@@ -77,7 +79,7 @@ const Skills = () => {
                                     fontSize: isMobile ? "12px" : "1.0vw",
                                 }}
                             >
-                                Junior at frontend and backend development
+                                {t('skills.juniorFrontendBackend')}
                             </Typography>
                         </li>
                     </ul>

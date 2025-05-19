@@ -2,16 +2,20 @@ import "./style/navbar.css";
 import { useToken } from "../../theme/config-theme";
 import { Button, Typography } from "antd";
 import { Stack } from "@mui/material";
-import NavbarMenu from "./NavbarMenu";
 import useResponsive from "../../hooks/useResponsive";
 import { useSelector } from "react-redux";
 import { RootState } from "../../features/store";
 import MenuIcon from "../../assets/icons/Menu";
+import { useTranslation } from "react-i18next";
+import { lazy, Suspense } from "react";
+
+const NavbarMenu = lazy(() => import("./NavbarMenu"));
 
 const Navbar = () => {
   const { token } = useToken();
   const { isMobile, isTablet } = useResponsive();
   const theme = useSelector((state: RootState) => state.theme);
+  const { t } = useTranslation();
   return (
     <Stack
       id="navbar"
@@ -45,11 +49,13 @@ const Navbar = () => {
             fontWeight: 700,
           }}
         >
-          Shageldi
+          {t('navbar.name')}
         </label>{" "}
-        Alyyev
+        {t('navbar.surname')}
       </Typography>
-      <NavbarMenu />
+      <Suspense fallback={<div>Loading Menu...</div>}>
+        <NavbarMenu />
+      </Suspense>
       {isMobile ? (
         <MenuIcon color={token.colorText} style={{}} />
       ) : (
@@ -62,7 +68,7 @@ const Navbar = () => {
               color: token.colorPrimary,
             }}
           >
-            Contact
+            {t('navbar.contact')}
           </Typography>
         </Button>
       )}

@@ -1,6 +1,4 @@
-import Navbar from "./Navbar";
 import { Outlet } from "react-router-dom";
-import Footer from "./Footer";
 import "./style/layout.css";
 import { Container } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +6,10 @@ import { RootState } from "../../features/store";
 import { toggleTheme } from "../../features/themeSlice";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { useToken } from "../../theme/config-theme";
+import { lazy, Suspense } from "react";
+
+const Navbar = lazy(() => import("./Navbar"));
+const Footer = lazy(() => import("./Footer"));
 
 const MainLayout = () => {
   const theme = useSelector((state: RootState) => state.theme);
@@ -35,7 +37,9 @@ const MainLayout = () => {
       }}
     >
       <Container fixed>
-        <Navbar />
+        <Suspense fallback={<div>Loading Navbar...</div>}>
+          <Navbar />
+        </Suspense>
         <div
           style={{
             paddingTop: "80px",
@@ -43,7 +47,9 @@ const MainLayout = () => {
         >
           <Outlet />
         </div>
-        <Footer />
+        <Suspense fallback={<div>Loading Footer...</div>}>
+          <Footer />
+        </Suspense>
       </Container>
       <div
         style={{

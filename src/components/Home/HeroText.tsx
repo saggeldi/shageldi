@@ -1,10 +1,14 @@
 import {Button, Space, Typography} from "antd";
 import {useToken} from "../../theme/config-theme";
 import useResponsive from "../../hooks/useResponsive";
+import { useTranslation } from "react-i18next";
+import {useNavigate} from "react-router-dom";
 
 const HeroText = () => {
     const {token} = useToken();
     const {isMobile} = useResponsive();
+    const { t } = useTranslation();
+    const navigator = useNavigate();
 
     return (
         <Space direction="vertical" size={"large"}>
@@ -20,7 +24,7 @@ const HeroText = () => {
                     borderRadius: "8px",
                 }}
             >
-                Mobile Developer
+                {t('hero.jobTitle')}
             </Typography>
             <div>
                 <Typography
@@ -30,7 +34,7 @@ const HeroText = () => {
                         fontFamily: "Gotham",
                     }}
                 >
-                    Talk is <label style={{color: token.colorPrimary}}>cheap.</label>
+                    {t('hero.talkIsCheap').split(' ').slice(0, -1).join(' ')} <label style={{color: token.colorPrimary}}>{t('hero.talkIsCheap').split(' ').slice(-1)[0]}</label>
                 </Typography>
                 <Typography
                     style={{
@@ -39,8 +43,8 @@ const HeroText = () => {
                         fontFamily: "Gotham",
                     }}
                 >
-                    Show me the{" "}
-                    <label style={{color: token.colorPrimary}}>project!</label>
+                    {t('hero.showMeTheProject').split(' ').slice(0, -1).join(' ')}{" "}
+                    <label style={{color: token.colorPrimary}}>{t('hero.showMeTheProject').split(' ').slice(-1)[0]}</label>
                 </Typography>
             </div>
             <Typography
@@ -50,7 +54,7 @@ const HeroText = () => {
                     fontFamily: "Gotham",
                 }}
             >
-                I code beautifully simple things, and I love what I do{" "}
+                {t('hero.description')}{" "}
             </Typography>
             <Button
                 type="link"
@@ -60,7 +64,7 @@ const HeroText = () => {
             >
                 <Typography
                     onClick={() => {
-                        window.open("https://medium.com/@multiplatform00")
+                        navigator("/blogs");
                     }}
                     style={{
                         textDecoration: "underline",
@@ -70,7 +74,7 @@ const HeroText = () => {
                         color: token.colorPrimary,
                     }}
                 >
-                    READ BLOGS
+                    {t('hero.readBlogs')}
                 </Typography>
             </Button>
         </Space>

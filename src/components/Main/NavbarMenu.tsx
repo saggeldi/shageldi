@@ -1,50 +1,62 @@
 import useResponsive from "../../hooks/useResponsive";
 import { Stack } from "@mui/material";
 import { Typography } from "antd";
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const links = [
   {
-    text: "Home",
-    link: "#",
+    key: "home",
+    link: "/",
   },
   {
-    text: "About me",
-    link: "#",
+    key: "aboutMe",
+    link: "/#about",
   },
   {
-    text: "Skills",
-    link: "#",
+    key: "skills",
+    link: "/#skills",
   },
   {
-    text: "Works",
-    link: "#",
+    key: "works",
+    link: "/#works",
   },
   {
-    text: "Experience",
-    link: "#",
+    key: "experience",
+    link: "/#experience",
+  },
+  {
+    key: "blogs",
+    link: "/blogs",
   },
 ];
 
 const NavbarMenu = () => {
   const { isDesktop, isTablet } = useResponsive();
+  const { t } = useTranslation();
   return (
     <div>
       {isDesktop || isTablet ? (
         <Stack direction={"row"} spacing={2}>
           {links.map((value) => {
             return (
-              <Typography
-                key={`navbar-button-${value.text}`}
-                style={{
-                  fontSize: isTablet ? "14px" : "18px",
-                  fontWeight: 500,
-                  fontFamily: "Yandex",
-                  cursor: "pointer",
-                  padding: "12px",
-                }}
+              <Link 
+                to={value.link} 
+                style={{ textDecoration: 'none' }}
+                key={`navbar-button-${value.key}`}
               >
-                {value.text}
-              </Typography>
+                <Typography
+                  style={{
+                    fontSize: isTablet ? "14px" : "18px",
+                    fontWeight: 500,
+                    fontFamily: "Yandex",
+                    cursor: "pointer",
+                    padding: "12px",
+                  }}
+                >
+                  {t(`navbar.menu.${value.key}`)}
+                </Typography>
+              </Link>
             );
           })}
         </Stack>
