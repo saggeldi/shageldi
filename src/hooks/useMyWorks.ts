@@ -130,13 +130,13 @@ export function useMyWorks() {
             name: "Saglykoty",
             description: "Pharmacy Landing page website",
             images: [
-                "https://saglykoty.com.tm/images/banner/zero.png",
+                "/images/saglyk.png",
             ],
             links: [
                 {
                     url: "https://saglykoty.com.tm/",
                     title: "Website",
-                    image: "https://saglykoty.com.tm/images/my_logo.png"
+                    image: "/icons/ph_link-bold.svg"
                 }
             ]
         },
@@ -154,7 +154,7 @@ export function useMyWorks() {
                 {
                     url: "http://wakant.com.tm/",
                     title: "Website",
-                    image: "http://wakant.com.tm/images/logo.svg"
+                    image: "/icons/ph_link-bold.svg"
                 }
             ]
         },

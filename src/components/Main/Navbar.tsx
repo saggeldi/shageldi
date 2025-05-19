@@ -1,7 +1,6 @@
 import "./style/navbar.css";
 import { useToken } from "../../theme/config-theme";
-import { Button, Typography } from "antd";
-import { Stack } from "@mui/material";
+import { Button, Typography, Flex } from "antd";
 import useResponsive from "../../hooks/useResponsive";
 import { useSelector } from "react-redux";
 import { RootState } from "../../features/store";
@@ -17,11 +16,10 @@ const Navbar = () => {
   const theme = useSelector((state: RootState) => state.theme);
   const { t } = useTranslation();
   return (
-    <Stack
+    <Flex
       id="navbar"
-      justifyContent={"space-between"}
-      direction={"row"}
-      alignItems={"center"}
+      justify="space-between"
+      align="center"
       style={{
         left: 0,
         // paddingLeft: "4%",
@@ -72,7 +70,7 @@ const Navbar = () => {
           </Typography>
         </Button>
       )}
-    </Stack>
+    </Flex>
   );
 };
 

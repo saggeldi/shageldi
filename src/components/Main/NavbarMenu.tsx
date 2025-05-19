@@ -1,6 +1,5 @@
 import useResponsive from "../../hooks/useResponsive";
-import { Stack } from "@mui/material";
-import { Typography } from "antd";
+import { Typography, Flex } from "antd";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
@@ -37,7 +36,7 @@ const NavbarMenu = () => {
   return (
     <div>
       {isDesktop || isTablet ? (
-        <Stack direction={"row"} spacing={2}>
+        <Flex gap={16}>
           {links.map((value) => {
             return (
               <Link 
@@ -59,7 +58,7 @@ const NavbarMenu = () => {
               </Link>
             );
           })}
-        </Stack>
+        </Flex>
       ) : null}
     </div>
   );

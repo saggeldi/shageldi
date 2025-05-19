@@ -1,6 +1,5 @@
-import {Col, Image, Row, Typography} from "antd";
+import {Col, Image, Row, Typography, Button, Space} from "antd";
 import CodeTitle from "./CodeTitle";
-import {Button} from "@mui/material";
 import useResponsive from "../../hooks/useResponsive";
 import ScrollAnimation from "react-animate-on-scroll";
 import {useMyWorks} from "../../hooks/useMyWorks.ts";
@@ -92,31 +91,35 @@ const Works = () => {
                                         }}
                                     >
                                         {
-                                            work.links.map(link => (<Button
-                                                key={link.url}
-                                                onClick={()=>{
-                                                    window.open(link.url)
-                                                }}
-                                                startIcon={
-                                                    <img
-                                                        alt={link.title}
-                                                        src={link.image}
-                                                        style={{
-                                                            width: "24px",
-                                                            height: "24px",
-                                                        }}/>
-                                                }
-                                            >
-                                                <Typography
-                                                    style={{
-                                                        fontFamily: "Yandex",
-                                                        fontWeight: "400",
-                                                        fontSize: "12px",
+                                            work.links.map(link => (
+                                                <Button
+                                                    key={link.url}
+                                                    onClick={()=>{
+                                                        window.open(link.url)
                                                     }}
+                                                    style={{ display: 'flex', alignItems: 'center' }}
                                                 >
-                                                    {link.title}
-                                                </Typography>
-                                            </Button>))
+                                                    <Space>
+                                                        <img
+                                                            alt={link.title}
+                                                            src={link.image}
+                                                            style={{
+                                                                width: "24px",
+                                                                height: "24px",
+                                                            }}
+                                                        />
+                                                        <Typography
+                                                            style={{
+                                                                fontFamily: "Yandex",
+                                                                fontWeight: "400",
+                                                                fontSize: "12px",
+                                                            }}
+                                                        >
+                                                            {link.title}
+                                                        </Typography>
+                                                    </Space>
+                                                </Button>
+                                            ))
                                         }
 
                                     </div>

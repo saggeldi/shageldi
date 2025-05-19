@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import "./style/layout.css";
-import { Container } from "@mui/material";
+import { Layout } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../features/store";
 import { toggleTheme } from "../../features/themeSlice";
@@ -34,9 +34,17 @@ const MainLayout = () => {
     <div
       style={{
         background: `linear-gradient(to bottom, ${token.colorBgBase}, ${token.colorBgLayout})`,
+          minHeight: "100vh",
       }}
     >
-      <Container fixed>
+      <Layout.Content
+        style={{
+          maxWidth: '1200px',
+          width: '100%',
+          margin: '0 auto',
+          padding: '0 24px'
+        }}
+      >
         <Suspense fallback={<div>Loading Navbar...</div>}>
           <Navbar />
         </Suspense>
@@ -50,7 +58,7 @@ const MainLayout = () => {
         <Suspense fallback={<div>Loading Footer...</div>}>
           <Footer />
         </Suspense>
-      </Container>
+      </Layout.Content>
       <div
         style={{
           position: "fixed",

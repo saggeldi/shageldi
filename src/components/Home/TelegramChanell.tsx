@@ -1,6 +1,5 @@
 import React from 'react';
-import { CardContent, Stack} from "@mui/material";
-import {Button, Image, Typography, Card} from "antd";
+import {Button, Image, Typography, Card, Flex} from "antd";
 
 interface Props {
     url: string;
@@ -15,8 +14,8 @@ const TelegramChanel: React.FC<Props> = (props) => {
             backgroundColor:"rgba(255, 255, 255, 0.2)",
             border:"1px solid silver",
         }}>
-            <CardContent>
-                <Stack direction={"column"} spacing={2} alignItems={"center"} justifyContent={"center"}>
+            <div className="card-content" style={{ padding: '16px' }}>
+                <Flex vertical gap="16px" align="center" justify="center">
                     <Image src={props.image} alt="Telegram" style={{
                         width:"80px",
                         height:"80px",
@@ -51,8 +50,8 @@ const TelegramChanel: React.FC<Props> = (props) => {
                     }}>
                         Join My Telegram Dev Group
                     </Button>
-                </Stack>
-            </CardContent>
+                </Flex>
+            </div>
         </Card>
     );
 };
