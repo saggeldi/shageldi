@@ -1,14 +1,16 @@
 import {Col, Image, Row, Typography, Button, Space} from "antd";
 import CodeTitle from "./CodeTitle";
 import useResponsive from "../../hooks/useResponsive";
-import ScrollAnimation from "react-animate-on-scroll";
 import {useMyWorks} from "../../hooks/useMyWorks.ts";
 
 const Works = () => {
-    const {isMobile, isTablet} = useResponsive();
+    const {isMobile} = useResponsive();
     const {works} = useMyWorks();
     return (
-        <div>
+        <div style={{
+            maxWidth:"100%",
+
+        }}>
             <CodeTitle text="Works"/>
             <br/>
             <Row gutter={[16, 16]}>
@@ -17,13 +19,12 @@ const Works = () => {
                         <Col
                             key={`work-${index}`}
                             xs={24}
-                            sm={12}
-                            md={isTablet ? 12 : 8}
+                            sm={work.images.length > 1? 24 : 12}
+                            md={work.images.length > 1? 24 : 12}
                             style={{
                                 marginTop: isMobile ? 0 : 34 + "px",
                             }}
                         >
-                            <ScrollAnimation animateIn="backInLeft">
                                 <div
                                     style={{
                                         width: "100%",
@@ -38,25 +39,34 @@ const Works = () => {
                                         justifyContent: "center",
                                         alignItems: "center",
                                         gap: "24px",
+                                        padding:"12px"
                                     }}
                                 >
-                                    <Image
-                                        wrapperStyle={{
-                                            width:"100%"
-                                        }}
-                                        src={work.images[0]}
-                                        style={{
-                                            width: "100%",
-                                            objectFit: "cover",
-                                            height: "350px",
-                                            borderTopLeftRadius: "20px",
-                                            borderTopRightRadius: "20px",
-                                            borderStyle: "solid",
-                                            borderColor: "transparent",
-                                            backgroundColor: "#D9D9D9",
-                                            outline: "none",
-                                        }}
-                                        alt={work.name}/>
+                                    <div style={{
+                                        display: "flex",
+                                        maxWidth:"100%",
+                                        overflow:"auto",
+                                        gap:"12px"
+                                    }}>
+                                        {
+                                            work.images.map((image, imgindex)=>{
+                                                return  <Image
+                                                    wrapperStyle={{
+                                                        minWidth:"400px",
+                                                        display:"inline-block"
+                                                    }}
+                                                    src={image}
+                                                    style={{
+                                                        minWidth:"400px",
+                                                        objectFit: "contain",
+                                                        minHeight: "350px",
+                                                        outline: "none",
+                                                    }}
+                                                    key={`work-pic-${imgindex}`}
+                                                    alt={work.name}/>
+                                            })
+                                        }
+                                    </div>
 
                                     <Typography
                                         style={{
@@ -124,7 +134,6 @@ const Works = () => {
 
                                     </div>
                                 </div>
-                            </ScrollAnimation>
                         </Col>
                     );
                 })}

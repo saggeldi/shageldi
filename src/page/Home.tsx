@@ -1,4 +1,3 @@
-import { Space } from "antd";
 import { lazy, Suspense } from "react";
 
 const AboutHome = lazy(() => import("../components/Home/AboutHome"));
@@ -11,7 +10,12 @@ const Works = lazy(() => import("../components/Home/Works"));
 
 const Home = () => {
   return (
-    <Space direction="vertical" size={"large"}>
+    <div style={{
+        width: "100%",
+        display: "flex",
+        flexDirection:"column",
+        gap:"20px"
+    }}>
       <Suspense fallback={<div>Loading Hero...</div>}>
         <Hero />
       </Suspense>
@@ -33,7 +37,7 @@ const Home = () => {
       <Suspense fallback={<div>Loading Contact...</div>}>
         <Contact />
       </Suspense>
-    </Space>
+    </div>
   );
 };
 
