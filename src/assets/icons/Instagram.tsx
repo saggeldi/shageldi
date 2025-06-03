@@ -15,7 +15,7 @@ const Instagram: React.FC<IProps> = (props) => {
       style={props.style}
       xmlns="http://www.w3.org/2000/svg"
       onClick={()=>{
-        window.open("https://github.com/kotlin-compose-multiplatform")
+        window.open("https://www.instagram.com/sh.alyyv/")
       }}
     >
       <path

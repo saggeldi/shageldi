@@ -22,10 +22,6 @@ const Navbar = () => {
       align="center"
       style={{
         left: 0,
-        // paddingLeft: "4%",
-        // paddingRight: "4%",
-        // position: "fixed",
-        // top: 0,
         backgroundColor:
           theme.value == "dark"
             ? "rgba(32, 33, 36, 0.4)"
