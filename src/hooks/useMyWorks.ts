@@ -14,7 +14,7 @@ export interface MyWork {
 export function useMyWorks() {
     const works: MyWork[] = [
         {
-            name: "Balary",
+            name: "Balary - Also showing in <Jetbrains/> KMP showcase site",
             description: "Balary online supermarket has more than 50 categories of goods. Seasonal Vegetables, Fruits, Home Goods and much more! And if you think you might forget something, you can save your personal list of purchases with our phone app or website membership and use them on your next order!",
             images: [
                 "/images/balary/screen-1.jpg",
@@ -26,6 +26,11 @@ export function useMyWorks() {
                 "/images/balary/screen-7.jpg",
             ],
             links: [
+                {
+                    url: "https://www.jetbrains.com/help/kotlin-multiplatform-dev/case-studies.html",
+                    title: "Jetbrains Showcase",
+                    image: "/icons/jb-kotlin-multiplatform-logo.svg"
+                },
                 {
                     url: "https://play.google.com/store/apps/details?id=tm.com.balary&hl=en",
                     title: "Play store",
