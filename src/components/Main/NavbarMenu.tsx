@@ -1,12 +1,12 @@
 import useResponsive from "../../hooks/useResponsive";
 import { Typography, Flex } from "antd";
-import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import "./style/navbar.css"
 
 const links = [
   {
     key: "home",
-    link: "/",
+    link: "/#hero",
   },
   {
     key: "aboutMe",
@@ -39,23 +39,26 @@ const NavbarMenu = () => {
         <Flex gap={16}>
           {links.map((value) => {
             return (
-              <Link 
-                to={value.link} 
-                style={{ textDecoration: 'none' }}
-                key={`navbar-button-${value.key}`}
-              >
-                <Typography
-                  style={{
-                    fontSize: isTablet ? "14px" : "18px",
-                    fontWeight: 500,
-                    fontFamily: "Yandex",
-                    cursor: "pointer",
-                    padding: "12px",
-                  }}
+                <a
+                    href={value.link}
+                    key={`navbar-button-${value.key}`}
+                    style={{ textDecoration: 'none' }}
+                    className={"site-navbar-button"}
                 >
-                  {t(`navbar.menu.${value.key}`)}
-                </Typography>
-              </Link>
+                  <Typography
+                      className={"site-navbar-button-text"}
+                      style={{
+                        fontSize: isTablet ? "14px" : "18px",
+                        fontWeight: 500,
+                        fontFamily: "Yandex",
+                        cursor: "pointer",
+                        padding: "12px",
+                      }}
+                  >
+                    {t(`navbar.menu.${value.key}`)}
+                  </Typography>
+                </a>
+
             );
           })}
         </Flex>

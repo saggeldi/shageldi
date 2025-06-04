@@ -4,11 +4,20 @@ export interface WorkLink {
     image: string;
 }
 
+export interface UsedTechnology {
+    name: string;
+    url: string;
+    icon: string;
+    description: string;
+    percentage?: number | 0;
+}
+
 export interface MyWork {
     name: string;
     description: string;
     images: string[];
     links: WorkLink[];
+    technologies: UsedTechnology[];
 }
 
 export function useMyWorks() {
@@ -41,6 +50,50 @@ export function useMyWorks() {
                     title: "App store",
                     image: "/icons/appstore.svg"
                 }
+            ],
+            technologies: [
+                {
+                    name: "🧩 Compose Multiplatform",
+                    description: "💡 Balary is crafted with Kotlin Multiplatform and Compose Multiplatform, enabling seamless UI sharing across Android 📱 and iOS 🍎. Platform-specific features like 🗺️ MapLibre maps and 🎞️ video playback are integrated via `expect/actual` declarations using native views (Android XML / UIKit).",
+                    url: "https://www.jetbrains.com/compose-multiplatform/",
+                    icon: "/skills/compose multiplatform.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🧬 JNI + FFmpeg",
+                    description: "⚙️ For advanced video compression 🎥 on Android, we use JNI to call C/C++ code via FFmpeg. This native bridge boosts performance and brings precise media control directly from Kotlin.",
+                    url: "https://en.wikipedia.org/wiki/Java_Native_Interface",
+                    icon: "/skills/check.svg",
+                    percentage: 4
+                },
+                {
+                    name: "🗺️ MapLibre + Nominatim",
+                    description: "🌍 We use MapLibre to render beautiful maps powered by a self-hosted OpenStreetMap tile server. Combined with Nominatim for 🔎 search and reverse geocoding, users get fast, private, and offline-friendly mapping features.",
+                    url: "https://maplibre.org/",
+                    icon: "/skills/check.svg",
+                    percentage: 15
+                },
+                {
+                    name: "📦 Room KMP",
+                    description: "🛢️ For offline-first support, we use Room for Kotlin Multiplatform to cache key data locally across platforms. This ensures smooth user experiences even without internet.",
+                    url: "https://developer.android.com/kotlin/multiplatform/room",
+                    icon: "/skills/check.svg",
+                    percentage: 20
+                },
+                {
+                    name: "▶️ Video Player  ",
+                    description: " 🤖 We use expect/actual mechanism to play video with url using ExoPlayer on Android Target and AVPlayer on iOS target",
+                    url: "https://www.jetbrains.com/help/kotlin-multiplatform-dev/multiplatform-expect-actual.html#advanced-use-cases",
+                    icon: "/skills/check.svg",
+                    percentage: 10
+                },
+                {
+                    name: "🌐 Ktor Client",
+                    description: "🔗 Networking is powered by Ktor: OkHttp on Android and Darwin engine on iOS. It's lightweight, coroutine-friendly, and ideal for modern multiplatform apps.",
+                    url: "https://ktor.io/docs/client-create-and-configure.html",
+                    icon: "/skills/ktor.png",
+                    percentage: 70
+                }
             ]
         },
         {
@@ -62,73 +115,44 @@ export function useMyWorks() {
                     title: "Play store",
                     image: "/icons/playstore.svg"
                 }
-            ]
-        },
-        {
-            name: "Yarmarka TM",
-            description: "Gifts for any occasion! Each work is Exclusive! Buy works directly from the artist!",
-            images: [
-                "/images/elishi/screen-1.jpg",
-                "/images/elishi/screen-2.jpg",
-                "/images/elishi/screen-3.jpg",
-                "/images/elishi/screen-4.jpg",
-                "/images/elishi/screen-5.jpg",
-                "/images/elishi/screen-6.jpg",
-                "/images/elishi/screen-7.jpg",
             ],
-            links: [
+            technologies: [
                 {
-                    url: "https://play.google.com/store/apps/details?id=com.elishi.android&hl=en",
-                    title: "Play store",
-                    image: "/icons/playstore.svg"
+                    name: "🧩 Compose Multiplatform",
+                    description: "💡 Balary is built with Kotlin Multiplatform and Compose Multiplatform, enabling seamless UI sharing across Android 📱 and iOS 🍎. Platform-specific features like 🗺️ MapLibre maps and 🎞️ video playback are integrated via `expect/actual` declarations using native views (Android XML / UIKit).",
+                    url: "https://www.jetbrains.com/compose-multiplatform/",
+                    icon: "/skills/compose multiplatform.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🗺️ Google Maps",
+                    description: "🌍 Google Maps integration is achieved using the `expect/actual` mechanism for Android and iOS targets.",
+                    url: "https://developers.google.com/maps/documentation/android-sdk/maps-compose",
+                    icon: "/skills/check.svg",
+                    percentage: 65
+                },
+                {
+                    name: "📦 Koin",
+                    description: "📚 We use the Koin library for dependency injection in our Kotlin Multiplatform architecture.",
+                    url: "https://insert-koin.io/",
+                    icon: "/skills/check.svg",
+                    percentage: 70
+                },
+                {
+                    name: "🧭 Compose Navigation",
+                    description: "🛣️ We use JetBrains' official Compose Navigation library, a fork of the Android Jetpack Compose Navigation. Previously, we used Voyager, but switched due to frequent crashes and ANRs from the Play Console, including `Parcelable` and `Nested CompositionLocalProvider` errors when managing global state.",
+                    url: "https://www.jetbrains.com/help/kotlin-multiplatform-dev/compose-navigation-routing.html",
+                    icon: "/skills/check.svg",
+                    percentage: 10
+                },
+                {
+                    name: "🌐 Ktor Client",
+                    description: "🔗 Networking is powered by Ktor—using OkHttp on Android and the Darwin engine on iOS. It's lightweight, coroutine-friendly, and ideal for modern multiplatform apps.",
+                    url: "https://ktor.io/docs/client-create-and-configure.html",
+                    icon: "/skills/ktor.png",
+                    percentage: 70
                 }
             ]
-        },
-        {
-            name: "Beyik Yol",
-            description: "\"Beyik Yol\" - shows traffic conditions on the roads by determining the traffic congestion in Ashgabat city. Any user of our mobile application can get timely information so we can plan routes efficiently. One of the important features of our mobile software is the ability to call for emergency help in case of an emergency. This mobile application will be developed in future versions.",
-            images: [
-                "/images/beyik/screen-1.png",
-                "/images/beyik/screen-2.png",
-                "/images/beyik/screen-3.png",
-                "/images/beyik/screen-4.png",
-                "/images/beyik/screen-5.png",
-                "/images/beyik/screen-6.png",
-                "/images/beyik/screen-7.png",
-                "/images/beyik/screen-8.png",
-            ],
-            links: [
-                {
-                    url: "https://play.google.com/store/apps/details?id=com.geekspace.beyikyol&hl=en",
-                    title: "Play store",
-                    image: "/icons/playstore.svg"
-                }
-            ]
-        },
-        {
-            name: "BioLog",
-            description: "Biology and Zoology learners app",
-            images: [
-                "/images/biology/Screenshot_20230514_191504_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191543_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191601_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191631_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191655_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191846_Camera.jpg",
-                "/images/biology/Screenshot_20230514_191512_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191552_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191610_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191642_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191659_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191936_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191525_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191557_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191616_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191649_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191712_BioLog.jpg",
-                "/images/biology/Screenshot_20230514_191943_BioLog.jpg"
-            ],
-            links: []
         },
         {
             name: "Operator",
@@ -167,6 +191,286 @@ export function useMyWorks() {
                     url: "https://github.com/saggeldi/Operator-installer",
                     title: "Source code (pc installer c#)",
                     image: "/icons/mdi_github.svg"
+                }
+            ],
+            technologies: [
+                {
+                    name: "☕ Java & XML",
+                    description: "📱 The Android app is developed using Java and XML, following traditional Android development practices with clean separation of UI and logic layers.",
+                    url: "https://developer.android.com/guide",
+                    icon: "/skills/java.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🗺️ Google Maps",
+                    description: "🌍 Integrated Google Maps for displaying real-time locations, routes, and geographic interactions within the app using Google Maps SDK.",
+                    url: "https://developers.google.com/maps/documentation/android-sdk/overview",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🗄️ SQLite",
+                    description: "📂 Used for local storage of structured data with support for offline access, caching, and syncing when a network is available.",
+                    url: "https://developer.android.com/training/data-storage/sqlite",
+                    icon: "/skills/check.svg",
+                    percentage: 75
+                },
+                {
+                    name: "🔗 Deep Linking",
+                    description: "🔗 Enables users to open specific app screens via URLs and supports app-to-app and web-to-app navigation for a smoother experience.",
+                    url: "https://developer.android.com/training/app-links",
+                    icon: "/skills/check.svg",
+                    percentage: 65
+                },
+                {
+                    name: "🔗 Retrofit",
+                    description: "⚡ Retrofit is used for efficient HTTP networking and seamless communication with the backend. Supports JSON parsing with Gson.",
+                    url: "https://square.github.io/retrofit/",
+                    icon: "/skills/check.svg",
+                    percentage: 85
+                },
+                {
+                    name: "🧩 Dagger Hilt",
+                    description: "🛠️ Dependency injection is managed using Dagger Hilt, promoting modularity, testability, and reducing boilerplate in Android components.",
+                    url: "https://dagger.dev/hilt/",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🔥 Firebase Cloud Messaging",
+                    description: "📬 Used to deliver real-time push notifications to users across various states of the app (foreground, background, or terminated).",
+                    url: "https://firebase.google.com/docs/cloud-messaging",
+                    icon: "/skills/check.svg",
+                    percentage: 70
+                },
+                {
+                    name: "🎨 Material Design 3",
+                    description: "✨ Modern UI is built with Material 3 components, ensuring a consistent, accessible, and dynamic design system across the app.",
+                    url: "https://m3.material.io/",
+                    icon: "/skills/check.svg",
+                    percentage: 90
+                },
+                {
+                    name: "⚛️ React JS (Web Admin)",
+                    description: "🧑‍💼 The admin panel is built using React JS, offering a fast and responsive interface for managing users, content, and system settings.",
+                    url: "https://react.dev/",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🚀 Express JS (Backend)",
+                    description: "🌐 A lightweight and flexible Node.js backend built using Express, handling RESTful APIs, authentication, and business logic.",
+                    url: "https://expressjs.com/",
+                    icon: "/skills/check.svg",
+                    percentage: 75
+                },
+                {
+                    name: "🐘 PostgreSQL",
+                    description: "🧮 PostgreSQL is used as the primary relational database for secure, structured, and scalable data storage in the backend.",
+                    url: "https://www.postgresql.org/",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🔁 Offline/Online Sync",
+                    description: "🔄 Supports data syncing between local SQLite and remote PostgreSQL via REST APIs, with conflict resolution and retry strategies.",
+                    url: "https://developer.android.com/topic/data/sync-adapters",
+                    icon: "/skills/check.svg",
+                    percentage: 85
+                },
+                {
+                    name: "📞 CallScreeningService & BroadcastReceiver",
+                    description: "📲 For Android 10+, `CallScreeningService` is used to monitor incoming operator calls. On older versions, a `BroadcastReceiver` listens for telephony events.",
+                    url: "https://developer.android.com/reference/android/telecom/CallScreeningService",
+                    icon: "/skills/check.svg",
+                    percentage: 65
+                }
+            ]
+
+        },
+        {
+            name: "Yarmarka TM",
+            description: "Gifts for any occasion! Each work is Exclusive! Buy works directly from the artist!",
+            images: [
+                "/images/elishi/screen-1.jpg",
+                "/images/elishi/screen-2.jpg",
+                "/images/elishi/screen-3.jpg",
+                "/images/elishi/screen-4.jpg",
+                "/images/elishi/screen-5.jpg",
+                "/images/elishi/screen-6.jpg",
+                "/images/elishi/screen-7.jpg",
+            ],
+            links: [
+                {
+                    url: "https://play.google.com/store/apps/details?id=com.elishi.android&hl=en",
+                    title: "Play store",
+                    image: "/icons/playstore.svg"
+                }
+            ],
+            technologies: [
+                {
+                    name: "☕ Java & XML",
+                    description: "📱 The app is developed using Java as the main programming language with XML-based layouts for UI design, following classic Android architecture patterns.",
+                    url: "https://developer.android.com/guide",
+                    icon: "/skills/java.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🔗 Retrofit",
+                    description: "⚡ Retrofit is used for making type-safe HTTP network calls. It supports efficient REST API integration and works seamlessly with Gson for JSON parsing.",
+                    url: "https://square.github.io/retrofit/",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🧩 Dagger Hilt",
+                    description: "🗂️ Dependency injection is powered by Dagger Hilt, simplifying setup and improving code modularity, testability, and scalability.",
+                    url: "https://dagger.dev/hilt/",
+                    icon: "/skills/check.svg",
+                    percentage: 75
+                },
+                {
+                    name: "🔥 Firebase Cloud Messaging",
+                    description: "📬 FCM is used to send push notifications to users reliably and efficiently, supporting both foreground and background message handling.",
+                    url: "https://firebase.google.com/docs/cloud-messaging",
+                    icon: "/skills/check.svg",
+                    percentage: 60
+                },
+                {
+                    name: "🔗 Deep Linking",
+                    description: "🔍 Deep linking is implemented to allow users to navigate directly to specific screens or content in the app via URLs, improving user engagement and retention.",
+                    url: "https://developer.android.com/training/app-links",
+                    icon: "/skills/check.svg",
+                    percentage: 60
+                },
+                {
+                    name: "🎨 Material Design 2",
+                    description: "✨ The app follows Material Design 2 guidelines for consistent theming, spacing, and components, ensuring a modern and intuitive UI/UX.",
+                    url: "https://m2.material.io/",
+                    icon: "/skills/check.svg",
+                    percentage: 85
+                }
+            ]
+
+        },
+        {
+            name: "Beyik Yol",
+            description: "\"Beyik Yol\" - shows traffic conditions on the roads by determining the traffic congestion in Ashgabat city. Any user of our mobile application can get timely information so we can plan routes efficiently. One of the important features of our mobile software is the ability to call for emergency help in case of an emergency. This mobile application will be developed in future versions.",
+            images: [
+                "/images/beyik/screen-1.png",
+                "/images/beyik/screen-2.png",
+                "/images/beyik/screen-3.png",
+                "/images/beyik/screen-4.png",
+                "/images/beyik/screen-5.png",
+                "/images/beyik/screen-6.png",
+                "/images/beyik/screen-7.png",
+                "/images/beyik/screen-8.png",
+            ],
+            links: [
+                {
+                    url: "https://play.google.com/store/apps/details?id=com.geekspace.beyikyol&hl=en",
+                    title: "Play store",
+                    image: "/icons/playstore.svg"
+                }
+            ],
+            technologies: [
+                {
+                    name: "☕ Java & XML",
+                    description: "📱 The app is built using Java as the primary programming language and XML for defining UI layouts, following conventional Android architecture and design principles.",
+                    url: "https://developer.android.com/guide",
+                    icon: "/skills/java.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🗺️ Yandex MapKit",
+                    description: "🧭 Yandex MapKit is used to integrate interactive maps, markers, and location tracking features within the app, providing detailed map functionality for Russia and CIS countries.",
+                    url: "https://yandex.com/dev/maps/mapkit/",
+                    icon: "/skills/check.svg",
+                    percentage: 75
+                },
+                {
+                    name: "🗄️ SQLite",
+                    description: "📂 SQLite is used as the local database solution for offline data persistence and lightweight storage needs, accessed via Android's built-in database APIs.",
+                    url: "https://developer.android.com/training/data-storage/sqlite",
+                    icon: "/skills/check.svg",
+                    percentage: 70
+                },
+                {
+                    name: "🔗 Retrofit",
+                    description: "⚡ Retrofit is used for making efficient HTTP requests and handling RESTful APIs. It simplifies networking and supports Gson for JSON serialization/deserialization.",
+                    url: "https://square.github.io/retrofit/",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🧩 Dagger Hilt",
+                    description: "🛠️ Dagger Hilt is used for dependency injection, making the codebase more modular, scalable, and testable with minimal boilerplate.",
+                    url: "https://dagger.dev/hilt/",
+                    icon: "/skills/check.svg",
+                    percentage: 75
+                },
+                {
+                    name: "🔥 Firebase Cloud Messaging",
+                    description: "📬 FCM is used to send real-time push notifications to users, handling both background and foreground messaging scenarios seamlessly.",
+                    url: "https://firebase.google.com/docs/cloud-messaging",
+                    icon: "/skills/check.svg",
+                    percentage: 60
+                },
+                {
+                    name: "🎨 Material Design 2",
+                    description: "✨ The app UI adheres to Material Design 2 guidelines, offering a clean, modern user experience with consistent components, colors, and animations.",
+                    url: "https://m2.material.io/",
+                    icon: "/skills/check.svg",
+                    percentage: 85
+                }
+            ]
+
+        },
+        {
+            name: "BioLog",
+            description: "Biology and Zoology learners app",
+            images: [
+                "/images/biology/Screenshot_20230514_191504_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191543_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191601_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191631_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191655_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191846_Camera.jpg",
+                "/images/biology/Screenshot_20230514_191512_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191552_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191610_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191642_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191659_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191936_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191525_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191557_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191616_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191649_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191712_BioLog.jpg",
+                "/images/biology/Screenshot_20230514_191943_BioLog.jpg"
+            ],
+            links: [],
+            technologies: [
+                {
+                    name: "☕ Java & XML",
+                    description: "📱 The app is developed using Java as the main programming language with XML-based layouts for UI design, following classic Android architecture patterns.",
+                    url: "https://developer.android.com/guide",
+                    icon: "/skills/java.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🧩 Dagger Hilt",
+                    description: "🗂️ Dependency injection is powered by Dagger Hilt, simplifying setup and improving code modularity, testability, and scalability.",
+                    url: "https://dagger.dev/hilt/",
+                    icon: "/skills/check.svg",
+                    percentage: 75
+                },
+                {
+                    name: "🎨 Material Design 2",
+                    description: "✨ The app follows Material Design 2 guidelines for consistent theming, spacing, and components, ensuring a modern and intuitive UI/UX.",
+                    url: "https://m2.material.io/",
+                    icon: "/skills/check.svg",
+                    percentage: 85
                 }
             ]
         },
@@ -215,7 +519,94 @@ export function useMyWorks() {
                 "/images/sanly/Screenshot 2023-03-26 182331.png",
                 "/images/sanly/Screenshot 2023-03-26 182407.png",
             ],
-            links: []
+            links: [],
+            technologies: [
+                {
+                    name: "☕ Java & XML",
+                    description: "📱 The app is developed using Java and XML, leveraging Android's traditional architecture with robust component separation and performance optimization.",
+                    url: "https://developer.android.com/guide",
+                    icon: "/skills/java.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🗄️ Room Database",
+                    description: "💾 Room is used as the local database for structured, relational data. It simplifies SQLite access with compile-time query checks and LiveData/Flow support.",
+                    url: "https://developer.android.com/jetpack/androidx/releases/room",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🔗 Retrofit",
+                    description: "🌐 Retrofit is responsible for handling RESTful API communication with the backend. It supports clean code practices with interceptors and GSON parsing.",
+                    url: "https://square.github.io/retrofit/",
+                    icon: "/skills/check.svg",
+                    percentage: 85
+                },
+                {
+                    name: "🧩 Dagger Hilt",
+                    description: "🛠️ Dependency injection is streamlined using Dagger Hilt, promoting modularization, testability, and clean architecture in the Android codebase.",
+                    url: "https://dagger.dev/hilt/",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🎨 Material Design 3",
+                    description: "✨ The UI adheres to Material 3 design principles, offering a consistent, modern visual language across components, typography, and themes.",
+                    url: "https://m3.material.io/",
+                    icon: "/skills/check.svg",
+                    percentage: 90
+                },
+                {
+                    name: "🛡️ Foreground Service",
+                    description: "🚧 Foreground services are used to perform ongoing background tasks such as long-running operations, including sending SMS, while staying visible to the user.",
+                    url: "https://developer.android.com/guide/components/foreground-services",
+                    icon: "/skills/check.svg",
+                    percentage: 70
+                },
+                {
+                    name: "📨 SMS Sending & Status Tracking",
+                    description: "📲 SMS is sent from a ForegroundService, and delivery and sent statuses are monitored using BroadcastReceiver with `SmsManager` and custom `PendingIntent`s.",
+                    url: "https://developer.android.com/reference/android/telephony/SmsManager",
+                    icon: "/skills/check.svg",
+                    percentage: 75
+                },
+                {
+                    name: "Socket IO",
+                    description: "To handle send sms event from admin panel",
+                    url: "https://socket.io/",
+                    icon: "/skills/check.svg",
+                    percentage: 85
+                },
+                {
+                    name: "⚛️ React JS (Web Admin)",
+                    description: "🧑‍💼 The admin panel is built using React JS, offering a fast and responsive interface for managing users, content, and system settings.",
+                    url: "https://react.dev/",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🚀 Express JS (Backend)",
+                    description: "🌐 A lightweight and flexible Node.js backend built using Express, handling RESTful APIs, authentication, and business logic.",
+                    url: "https://expressjs.com/",
+                    icon: "/skills/check.svg",
+                    percentage: 75
+                },
+                {
+                    name: "🐘 PostgreSQL",
+                    description: "🧮 PostgreSQL is used as the primary relational database for secure, structured, and scalable data storage in the backend.",
+                    url: "https://www.postgresql.org/",
+                    icon: "/skills/check.svg",
+                    percentage: 80
+                },
+                {
+                    name: "🔁 Offline/Online Sync",
+                    description: "🔄 Supports data syncing between local SQLite and remote PostgreSQL via REST APIs, with conflict resolution and retry strategies.",
+                    url: "https://developer.android.com/topic/data/sync-adapters",
+                    icon: "/skills/check.svg",
+                    percentage: 85
+                },
+            ]
+
         },
         {
             name: "KomekciTM",
@@ -231,7 +622,172 @@ export function useMyWorks() {
                     title: "Play store",
                     image: "/icons/playstore.svg"
                 }
+            ],
+            technologies: [
+                {
+                    name: "☕ Kotlin",
+                    description: "Modern programming language for Android development, used for writing robust and concise code.",
+                    url: "https://kotlinlang.org/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🔧 Android Gradle Plugin (AGP)",
+                    description: "Build system integration and configuration management for Android projects.",
+                    url: "https://developer.android.com/build",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧬 Jetpack Compose",
+                    description: "Modern toolkit for building native Android UIs with declarative components.",
+                    url: "https://developer.android.com/jetpack/compose",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧭 Navigation Compose",
+                    description: "Official navigation framework for Jetpack Compose apps.",
+                    url: "https://developer.android.com/jetpack/compose/navigation",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📡 Retrofit",
+                    description: "Type-safe HTTP client for Android and Java used for networking and RESTful API communication.",
+                    url: "https://square.github.io/retrofit/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🔐 OkHttp & Logging Interceptor",
+                    description: "Efficient HTTP client with logging capabilities used under Retrofit for networking.",
+                    url: "https://square.github.io/okhttp/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🪢 Coroutines",
+                    description: "Kotlin concurrency library for managing background threads and asynchronous code.",
+                    url: "https://kotlinlang.org/docs/coroutines-overview.html",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📦 Dagger Hilt",
+                    description: "Dependency injection framework that simplifies DI setup and usage across Android components.",
+                    url: "https://dagger.dev/hilt/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🏠 Room Database",
+                    description: "Jetpack persistence library that provides an abstraction layer over SQLite.",
+                    url: "https://developer.android.com/jetpack/androidx/releases/room",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧬 Lifecycle KTX",
+                    description: "Jetpack library providing lifecycle-aware components with Kotlin extensions.",
+                    url: "https://developer.android.com/jetpack/androidx/releases/lifecycle",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧪 JUnit & Espresso",
+                    description: "JUnit is used for unit testing, while Espresso handles UI automation testing.",
+                    url: "https://developer.android.com/training/testing",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🎨 Material 3",
+                    description: "Latest Material Design library offering updated components and theming for Compose.",
+                    url: "https://m3.material.io/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📝 DataStore",
+                    description: "Modern data storage solution replacing SharedPreferences, supporting both key-value and typed object storage.",
+                    url: "https://developer.android.com/topic/libraries/architecture/datastore",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🌎 Gson & Kotlinx Serialization",
+                    description: "Libraries for parsing and serializing JSON data efficiently.",
+                    url: "https://github.com/google/gson",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🖼️ Coil",
+                    description: "Lightweight image loading library for Jetpack Compose and Android.",
+                    url: "https://coil-kt.github.io/coil/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🎭 Lottie",
+                    description: "Library for rendering Adobe After Effects animations natively on Android.",
+                    url: "https://airbnb.io/lottie/#/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🗂️ Compose Image Picker",
+                    description: "Composable image picker component for selecting images from the device gallery.",
+                    url: "https://github.com/huhx/compose-image-picker",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📡 Socket.IO Client",
+                    description: "Real-time bidirectional event-based communication for Android using Socket.IO.",
+                    url: "https://socket.io/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🔐 Accompanist Permissions",
+                    description: "Jetpack Compose permission handling using Accompanist.",
+                    url: "https://google.github.io/accompanist/permissions/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🌐 Compose WebView",
+                    description: "WebView support in Jetpack Compose for rendering HTML content.",
+                    url: "https://github.com/kevinnzou/compose-webview",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🌍 Lyricist",
+                    description: "Multiplatform localization library for Compose UI with code-based string management.",
+                    url: "https://github.com/adrielcafe/lyricist",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧱 Toolbar Collapsing & Blur",
+                    description: "Compose UI components for collapsing headers and applying blur effects.",
+                    url: "https://github.com/onebone/ToolbarCompose",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧭 Hilt Navigation Compose",
+                    description: "Integration of Dagger Hilt with Jetpack Compose Navigation.",
+                    url: "https://developer.android.com/jetpack/compose/libraries#hilt-navigation",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧰 KSP (Kotlin Symbol Processing)",
+                    description: "Next-generation annotation processor for Kotlin, used by libraries like Room and Lyricist.",
+                    url: "https://kotlinlang.org/docs/ksp-overview.html",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🌳 Bonsai Tree (Logging)",
+                    description: "Simple and powerful structured logging framework for Compose.",
+                    url: "https://github.com/adrielcafe/bonsai",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🍎 Cupertino UI",
+                    description: "Jetpack Compose component library with iOS-styled Cupertino elements.",
+                    url: "https://github.com/AlexZhukovich/Cupertino",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🌫️ Haze",
+                    description: "Jetpack Compose backdrop blur and parallax effects library.",
+                    url: "https://github.com/chrisbanes/haze",
+                    icon: "/skills/check.svg"
+                }
             ]
+
         },
         {
             name: "Wakant",
@@ -256,6 +812,29 @@ export function useMyWorks() {
                     title: "Website",
                     image: "/icons/ph_link-bold.svg"
                 }
+            ],
+            technologies: [
+                {
+                    name: "⚛️ React TS",
+                    description: "",
+                    url: "https://react.dev/",
+                    icon: "/skills/check.svg",
+                    percentage: 100
+                },
+                {
+                    name: "⚛️ React Router",
+                    description: "",
+                    url: "https://react.dev/",
+                    icon: "/skills/check.svg",
+                    percentage: 100
+                },
+                {
+                    name: "⚛️ MUI",
+                    description: "",
+                    url: "https://react.dev/",
+                    icon: "/skills/check.svg",
+                    percentage: 100
+                }
             ]
         },
         {
@@ -276,7 +855,8 @@ export function useMyWorks() {
                     title: "Play store",
                     image: "/icons/playstore.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Bootcamp Turkmenistan",
@@ -300,7 +880,8 @@ export function useMyWorks() {
                     title: "Source code",
                     image: "/icons/mdi_github.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Visual Dictionary Desktop",
@@ -319,7 +900,8 @@ export function useMyWorks() {
                     title: "Video Demo",
                     image: "/icons/mdi_github.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Food Delivery",
@@ -344,7 +926,8 @@ export function useMyWorks() {
                     title: "Video Demo",
                     image: "/icons/mdi_github.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Game Launcher",
@@ -363,7 +946,8 @@ export function useMyWorks() {
                     title: "Source code",
                     image: "/icons/mdi_github.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Turkmen Sites Search",
@@ -378,7 +962,8 @@ export function useMyWorks() {
                     title: "Website",
                     image: "/icons/ph_link-bold.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Shopify cache store",
@@ -392,7 +977,8 @@ export function useMyWorks() {
                     title: "Source code",
                     image: "/icons/mdi_github.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Blind & Deaf society of Turkmenistan",
@@ -411,7 +997,8 @@ export function useMyWorks() {
                     title: "Source code",
                     image: "/icons/mdi_github.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Saglykoty",
@@ -425,7 +1012,8 @@ export function useMyWorks() {
                     title: "Website",
                     image: "/icons/ph_link-bold.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Youtube parser",
@@ -439,7 +1027,8 @@ export function useMyWorks() {
                     title: "Source code",
                     image: "/icons/mdi_github.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
         {
             name: "Kotlin Playground Telegram Bot",
@@ -458,7 +1047,8 @@ export function useMyWorks() {
                     title: "Source code",
                     image: "/icons/mdi_github.svg"
                 }
-            ]
+            ],
+            technologies: []
         },
     ];
 

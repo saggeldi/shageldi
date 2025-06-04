@@ -10,34 +10,44 @@ const Works = lazy(() => import("../components/Home/Works"));
 
 const Home = () => {
   return (
-    <div style={{
-        width: "100%",
-        display: "flex",
-        flexDirection:"column",
-        gap:"20px"
-    }}>
-      <Suspense fallback={<div>Loading Hero...</div>}>
-        <Hero />
-      </Suspense>
-      <Suspense fallback={<div>Loading About...</div>}>
-        <AboutHome />
-      </Suspense>
-      <Suspense fallback={<div>Loading Skills...</div>}>
-        <Skills />
-      </Suspense>
-      <Suspense fallback={<div>Loading Advantages...</div>}>
-        <Advantages />
-      </Suspense>
-      <Suspense fallback={<div>Loading Works...</div>}>
-        <Works />
-      </Suspense>
-      <Suspense fallback={<div>Loading Experience...</div>}>
-        <Experience />
-      </Suspense>
-      <Suspense fallback={<div>Loading Contact...</div>}>
-        <Contact />
-      </Suspense>
-    </div>
+      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "20px" }}>
+        <Suspense fallback={<div>Loading Hero...</div>}>
+          <div id="hero">
+            <Hero />
+          </div>
+        </Suspense>
+        <Suspense fallback={<div>Loading About...</div>}>
+          <div id="about">
+            <AboutHome />
+          </div>
+        </Suspense>
+        <Suspense fallback={<div>Loading Skills...</div>}>
+          <div id="skills">
+            <Skills />
+          </div>
+        </Suspense>
+        <Suspense fallback={<div>Loading Advantages...</div>}>
+          <div id="advantages">
+            <Advantages />
+          </div>
+        </Suspense>
+        <Suspense fallback={<div>Loading Works...</div>}>
+          <div id="works">
+            <Works />
+          </div>
+        </Suspense>
+        <Suspense fallback={<div>Loading Experience...</div>}>
+          <div id="experience">
+            <Experience />
+          </div>
+        </Suspense>
+        <Suspense fallback={<div>Loading Contact...</div>}>
+          <div id="contact">
+            <Contact />
+          </div>
+        </Suspense>
+      </div>
+
   );
 };
 
