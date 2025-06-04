@@ -790,6 +790,100 @@ export function useMyWorks() {
 
         },
         {
+            name: "Game Launcher",
+            description: "Turkmen Game Launcher using Compose for Desktop",
+            images: [
+                "/images/game/img3.png",
+                "/images/game/img2.png",
+                "/images/game/img9.png",
+                "/images/game/img7.png",
+                "/images/game/screen2.png",
+                "/images/game/screen6.png",
+            ],
+            links: [
+                {
+                    url: "https://github.com/kotlin-compose-multiplatform/TmGameClient/tree/main",
+                    title: "Source code",
+                    image: "/icons/mdi_github.svg"
+                }
+            ],
+            technologies: [
+                {
+                    name: "☕ Kotlin",
+                    description: "Modern programming language for cross-platform development, including Compose Desktop apps.",
+                    url: "https://kotlinlang.org/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🖥️ Compose for Desktop",
+                    description: "Declarative UI framework from JetBrains for building desktop applications using Kotlin.",
+                    url: "https://www.jetbrains.com/lp/compose/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🌐 Ktor",
+                    description: "Asynchronous framework for building connected applications using Kotlin on client and server.",
+                    url: "https://ktor.io/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧭 Voyager",
+                    description: "Multiplatform navigation library for Jetpack Compose and Compose Desktop.",
+                    url: "https://github.com/adrielcafe/voyager",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🛠️ Multiplatform Settings",
+                    description: "Kotlin Multiplatform library for saving key-value data across platforms including desktop.",
+                    url: "https://github.com/russhwolf/multiplatform-settings",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🎨 Material 3",
+                    description: "Modern design system from Google, implemented with Jetpack Compose UI components.",
+                    url: "https://m3.material.io/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🌍 Lyricist",
+                    description: "Localization library for Jetpack Compose that supports preview and runtime translations.",
+                    url: "https://github.com/adrielcafe/lyricist",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "⚙️ GitHub Actions",
+                    description: "CI/CD platform used to automate building MSI installers for Windows without requiring a Windows machine.",
+                    url: "https://github.com/features/actions",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🦄 NestJS",
+                    description: "Progressive Node.js framework for building efficient and scalable backend applications using TypeScript.",
+                    url: "https://nestjs.com/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "⚛️ React TypeScript",
+                    description: "Frontend framework used to build the admin panel with strong typing support.",
+                    url: "https://react.dev/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🐘 PostgreSQL",
+                    description: "Powerful open-source relational database used for storing structured data in the backend.",
+                    url: "https://www.postgresql.org/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📦 TypeORM",
+                    description: "ORM for TypeScript and JavaScript that simplifies working with PostgreSQL in NestJS.",
+                    url: "https://typeorm.io/",
+                    icon: "/skills/check.svg"
+                }
+            ]
+
+        },
+        {
             name: "Wakant",
             description: "Welcome everyone! Are you looking to apply for jobs and build your career? Wakant is a\n" +
                 "business and employment-focused online job platform. This platform allows jobseekers to\n" +
@@ -901,7 +995,32 @@ export function useMyWorks() {
                     image: "/icons/mdi_github.svg"
                 }
             ],
-            technologies: []
+            technologies: [
+                {
+                    name: "🧩 C#",
+                    description: "Modern object-oriented programming language developed by Microsoft, used to build Windows Forms applications.",
+                    url: "https://learn.microsoft.com/en-us/dotnet/csharp/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🪟 Windows Forms",
+                    description: "UI framework from Microsoft for building rich desktop applications on Windows using C#.",
+                    url: "https://learn.microsoft.com/en-us/dotnet/desktop/winforms/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📁 SQLite",
+                    description: "Lightweight, embedded SQL database engine used for local data storage in desktop applications.",
+                    url: "https://www.sqlite.org/index.html",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🗣️ Windows Text-to-Speech (System.Speech)",
+                    description: "Built-in speech synthesis API in Windows, accessible via C# for converting text to spoken audio.",
+                    url: "https://learn.microsoft.com/en-us/dotnet/api/system.speech.synthesis.speechsynthesizer",
+                    icon: "/skills/check.svg"
+                }
+            ]
         },
         {
             name: "Food Delivery",
@@ -927,27 +1046,51 @@ export function useMyWorks() {
                     image: "/icons/mdi_github.svg"
                 }
             ],
-            technologies: []
-        },
-        {
-            name: "Game Launcher",
-            description: "Turkmen Game Launcher using Compose for Desktop",
-            images: [
-                "/images/game/img3.png",
-                "/images/game/img2.png",
-                "/images/game/img9.png",
-                "/images/game/img7.png",
-                "/images/game/screen2.png",
-                "/images/game/screen6.png",
-            ],
-            links: [
+            technologies: [
                 {
-                    url: "https://github.com/kotlin-compose-multiplatform/TmGameClient/tree/main",
-                    title: "Source code",
-                    image: "/icons/mdi_github.svg"
+                    name: "☕ Java",
+                    description: "Object-oriented programming language used for building Android applications with robust architecture.",
+                    url: "https://www.oracle.com/java/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧱 XML",
+                    description: "Markup language used in Android for defining UI layouts, styles, and configurations.",
+                    url: "https://developer.android.com/guide/topics/ui/declaring-layout",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📦 Firebase Firestore",
+                    description: "Scalable NoSQL cloud database for storing and syncing app data in real time.",
+                    url: "https://firebase.google.com/docs/firestore",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📨 Firebase Cloud Messaging (FCM)",
+                    description: "Service that enables sending push notifications and messages to Android devices.",
+                    url: "https://firebase.google.com/docs/cloud-messaging",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🗺️ Google Maps SDK",
+                    description: "Provides mapping capabilities in Android apps including markers, routes, and geolocation.",
+                    url: "https://developers.google.com/maps/documentation/android-sdk",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📁 SQLite",
+                    description: "Lightweight, embedded relational database engine used for local data persistence on Android.",
+                    url: "https://www.sqlite.org/index.html",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🎨 Material Design 2",
+                    description: "Google’s design system for consistent, beautiful UI in Android apps using Material Components.",
+                    url: "https://m2.material.io/",
+                    icon: "/skills/check.svg"
                 }
-            ],
-            technologies: []
+            ]
+
         },
         {
             name: "Turkmen Sites Search",
@@ -963,7 +1106,32 @@ export function useMyWorks() {
                     image: "/icons/ph_link-bold.svg"
                 }
             ],
-            technologies: []
+            technologies: [
+                {
+                    name: "⚛️ React",
+                    description: "A JavaScript library for building fast and interactive user interfaces with reusable components.",
+                    url: "https://reactjs.org/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🎨 Tailwind CSS",
+                    description: "A utility-first CSS framework for rapidly building modern and responsive user interfaces.",
+                    url: "https://tailwindcss.com/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🧠 Gemini API",
+                    description: "Google's multimodal AI API for building intelligent apps with text, code, image, and chat capabilities.",
+                    url: "https://ai.google.dev/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🔍 Google Search API",
+                    description: "Enables programmatic access to Google search results for custom search and data integration.",
+                    url: "https://developers.google.com/custom-search",
+                    icon: "/skills/check.svg"
+                }
+            ]
         },
         {
             name: "Shopify cache store",
@@ -978,7 +1146,62 @@ export function useMyWorks() {
                     image: "/icons/mdi_github.svg"
                 }
             ],
-            technologies: []
+            technologies: [
+                {
+                    name: "🏗️ NestJS",
+                    description: "A progressive Node.js framework for building efficient, reliable and scalable server-side applications with TypeScript support.",
+                    url: "https://nestjs.com/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "📝 TypeScript",
+                    description: "A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.",
+                    url: "https://www.typescriptlang.org/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "⚛️ React",
+                    description: "A JavaScript library for building fast and interactive user interfaces with reusable components.",
+                    url: "https://reactjs.org/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🐘 PostgreSQL",
+                    description: "A powerful, open source object-relational database system with over 35 years of active development.",
+                    url: "https://www.postgresql.org/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🗄️ TypeORM",
+                    description: "An ORM that can run in NodeJS, Browser, Cordova, PhoneGap, Ionic, React Native, NativeScript, and Electron platforms.",
+                    url: "https://typeorm.io/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🛍️ Shopify GraphQL API",
+                    description: "Shopify's powerful GraphQL API for building custom commerce experiences and managing store data.",
+                    url: "https://shopify.dev/docs/api/admin-graphql",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🔍 Elasticsearch",
+                    description: "A distributed, RESTful search and analytics engine capable of addressing a growing number of use cases.",
+                    url: "https://www.elastic.co/elasticsearch/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🐳 Docker",
+                    description: "A platform for developing, shipping, and running applications using containerization technology.",
+                    url: "https://www.docker.com/",
+                    icon: "/skills/check.svg"
+                },
+                {
+                    name: "🐙 Docker Compose",
+                    description: "A tool for defining and running multi-container Docker applications with a simple YAML configuration.",
+                    url: "https://docs.docker.com/compose/",
+                    icon: "/skills/check.svg"
+                }
+            ]
         },
         {
             name: "Blind & Deaf society of Turkmenistan",
