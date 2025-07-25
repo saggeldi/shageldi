@@ -10,14 +10,16 @@ const Works = lazy(() => import("../components/Home/Works"));
 
 const Home = () => {
   return (
-      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "20px" }}>
+      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "20px", minWidth: "100%" }}>
         <Suspense fallback={<div>Loading Hero...</div>}>
           <div id="hero">
             <Hero />
           </div>
         </Suspense>
         <Suspense fallback={<div>Loading About...</div>}>
-          <div id="about">
+          <div id="about" style={{
+              minWidth: "100%",
+          }}>
             <AboutHome />
           </div>
         </Suspense>

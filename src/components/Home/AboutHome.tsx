@@ -152,6 +152,7 @@ const AboutHome = () => {
                     style={{
                         padding: "16px",
                         paddingLeft: "28px",
+                        width: "100%",
                     }}
                 >
                     <CodeView code={code} color={codeColor} style={{}}/>
@@ -171,6 +172,7 @@ const AboutHome = () => {
                 paddingBottom: "22px",
                 marginTop: isDesktop ? "0px" : "60px",
                 overflow: "hidden",
+                width: "100%",
             }}
         >
             <CodeTitle text="About me"/>
@@ -193,6 +195,7 @@ const AboutHome = () => {
                             color={codeColor}
                             style={{
                                 padding: "16px",
+                                width: "100%",
                             }}
                         />
                         <About/>
