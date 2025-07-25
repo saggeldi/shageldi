@@ -14,6 +14,41 @@ import useResponsive from "../../hooks/useResponsive";
 
 const Hero = () => {
   const { isMobile } = useResponsive();
+
+  const Hero3D = () => {
+      return(
+          <Canvas
+              shadows
+              camera={{ position: [0, 1.5, -10], fov: 35, zoom: 1.1 }}
+          >
+              <ambientLight intensity={Math.PI} />
+              <spotLight
+                  position={[5, 2, 5]}
+                  angle={0.2}
+                  penumbra={1}
+                  decay={0}
+                  intensity={1}
+                  shadow-mapSize={256}
+                  castShadow
+              />
+              <Suspense fallback={<Loader />}>
+                  <Center top>
+                      <AndroidModelViewer scale={0.6} />
+                  </Center>
+                  <AccumulativeShadows
+                      frames={100}
+                      temporal
+                      alphaTest={0.75}
+                      color="pink"
+                  >
+                      <RandomizedLight radius={8} position={[5, 3, -5]} />
+                  </AccumulativeShadows>
+              </Suspense>
+              <OrbitControls enableZoom={false} autoRotate={true} />
+          </Canvas>
+      )
+  }
+
   return (
     <div>
       <Row
@@ -28,38 +63,13 @@ const Hero = () => {
         </Col>
         {!isMobile ? (
           <Col xs={24} md={10} style={{ height: "60vh" }}>
-            <Canvas
-              shadows
-              camera={{ position: [0, 1.5, -10], fov: 35, zoom: 1.1 }}
-            >
-              <ambientLight intensity={Math.PI} />
-              <spotLight
-                position={[5, 2, 5]}
-                angle={0.2}
-                penumbra={1}
-                decay={0}
-                intensity={1}
-                shadow-mapSize={256}
-                castShadow
-              />
-              <Suspense fallback={<Loader />}>
-                <Center top>
-                  <AndroidModelViewer scale={0.6} />
-                </Center>
-                <AccumulativeShadows
-                  frames={100}
-                  temporal
-                  alphaTest={0.75}
-                  color="pink"
-                >
-                  <RandomizedLight radius={8} position={[5, 3, -5]} />
-                </AccumulativeShadows>
-              </Suspense>
-              <OrbitControls enableZoom={false} autoRotate={true} />
-            </Canvas>
+            <Hero3D/>
           </Col>
         ) : null}
       </Row>
+        {
+            isMobile? <div style={{ height: "40vh", marginTop:"22px", marginBottom:"-150px" }}><Hero3D/></div>: null
+        }
     </div>
   );
 };

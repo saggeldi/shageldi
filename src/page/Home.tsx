@@ -10,7 +10,7 @@ const Works = lazy(() => import("../components/Home/Works"));
 
 const Home = () => {
   return (
-      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "20px", minWidth: "100%" }}>
+      <div style={{ width: "100%", display: "flex", flexDirection: "column", gap: "20px", minWidth: "100%", maxWidth: "100%", overflowX:"hidden" }}>
         <Suspense fallback={<div>Loading Hero...</div>}>
           <div id="hero">
             <Hero />

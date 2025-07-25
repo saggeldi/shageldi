@@ -54,12 +54,12 @@ const Works = () => {
                                         work.images.map((image, imgindex) => {
                                             return <Image
                                                 wrapperStyle={{
-                                                    minWidth: "400px",
+                                                    minWidth: isMobile?"200px":"400px",
                                                     display: "inline-block"
                                                 }}
                                                 src={image}
                                                 style={{
-                                                    minWidth: "400px",
+                                                    minWidth: isMobile?"200px":"400px",
                                                     objectFit: "contain",
                                                     minHeight: "350px",
                                                     outline: "none",
@@ -140,6 +140,8 @@ const Works = () => {
                                         width: "100%",
                                         alignItems: "center",
                                         padding: "12px",
+                                        flexWrap: "wrap",
+                                        gap: "8px",
                                     }}
                                 >
                                     {
@@ -162,6 +164,8 @@ const Works = () => {
                                                         style={{
                                                             width: "24px",
                                                             height: "24px",
+                                                            objectFit:"contain",
+                                                            padding:"2px"
                                                         }}
                                                     />
                                                     <Typography
