@@ -97,6 +97,126 @@ export function useMyWorks() {
             ]
         },
         {
+            "name": "Tex Logistic - Freight Made Simple with Jetpack Compose",
+            "description": "Tex Logistic is a modern, modular logistics platform built with Jetpack Compose. It handles everything from order placement to real-time tracking and delivery confirmation. Designed with a clean architecture and fully localized, it's a production-ready freight coordination app built in Kotlin.",
+            "images": [
+                "/images/tex/order.png",
+                "/images/tex/dark.png",
+                "/images/tex/tracking.png",
+                "/images/tex/delivery.png",
+                "/images/tex/map.png",
+                "/images/tex/chat.png",
+            ],
+            "links": [],
+            "technologies": [
+                {
+                    "name": "🧩 Jetpack Compose",
+                    "description": "🖌️ Declarative UI toolkit used for building modern Android interfaces, integrated with Showkase for visual component browsing.",
+                    "url": "https://developer.android.com/jetpack/compose",
+                    "icon": "/skills/check.svg",
+                    "percentage": 100
+                },
+                {
+                    "name": "🌐 Ktor Client",
+                    "description": "🔗 Kotlin-native HTTP client used for seamless networking across all platforms.",
+                    "url": "https://ktor.io/docs/client-create-and-configure.html",
+                    "icon": "/skills/ktor.png",
+                    "percentage": 80
+                },
+                {
+                    "name": "🧪 Koin",
+                    "description": "🧠 Lightweight dependency injection framework to keep the architecture modular and testable.",
+                    "url": "https://insert-koin.io/",
+                    "icon": "/skills/check.svg",
+                    "percentage": 60
+                },
+                {
+                    "name": "🗺️ Google Maps Compose",
+                    "description": "📍 Enables real-time route visualization and geolocation features using Maps SDK integrated into Jetpack Compose.",
+                    "url": "https://developer.android.com/reference/com/google/maps/android/compose/package-summary",
+                    "icon": "/skills/check.svg",
+                    "percentage": 75
+                },
+                {
+                    "name": "🌍 Lyricist",
+                    "description": "🈺 Compose-compatible multilingual localization system for dynamic runtime language switching.",
+                    "url": "https://github.com/adrielcafe/lyricist",
+                    "icon": "/skills/check.svg",
+                    "percentage": 50
+                },
+                {
+                    "name": "🧪 GitHub Actions",
+                    "description": "⚙️ Automated workflows to test, build, and distribute APKs on push and pull request events.",
+                    "url": "https://docs.github.com/en/actions",
+                    "icon": "/skills/check.svg",
+                    "percentage": 65
+                },
+                {
+                    "name": "🧱 Clean Architecture",
+                    "description": "🧬 Modular design with clear separation of concerns across data, domain, and presentation layers.",
+                    "url": "https://proandroiddev.com/kotlin-clean-architecture-1ad42fcd97fa",
+                    "icon": "/skills/check.svg",
+                    "percentage": 100
+                },
+                {
+                    "name": "📸 Showkase",
+                    "description": "🧩 Airbnb's UI browser for Jetpack Compose used to organize and preview typography, components, and themes.",
+                    "url": "https://github.com/airbnb/showkase",
+                    "icon": "/skills/check.svg",
+                    "percentage": 40
+                },
+                {
+                    "name": "🧪 JUnit + Truth",
+                    "description": "🧪 Unit testing libraries used alongside AndroidX test APIs for high code confidence.",
+                    "url": "https://truth.dev/",
+                    "icon": "/skills/check.svg",
+                    "percentage": 30
+                }
+            ]
+        },
+        {
+            "name": "Tex Driver - GPS Sender for Tex Logistic",
+            "description": "Tex Driver is the companion GPS-sender app for Tex Logistic. Built for Android, it runs a lightweight foreground service that automatically sends the driver's location every 10 seconds or every 10 meters. It is 100% free and open-source, built with privacy, configurability, and reliability in mind.",
+            "images": [
+                "/images/tex-driver/1.png",
+                "/images/tex-driver/2.png",
+                "/images/tex-driver/3.png",
+                "/images/tex-driver/4.png",
+                "/images/tex-driver/5.png"
+            ],
+            "links": [],
+            "technologies": [
+                {
+                    "name": "📍 Android Foreground Service",
+                    "description": "🚚 Uses Android’s foreground service to send location updates reliably every 10 seconds or 10 meters—even when the app is in the background.",
+                    "url": "https://developer.android.com/guide/components/foreground-services",
+                    "icon": "/skills/check.svg",
+                    "percentage": 80
+                },
+                {
+                    "name": "🌐 Ktor Client",
+                    "description": "🔗 Sends location data to your own server via Ktor HTTP client. Fully configurable to suit any API.",
+                    "url": "https://ktor.io/docs/client-create-and-configure.html",
+                    "icon": "/skills/ktor.png",
+                    "percentage": 40
+                },
+                {
+                    "name": "🔧 Configurable Parameters",
+                    "description": "⚙️ Update intervals (time/distance), accuracy, and server endpoint can be customized based on needs.",
+                    "url": "https://developer.android.com/reference/android/location/LocationRequest",
+                    "icon": "/skills/check.svg",
+                    "percentage": 30
+                },
+                {
+                    "name": "🛡️ Privacy First",
+                    "description": "🔒 Location data is never sent to third parties—only to the server you configure. No ads, no tracking.",
+                    "url": "https://opensource.org/licenses/MIT",
+                    "icon": "/skills/check.svg",
+                    "percentage": 100
+                }
+            ]
+        },
+        {
             name: "YTM GPS",
             description: "The YTM company offers a solution for GPS-tracking that works with 2,600 types of devices, as well as the following: - online tracking - reading data - geofencing monitoring (on the street and at home) - fuel monitoring - exact location of a person outdoors and indoors - recording of travel routes - marking red, yellow and green zones - direct reporting of incidents. ",
             images: [
