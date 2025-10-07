@@ -107,7 +107,18 @@ export function useMyWorks() {
                 "/images/tex/map.png",
                 "/images/tex/chat.png",
             ],
-            "links": [],
+            "links": [
+                {
+                    url: "https://play.google.com/store/apps/details?id=com.tex.logistic",
+                    title: "Play store",
+                    image: "/icons/playstore.svg"
+                },
+                {
+                    url: "https://texexpress.pro",
+                    title: "Website",
+                    image: "/icons/ph_link-bold.svg"
+                }
+            ],
             "technologies": [
                 {
                     "name": "🧩 Jetpack Compose",
@@ -184,7 +195,18 @@ export function useMyWorks() {
                 "/images/tex-driver/4.png",
                 "/images/tex-driver/5.png"
             ],
-            "links": [],
+            "links": [
+                {
+                    url: "https://play.google.com/store/apps/details?id=org.texlogistic.client",
+                    title: "Play store",
+                    image: "/icons/playstore.svg"
+                },
+                {
+                    url: "https://texexpress.pro",
+                    title: "Website",
+                    image: "/icons/ph_link-bold.svg"
+                }
+            ],
             "technologies": [
                 {
                     "name": "📍 Android Foreground Service",
