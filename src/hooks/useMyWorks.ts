@@ -302,7 +302,6 @@ export function useMyWorks() {
             images: [
                 "/images/operator/Screenshot 2025-06-02 at 16.53.43.png",
                 "/images/operator/Screenshot 2025-06-02 at 16.54.00.png",
-                "/images/operator/Screenshot 2025-06-02 at 16.54.21.png",
                 "/images/operator/Screenshot 2025-06-02 at 16.54.40.png",
                 "/images/operator/Screenshot 2025-06-02 at 16.54.56.png",
                 "/images/operator/Screenshot 2025-06-02 at 16.55.11.png",
