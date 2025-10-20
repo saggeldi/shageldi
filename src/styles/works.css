@@ -1,0 +1,72 @@
+/* Works Section Interactive Styles */
+
+/* Image hover effects */
+.image-overlay {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-overlay:hover {
+  opacity: 1;
+}
+
+/* Card hover effects */
+.works-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.works-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.works-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Thumbnail hover effects */
+.thumbnail-hover:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Horizontal scroll gallery styles */
+.image-gallery-scroll {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 12px;
+  scroll-behavior: smooth;
+  align-items: center;
+  min-height: 420px;
+}
+
+/* Custom scrollbar for horizontal gallery */
+.image-gallery-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.image-gallery-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.image-gallery-scroll::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+.image-gallery-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Image gallery item hover effect */
+.gallery-image-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gallery-image-item:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}

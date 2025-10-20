@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import {Card, Col, Row, Tag, Typography, Image} from "antd";
+import {Card, Col, Row, Tag, Typography, Skeleton} from "antd";
 import {useToken} from "../theme/config-theme";
 import { useTranslation } from "react-i18next";
 
@@ -12,7 +12,17 @@ interface Blog {
     date: string;
     coverImage: string;
     tags: string[];
-    markdown: string;
+    markdown?: string; // Make markdown optional for listing
+}
+
+// Blog summary interface for faster loading
+interface BlogSummary {
+    id: string;
+    title: string;
+    description: string;
+    date: string;
+    coverImage: string;
+    tags: string[];
 }
 
 const Blogs: React.FC = () => {
@@ -28,10 +38,14 @@ const Blogs: React.FC = () => {
                 const indexResponse = await fetch("/blogs/index.json");
                 const blogFilenames = await indexResponse.json();
 
-                // Fetch each blog file and create an array of blog objects
+                // Fetch each blog file but exclude markdown for faster loading
                 const blogPromises = blogFilenames.map(async (filename: string) => {
                     const blogResponse = await fetch(`/blogs/${filename}`);
-                    return await blogResponse.json();
+                    const blogData = await blogResponse.json();
+                    
+                    // Return blog data without markdown for listing page
+                    const { markdown, ...blogSummary } = blogData;
+                    return blogSummary as BlogSummary;
                 });
 
                 const blogData = await Promise.all(blogPromises);
@@ -59,7 +73,16 @@ const Blogs: React.FC = () => {
             </Typography.Title>
 
             {loading ? (
-                <Typography.Text>{t('blogs.loading')}</Typography.Text>
+                <Row gutter={[32, 32]}>
+                    {[1, 2, 3].map((i) => (
+                        <Col xs={24} md={12} lg={8} key={i}>
+                            <Card>
+                                <Skeleton.Image style={{ width: '100%', height: 200 }} active />
+                                <Skeleton active paragraph={{ rows: 3 }} />
+                            </Card>
+                        </Col>
+                    ))}
+                </Row>
             ) : blogs.length === 0 ? (
                 <Typography.Text>{t('blogs.notFound')}</Typography.Text>
             ) : (
@@ -76,18 +99,15 @@ const Blogs: React.FC = () => {
                                     color: token.colorText,
                                 }}
                                 cover={
-                                    <div style={{ position: 'relative' }}>
-                                        <Image
-                                            preview={false}
-                                            height={200}
+                                    <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
+                                        <img
                                             src={blog.coverImage}
                                             alt={blog.title}
-                                            wrapperStyle={{
-                                                width: '100%',
-                                            }}
+                                            loading="lazy"
                                             style={{
-                                                objectFit: 'cover',
                                                 width: '100%',
+                                                height: '100%',
+                                                objectFit: 'cover',
                                                 filter: 'brightness(0.95)',
                                             }}
                                         />

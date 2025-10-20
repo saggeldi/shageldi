@@ -24,23 +24,9 @@ export function AndroidModelViewer(props: AndroidModelViewerProps) {
     }`,
     (loader) => {
       materials.preload();
-
       loader.setMaterials(materials);
     }
   );
-  //   const mtlLoader = useLoader(MTLLoader, "models/Android/android.mtl");
-
-  //   useLayoutEffect(() => {
-  //     obj.traverse((child) => {
-  //       if (child.isMesh) {
-  //         (child as THREE.Mesh).castShadow = (child as THREE.Mesh).receiveShadow =
-  //           true;
-  //         // texture.encoding = THREE.sRGBEncoding;
-  //         // (child as THREE.Mesh).material.map = texture;
-  //         (child as THREE.Mesh).material.toneMapped = false;
-  //       }
-  //     });
-  //   }, [obj]);
 
   return <primitive object={obj} {...props} />;
 }

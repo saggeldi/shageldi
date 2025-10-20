@@ -7,6 +7,19 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+.markdown-body .w-md-editor {
+  background-color: transparent;
+}
+
+.markdown-body .w-md-editor-preview {
+  background-color: transparent;
+  overflow: visible !important;
+}
+
+.markdown-body .w-md-editor-preview-inner {
+  overflow: visible !important;
+}
+
 .markdown-body h1,
 .markdown-body h2,
 .markdown-body h3,
@@ -174,4 +187,12 @@
 
 .wmde-markdown-color {
   background-color: transparent;
+}
+
+/* Blog cover image styles */
+.blog-cover-image {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }

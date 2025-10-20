@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, lazy, Suspense} from "react";
 import {useParams, useNavigate} from "react-router-dom";
-import {Button, Image, Space, Tag, Typography} from "antd";
-import MDEditor from '@uiw/react-md-editor';
+import {Button, Space, Tag, Typography, Skeleton} from "antd";
 import {useToken} from "../theme/config-theme";
 import {ArrowLeftOutlined} from '@ant-design/icons';
 import '../styles/markdown.css';
 import {useTranslation} from "react-i18next";
 import {useSelector} from "react-redux";
 import {RootState} from "../features/store.ts";
+
+// Lazy load the heavy MDEditor component
+const MDEditor = lazy(() => import('@uiw/react-md-editor'));
 
 // Define the Blog interface
 interface Blog {
@@ -37,20 +39,20 @@ const BlogDetail: React.FC = () => {
                 const indexResponse = await fetch("/blogs/index.json");
                 const blogFilenames = await indexResponse.json();
 
-                // Fetch each blog file until we find the one with the matching id
-                for (const filename of blogFilenames) {
+                // Use Promise.all to fetch all files in parallel instead of sequential
+                const blogPromises = blogFilenames.map(async (filename: string) => {
                     const blogResponse = await fetch(`/blogs/${filename}`);
-                    const blogData = await blogResponse.json();
+                    return await blogResponse.json();
+                });
 
-                    if (blogData.id === id) {
-                        setBlog(blogData);
-                        setLoading(false);
-                        return;
-                    }
+                const allBlogs = await Promise.all(blogPromises);
+                const foundBlog = allBlogs.find(blog => blog.id === id);
+
+                if (foundBlog) {
+                    setBlog(foundBlog);
+                } else {
+                    console.error(`Blog with id ${id} not found`);
                 }
-
-                // If we get here, we didn't find the blog
-                console.error(`Blog with id ${id} not found`);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching blog:", error);
@@ -75,15 +77,18 @@ const BlogDetail: React.FC = () => {
 
     if (loading) {
         return (
-            <div style={{maxWidth: 1200, margin: '0 auto', padding: '32px 16px'}}>
-                <Typography.Text>{t('blogDetail.loading')}</Typography.Text>
+            <div style={{maxWidth: 800, margin: '0 auto', padding: '32px 16px', minHeight: '100vh'}}>
+                <Skeleton.Button style={{ marginBottom: 32 }} />
+                <Skeleton.Image style={{ width: '100%', height: 300 }} active />
+                <Skeleton active title paragraph={{ rows: 6 }} />
+                <Skeleton active title={false} paragraph={{ rows: 10 }} />
             </div>
         );
     }
 
     if (!blog) {
         return (
-            <div style={{maxWidth: 1200, margin: '0 auto', padding: '32px 16px'}}>
+            <div style={{maxWidth: 800, margin: '0 auto', padding: '32px 16px', minHeight: '100vh'}}>
                 <Typography.Text>{t('blogDetail.notFound')}</Typography.Text>
                 <Button
                     type="primary"
@@ -98,7 +103,7 @@ const BlogDetail: React.FC = () => {
     }
 
     return (
-        <div style={{maxWidth: 800, margin: '0 auto', padding: '32px 16px'}}>
+        <div style={{maxWidth: 800, margin: '0 auto', padding: '32px 16px', minHeight: '100vh'}}>
             <Button
                 icon={<ArrowLeftOutlined/>}
                 onClick={handleGoBack}
@@ -107,20 +112,20 @@ const BlogDetail: React.FC = () => {
                 {t('blogDetail.backToBlogs')}
             </Button>
 
-            <Image
-                src={blog.coverImage}
-                alt={blog.title}
-                wrapperStyle={{
-                    width: '100%',
-                }}
-                style={{
-                    width: '100%',
-                    height: 'auto',
-                    objectFit: 'cover',
-                    borderRadius: '8px',
-                    marginBottom: 32
-                }}
-            />
+            <div style={{ marginBottom: 32 }}>
+                <img
+                    src={blog.coverImage}
+                    alt={blog.title}
+                    style={{
+                        width: '100%',
+                        height: 'auto',
+                        maxHeight: '400px',
+                        objectFit: 'cover',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+                    }}
+                />
+            </div>
 
             <Typography.Title level={2}>
                 {blog.title}
@@ -145,10 +150,23 @@ const BlogDetail: React.FC = () => {
                 {blog.description}
             </Typography.Paragraph>
 
-            <div className="markdown-body" data-color-mode={theme.value === "light" ? 'light' : 'dark'}>
-                <MDEditor.Markdown
-                    source={blog.markdown}
-                    style={{padding: '8px'}}/>
+            <div 
+                className="markdown-body" 
+                data-color-mode={theme.value === "light" ? 'light' : 'dark'}
+            >
+                <Suspense fallback={<Skeleton active paragraph={{ rows: 15 }} />}>
+                    <MDEditor
+                        value={blog.markdown}
+                        preview="preview"
+                        hideToolbar
+                        visibleDragbar={false}
+                        data-color-mode={theme.value === "light" ? 'light' : 'dark'}
+                        height={2000}
+                        style={{ 
+                            backgroundColor: 'transparent'
+                        }}
+                    />
+                </Suspense>
             </div>
         </div>
     );
