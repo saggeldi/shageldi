@@ -9,14 +9,18 @@ export default defineConfig({
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
-          threeJs: ['three', '@react-three/fiber', '@react-three/drei', 'three-mtl-loader', 'three-obj-loader'],
-          ui: ['antd', 'styled-components', 'react-icons'],
+          three: ['three'],
+          threeFiber: ['@react-three/fiber', '@react-three/drei'],
+          threeLoaders: ['three-mtl-loader', 'three-obj-loader'],
+          antd: ['antd'],
+          ui: ['styled-components', 'react-icons'],
           animations: ['animate.css', 'react-animate-on-scroll', 'react-type-animation'],
-          utils: ['i18next', 'react-i18next', '@reduxjs/toolkit', 'react-redux']
+          i18n: ['i18next', 'react-i18next'],
+          redux: ['@reduxjs/toolkit', 'react-redux']
         }
       }
     },
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 500,
     minify: 'terser',
     terserOptions: {
       compress: {
