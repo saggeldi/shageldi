@@ -12,6 +12,7 @@ const Works = () => {
     const [selectedWork, setSelectedWork] = useState<any>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [expandedTech, setExpandedTech] = useState<{[key: number]: boolean}>({});
+    const [imageErrors, setImageErrors] = useState<{[key: number]: boolean}>({});
     const theme = useSelector((state: RootState) => state.theme);
     const isDark = theme.value === "dark";
 
@@ -77,12 +78,35 @@ const Works = () => {
                                     <div 
                                         style={{
                                             height: '100%',
-                                            background: `url(${work.images[0]}) center/cover`,
+                                            background: work.images && work.images.length > 0 && !imageErrors[index]
+                                                ? `url(${work.images[0]}) center/cover`
+                                                : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                                             position: 'relative',
                                             cursor: 'pointer'
                                         }}
                                         onClick={() => showModal(work)}
                                     >
+                                        {/* Hidden image for error detection */}
+                                        {work.images && work.images.length > 0 && (
+                                            <img
+                                                src={work.images[0]}
+                                                alt=""
+                                                style={{ display: 'none' }}
+                                                onError={() => {
+                                                    setImageErrors(prev => ({
+                                                        ...prev,
+                                                        [index]: true
+                                                    }));
+                                                }}
+                                                onLoad={() => {
+                                                    setImageErrors(prev => ({
+                                                        ...prev,
+                                                        [index]: false
+                                                    }));
+                                                }}
+                                            />
+                                        )}
+                                        
                                         <div style={{
                                             position: 'absolute',
                                             top: 0,
@@ -293,19 +317,19 @@ const Works = () => {
                                     </div>
 
                                     {/* Action Buttons */}
-                                    <div style={{ 
-                                        display: 'flex', 
-                                        gap: 8, 
-                                        marginTop: 16
-                                    }}>
+                                    <div className="work-card-actions">
                                         <Button
                                             type="default"
                                             size="small"
                                             icon={<InfoCircleOutlined />}
                                             onClick={() => showModal(work)}
+                                            className="work-action-button"
                                             style={{ 
                                                 borderRadius: 8,
-                                                fontWeight: 500
+                                                fontWeight: 500,
+                                                flexShrink: 0,
+                                                minWidth: 80,
+                                                height: 32
                                             }}
                                         >
                                             Details
@@ -317,16 +341,30 @@ const Works = () => {
                                                 size="small"
                                                 icon={linkIndex === 0 ? <EyeOutlined /> : <RocketOutlined />}
                                                 onClick={() => window.open(link.url)}
+                                                className="work-action-button"
                                                 style={{ 
-                                                    flex: 1,
                                                     borderRadius: 8,
-                                                    fontWeight: 500
+                                                    fontWeight: 500,
+                                                    flexShrink: 0,
+                                                    minWidth: linkIndex === 0 ? 70 : 90,
+                                                    height: 32
                                                 }}
                                             >
                                                 {linkIndex === 0 ? 'View' : link.title}
                                             </Button>
                                         ))}
                                     </div>
+                                    {/* Scroll hint for card actions */}
+                                    {work.links.length > 1 && (
+                                        <div style={{
+                                            textAlign: 'center',
+                                            marginTop: 4,
+                                            color: '#999',
+                                            fontSize: 10
+                                        }}>
+                                            ← Scroll to see all →
+                                        </div>
+                                    )}
                                 </div>
                             </Badge.Ribbon>
                         </Card>
@@ -504,14 +542,10 @@ const Works = () => {
                             }}>
                                 🛠️ Tech Stack ({selectedWork.technologies.length})
                             </Typography.Title>
-                            <div style={{ 
-                                display: 'flex', 
-                                flexWrap: 'wrap', 
-                                gap: 12
-                            }}>
+                            <div className="tech-stack-scroll">
                                 {selectedWork.technologies.map((tech: any, techIndex: number) => (
                                     <Tooltip title={tech.description} key={techIndex}>
-                                        <div style={{
+                                        <div className="tech-stack-item" style={{
                                             background: isDark ? '#333' : 'white',
                                             border: isDark ? '1px solid #555' : '1px solid #e8e8e8',
                                             borderRadius: 8,
@@ -522,7 +556,9 @@ const Works = () => {
                                             display: 'flex',
                                             alignItems: 'center',
                                             gap: 8,
-                                            boxShadow: isDark ? '0 1px 3px rgba(0,0,0,0.3)' : '0 1px 3px rgba(0,0,0,0.1)'
+                                            boxShadow: isDark ? '0 1px 3px rgba(0,0,0,0.3)' : '0 1px 3px rgba(0,0,0,0.1)',
+                                            flexShrink: 0,
+                                            whiteSpace: 'nowrap'
                                         }}>
                                             <img 
                                                 src={tech.icon} 
@@ -534,32 +570,56 @@ const Works = () => {
                                     </Tooltip>
                                 ))}
                             </div>
+                            {/* Scroll hint for tech stack */}
+                            {selectedWork.technologies.length > 4 && (
+                                <div style={{
+                                    textAlign: 'center',
+                                    marginTop: 8,
+                                    color: '#999',
+                                    fontSize: 12
+                                }}>
+                                    ← Scroll horizontally to see all technologies →
+                                </div>
+                            )}
                         </div>
 
                         {/* Action Links */}
                         <div style={{
-                            display: 'flex',
-                            gap: 12,
                             paddingTop: 16,
                             borderTop: isDark ? '1px solid #444' : '1px solid #f0f0f0'
                         }}>
-                            {selectedWork.links.map((link: any, linkIndex: number) => (
-                                <Button
-                                    key={linkIndex}
-                                    type={linkIndex === 0 ? "primary" : "default"}
-                                    size="large"
-                                    icon={linkIndex === 0 ? <EyeOutlined /> : <RocketOutlined />}
-                                    onClick={() => window.open(link.url)}
-                                    style={{ 
-                                        flex: 1,
-                                        borderRadius: 8,
-                                        fontWeight: 500,
-                                        height: 48
-                                    }}
-                                >
-                                    {link.title}
-                                </Button>
-                            ))}
+                            <div className="action-links-scroll">
+                                {selectedWork.links.map((link: any, linkIndex: number) => (
+                                    <Button
+                                        key={linkIndex}
+                                        type={linkIndex === 0 ? "primary" : "default"}
+                                        size="large"
+                                        icon={linkIndex === 0 ? <EyeOutlined /> : <RocketOutlined />}
+                                        onClick={() => window.open(link.url)}
+                                        className="action-link-button"
+                                        style={{ 
+                                            borderRadius: 8,
+                                            fontWeight: 500,
+                                            height: 48,
+                                            flexShrink: 0,
+                                            minWidth: 120
+                                        }}
+                                    >
+                                        {link.title}
+                                    </Button>
+                                ))}
+                            </div>
+                            {/* Scroll hint for action links */}
+                            {selectedWork.links.length > 2 && (
+                                <div style={{
+                                    textAlign: 'center',
+                                    marginTop: 8,
+                                    color: '#999',
+                                    fontSize: 12
+                                }}>
+                                    ← Scroll horizontally to see all links →
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}

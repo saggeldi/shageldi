@@ -50,12 +50,14 @@ const Hero = () => {
   }
 
   return (
-    <div>
+    <div style={{ overflowX: 'hidden', width: '100%' }}>
       <Row
         align={"stretch"}
         justify={"center"}
         style={{
           paddingTop: isMobile ? "50px" : "100px",
+          width: '100%',
+          margin: 0,
         }}
       >
         <Col xs={24} md={14}>
@@ -68,7 +70,7 @@ const Hero = () => {
         ) : null}
       </Row>
         {
-            isMobile? <div style={{ height: "40vh", marginTop:"22px", marginBottom:"-150px" }}><Hero3D/></div>: null
+            isMobile? <div style={{ height: "40vh", marginTop:"22px", marginBottom:"-150px", width: '100%', overflowX: 'hidden' }}><Hero3D/></div>: null
         }
     </div>
   );

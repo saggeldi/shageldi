@@ -70,3 +70,212 @@
   transform: scale(1.02);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
+
+/* Tech Stack Horizontal Scroll */
+.tech-stack-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+  align-items: center;
+}
+
+/* Custom scrollbar for tech stack */
+.tech-stack-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tech-stack-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.tech-stack-scroll::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.tech-stack-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Tech stack item hover effect */
+.tech-stack-item {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.tech-stack-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Action Links Horizontal Scroll */
+.action-links-scroll {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+  align-items: center;
+}
+
+/* Custom scrollbar for action links */
+.action-links-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.action-links-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.action-links-scroll::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.action-links-scroll::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+/* Action link button hover effect */
+.action-link-button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.action-link-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Work Card Actions Horizontal Scroll */
+.work-card-actions {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 4px;
+  scroll-behavior: smooth;
+  align-items: center;
+  margin-top: 16px;
+}
+
+/* Custom scrollbar for work card actions */
+.work-card-actions::-webkit-scrollbar {
+  height: 4px;
+}
+
+.work-card-actions::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.work-card-actions::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+.work-card-actions::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* Work action button hover effect */
+.work-action-button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.work-action-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Mobile responsive improvements */
+@media (max-width: 768px) {
+  .tech-stack-scroll {
+    gap: 8px;
+    padding-bottom: 12px;
+    max-width: 100%;
+  }
+  
+  .action-links-scroll {
+    gap: 8px;
+    padding-bottom: 12px;
+    max-width: 100%;
+  }
+  
+  .work-card-actions {
+    gap: 6px;
+    padding-bottom: 8px;
+    max-width: 100%;
+  }
+  
+  .tech-stack-item {
+    padding: 6px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+  
+  .action-link-button {
+    min-width: 100px;
+    height: 44px;
+    white-space: nowrap;
+  }
+  
+  .work-action-button {
+    min-width: 70px;
+    font-size: 11px;
+    padding: 4px 8px;
+    height: 28px !important;
+    white-space: nowrap;
+  }
+  
+  /* Show scrollbars on mobile for better UX */
+  .tech-stack-scroll::-webkit-scrollbar,
+  .action-links-scroll::-webkit-scrollbar,
+  .image-gallery-scroll::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .work-card-actions::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .tech-stack-scroll::-webkit-scrollbar-thumb,
+  .action-links-scroll::-webkit-scrollbar-thumb,
+  .image-gallery-scroll::-webkit-scrollbar-thumb,
+  .work-card-actions::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .tech-stack-scroll,
+  .action-links-scroll,
+  .work-card-actions,
+  .image-gallery-scroll {
+    max-width: calc(100vw - 24px);
+    margin: 0;
+  }
+  
+  .tech-stack-item {
+    padding: 4px 8px;
+    font-size: 11px;
+    min-width: auto;
+  }
+  
+  .work-action-button {
+    min-width: 60px;
+    font-size: 10px;
+    padding: 3px 6px;
+    height: 26px !important;
+  }
+  
+  .action-link-button {
+    min-width: 80px;
+    height: 40px;
+    font-size: 12px;
+  }
+}

@@ -300,12 +300,13 @@ export function useMyWorks() {
             name: "Operator",
             description: "This project helps operators on any kind of service company, customer call to operator and customer full information and history shows on the operator computer",
             images: [
-                "/images/operator/Screenshot 2025-06-02 at 16.53.43.png",
-                "/images/operator/Screenshot 2025-06-02 at 16.54.00.png",
-                "/images/operator/Screenshot 2025-06-02 at 16.54.40.png",
-                "/images/operator/Screenshot 2025-06-02 at 16.54.56.png",
-                "/images/operator/Screenshot 2025-06-02 at 16.55.11.png",
-                "/images/operator/Screenshot 2025-06-02 at 16.55.25.png"
+                "/images/operator/operator-1.png",
+                "/images/operator/operator-2.png",
+                "/images/operator/operator-3.png",
+                "/images/operator/operator-4.png",
+                "/images/operator/operator-5.png",
+                "/images/operator/operator-6.png",
+                "/images/operator/operator-7.png"
             ],
             links: [
                 {
@@ -1097,12 +1098,12 @@ export function useMyWorks() {
             name: "Bootcamp Turkmenistan",
             description: "This is official website of Bootcamp Turkmenistan",
             images: [
-                "/images/bootcamp/Screenshot 2025-06-02 at 17.47.00.png",
-                "/images/bootcamp/Screenshot 2025-06-02 at 17.47.08.png",
-                "/images/bootcamp/Screenshot 2025-06-02 at 17.47.17.png",
-                "/images/bootcamp/Screenshot 2025-06-02 at 17.47.24.png",
-                "/images/bootcamp/Screenshot 2025-06-02 at 17.47.31.png",
-                "/images/bootcamp/Screenshot 2025-06-02 at 17.47.39.png"
+                "/images/bootcamp/bootcamp-1.png",
+                "/images/bootcamp/bootcamp-2.png",
+                "/images/bootcamp/bootcamp-3.png",
+                "/images/bootcamp/bootcamp-4.png",
+                "/images/bootcamp/bootcamp-5.png",
+                "/images/bootcamp/bootcamp-6.png"
             ],
             links: [
                 {
@@ -1122,12 +1123,12 @@ export function useMyWorks() {
             name: "Visual Dictionary Desktop",
             description: "This is desktop app Visual Dictionary for architectures using c#",
             images: [
-                "/images/dictionary/Screenshot 2025-06-02 at 17.42.30.png",
-                "/images/dictionary/Screenshot 2025-06-02 at 17.42.37.png",
-                "/images/dictionary/Screenshot 2025-06-02 at 17.42.49.png",
-                "/images/dictionary/Screenshot 2025-06-02 at 17.42.55.png",
-                "/images/dictionary/Screenshot 2025-06-02 at 17.43.02.png",
-                "/images/dictionary/Screenshot 2025-06-02 at 17.43.15.png"
+                "/images/dictionary/dictionary-1.png",
+                "/images/dictionary/dictionary-2.png",
+                "/images/dictionary/dictionary-3.png",
+                "/images/dictionary/dictionary-4.png",
+                "/images/dictionary/dictionary-5.png",
+                "/images/dictionary/dictionary-6.png"
             ],
             links: [
                 {

@@ -52,6 +52,18 @@ const certificates: Certificate[] = [
     title: 'GeekSpace Startuper 2020 Program',
     description: 'Certificate of appreciation for outstanding work in GeekSpace "Startuper 2020" program under SEC (Startup Ecosystem Community) initiatives.',
     image: '/certificates/Screenshot 2025-10-21 at 01.12.14.png'
+  },
+  {
+    id: '8',
+    title: 'Google I/O Extended Ashgabat 2025 - Speaker',
+    description: 'Certificate of appreciation for contributing as a Speaker in the "Android Evolution Unleashed: From AI-Powered Android 16 to Cross-Platform Mastery with Kotlin Multiplatforms" session at Google I/O Extended Ashgabat on September 20, 2025.',
+    image: '/certificates/Screenshot 2025-10-21 at 01.12.55.png'
+  },
+  {
+    id: '9',
+    title: 'Google I/O Extended Speaker Badge 2025',
+    description: 'Official Speaker badge for Google I/O Extended Ashgabat event, recognizing contribution to the Android and Kotlin development community.',
+    image: '/certificates/Screenshot 2025-10-21 at 01.13.14.png'
   }
 ];
 
