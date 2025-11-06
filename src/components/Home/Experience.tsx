@@ -9,7 +9,7 @@ import ScrollAnimation from "react-animate-on-scroll";
 export const experienceData = [
     {
         key: "1",
-        title: "Mobile Developer",
+        title: "FullStack Developer",
         period: "2020-2023",
         location: "Ashgabat, Turkmenistan",
         company: "Geekspace Turkmenistan",
@@ -33,11 +33,11 @@ export const experienceData = [
     },
     {
         key: "4",
-        title: "Self employment",
+        title: "FullStack developer",
         period: "2023-2025",
         location: "Ashgabat, Turkmenistan",
-        company: "Freelancer",
-        site: "https://shageldi.vercel.app"
+        company: "YTM",
+        site: "https://ytm.tm"
     },
 ];
 
