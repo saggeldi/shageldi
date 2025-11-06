@@ -30,7 +30,7 @@
     "backToBlogs": "Back to Blogs"
   },
   "hero": {
-    "jobTitle": "Mobile Developer",
+    "jobTitle": "FullStack Developer",
     "talkIsCheap": "Talk is cheap.",
     "showMeTheProject": "Show me the project!",
     "description": "Keep It Simple, Stupid",
@@ -59,8 +59,8 @@
   "skills": {
     "title": "Skills",
     "subtitle": "Skills I possess as a specialist",
-    "seniorAndroid": "Senior android developer",
-    "crossPlatform": "Cross platform mobile developer",
-    "juniorFrontendBackend": "Junior at frontend and backend development"
+    "juniorFrontendBackend": "Middle at frontend and backend development",
+    "crossPlatform": "Cross platform developer",
+    "seniorAndroid": "Senior android developer"
   }
 }
