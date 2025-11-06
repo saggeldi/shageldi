@@ -23,6 +23,56 @@ export interface MyWork {
 export function useMyWorks() {
     const works: MyWork[] = [
         {
+            name: "Full-Stack Project – “Kiosk” Self-Service Payment Terminal",
+            description: "Developed a self-service payment kiosk with integrated bill acceptor, touch-screen UI, and receipt printing capabilities.\n\nBackend: Built with NestJS and PostgreSQL, featuring secure payment service integration, transaction logging, and robust device communication APIs.\n\nFrontend / Client: Created using Kotlin Multiplatform and Compose Multiplatform for a responsive and intuitive touch-screen interface on Ubuntu desktop.\n\nImplemented real-time bill validator handling, check printing, and hardware control via serial communication.\n\nDesigned a modular, scalable architecture ensuring reliable offline operation and easy maintenance.",
+            images: [
+                "/images/kiosk/pl32100420-windows_xp_or_linux_computer_self_service_kiosk_terminal_with_keyboard.webp",
+                "/images/kiosk/Screenshot 2025-11-07 at 00.09.57.png",
+                "/images/kiosk/Screenshot 2025-11-07 at 00.10.45.png",
+                "/images/kiosk/Screenshot 2025-11-07 at 00.10.58.png",
+                "/images/kiosk/Screenshot 2025-11-07 at 00.11.15.png",
+                "/images/kiosk/Screenshot 2025-11-07 at 00.12.10.png"
+            ],
+            links: [],
+            technologies: [
+                {
+                    name: "🧩 Compose Multiplatform",
+                    description: "The user interface was built using Compose Multiplatform for Ubuntu, ensuring a modern and responsive touch-screen experience.",
+                    url: "https://www.jetbrains.com/compose-multiplatform/",
+                    icon: "/skills/compose multiplatform.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🦄 NestJS",
+                    description: "The backend was developed with NestJS, providing a scalable and maintainable architecture for handling payments and device communication.",
+                    url: "https://nestjs.com/",
+                    icon: "/skills/nestjs.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🐘 PostgreSQL",
+                    description: "PostgreSQL was used as the database for transaction logging and data persistence.",
+                    url: "https://www.postgresql.org/",
+                    icon: "/skills/postgresql.svg",
+                    percentage: 100
+                },
+                {
+                    name: "🐧 Ubuntu",
+                    description: "The kiosk runs on Ubuntu, providing a stable and reliable operating system for the application.",
+                    url: "https://ubuntu.com/",
+                    icon: "/skills/ubuntu.svg",
+                    percentage: 100
+                },
+                {
+                    name: "⚙️ Hardware Integration",
+                    description: "Integrated with a bill validator and receipt printer using serial communication.",
+                    url: "",
+                    icon: "/skills/check.svg",
+                    percentage: 100
+                }
+            ]
+        },
+        {
             name: "Balary - Also showing in <Jetbrains/> KMP showcase site",
             description: "Balary online supermarket has more than 50 categories of goods. Seasonal Vegetables, Fruits, Home Goods and much more! And if you think you might forget something, you can save your personal list of purchases with our phone app or website membership and use them on your next order!",
             images: [

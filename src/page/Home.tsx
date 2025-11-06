@@ -3,7 +3,6 @@ import LazySection from "../components/ui/LazySection";
 import { Spin } from "antd";
 
 const AboutHome = lazy(() => import("../components/Home/AboutHome"));
-const Advantages = lazy(() => import("../components/Home/Advantages"));
 const Certificates = lazy(() => import("../components/Home/Certificates"));
 const Contact = lazy(() => import("../components/Home/Contact"));
 const Experience = lazy(() => import("../components/Home/Experience"));
@@ -42,13 +41,13 @@ const Home = () => {
           </Suspense>
         </LazySection>
         
-        <LazySection fallback={<LoadingSpinner />}>
-          <Suspense fallback={<LoadingSpinner />}>
-            <div id="advantages">
-              <Advantages />
-            </div>
-          </Suspense>
-        </LazySection>
+        {/*<LazySection fallback={<LoadingSpinner />}>*/}
+        {/*  <Suspense fallback={<LoadingSpinner />}>*/}
+        {/*    <div id="advantages">*/}
+        {/*      <Advantages />*/}
+        {/*    </div>*/}
+        {/*  </Suspense>*/}
+        {/*</LazySection>*/}
         
         <LazySection fallback={<LoadingSpinner />}>
           <Suspense fallback={<LoadingSpinner />}>
