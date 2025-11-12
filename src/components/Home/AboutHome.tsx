@@ -19,7 +19,6 @@ const code = `<!DOCTYPE html>
            <h1>Shageldi Alyyev</h1>
            <img url="Picture.1"/>
         <textarea>  
-        Full-Stack Developer passionate about building modern, scalable, and efficient digital solutions.
  My core expertise spans Android Native Development and Kotlin Multiplatform / Compose Multiplatform, complemented by hands-on experience in frontend and backend development using React.js, NestJS, and TypeScript.
  Skilled in Kotlin, Jetpack Compose, XML, and familiar with Elasticsearch, I bring a well-rounded technical foundation and a strong focus on clean architecture, performance, and cross-platform consistency. I thrive in dynamic environments and am always eager to learn, innovate, and contribute to impactful projects.
         </textarea>

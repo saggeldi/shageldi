@@ -18,13 +18,21 @@ export const experienceData = [
     {
         key: "2",
         title: "Mobile Developer",
+        period: "2024-2025",
+        location: "Ashgabat, Turkmenistan",
+        company: "Balary",
+        site: "https://balary.com.tm"
+    },
+    {
+        key: "3",
+        title: "Mobile Developer",
         period: "2021-2022",
         location: "Ashgabat, Turkmenistan",
         company: "Pikir",
         site: "https://pikir.biz"
     },
     {
-        key: "3",
+        key: "4",
         title: "Web Development mentor",
         period: "2022-2023",
         location: "Ashgabat, Turkmenistan",
@@ -32,8 +40,8 @@ export const experienceData = [
         site: "http://bootcamp.com.tm/"
     },
     {
-        key: "4",
-        title: "FullStack developer",
+        key: "5",
+        title: "Mobile developer",
         period: "2023-2025",
         location: "Ashgabat, Turkmenistan",
         company: "YTM",
