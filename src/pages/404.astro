@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Flower from '../components/Flower.astro';
+---
+
+<Base
+  title="Page not found — Shageldi Alyyev"
+  description="The page you're looking for wandered off. Head back to the portfolio of Shageldi Alyyev, mobile developer."
+  noindex
+>
+  <Nav />
+  <main class="nf">
+    <div class="nf-grad"></div>
+    <div class="wrap nf-inner">
+      <span class="eyebrow">Error 404</span>
+      <h1 class="nf-title">Lost the <em class="italic">thread</em> <Flower /></h1>
+      <p>This page wandered off. Let's get you back to the work.</p>
+      <a href="/" class="nf-cta"><span></span> Back home</a>
+    </div>
+  </main>
+</Base>
+
+<style>
+  .nf { position: relative; min-height: 100svh; display: flex; align-items: center; overflow: hidden; }
+  .nf-grad { position: absolute; inset: 0; background: var(--hero-grad); z-index: -1; }
+  .nf-title {
+    font-family: var(--serif);
+    font-size: clamp(56px, 12vw, 150px);
+    font-weight: 500;
+    line-height: 0.92;
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    margin: 14px 0 18px;
+  }
+  .nf-title em { color: var(--accent-deep); }
+  .nf p { color: var(--ink-soft); font-size: 18px; margin: 0 0 30px; }
+  .nf-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--green-800);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 14px 24px;
+    border-radius: 100px;
+    transition: transform 0.3s ease;
+  }
+  .nf-cta span { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .nf-cta:hover { transform: translateY(-2px); }
+</style>

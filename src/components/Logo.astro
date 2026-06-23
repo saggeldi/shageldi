@@ -1,0 +1,36 @@
+---
+// SHA lettermark — inline SVG wordmark that inherits color from its parent
+// (currentColor), so it adapts to light nav ink and dark footer cream alike.
+interface Props {
+  class?: string;
+  label?: string;
+}
+const { class: className, label = 'SHA — Shageldi Alyyev' } = Astro.props;
+---
+
+<svg
+  class:list={['sha-logo', className]}
+  viewBox="0 0 132 48"
+  role="img"
+  aria-label={label}
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <text
+    x="0"
+    y="37"
+    font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif"
+    font-weight="600"
+    font-size="46"
+    letter-spacing="1"
+    fill="currentColor">SHA</text>
+  <!-- accent period, echoing the "Shageldi A." brand mark -->
+  <circle cx="126" cy="34" r="5" fill="var(--accent, #00c758)" />
+</svg>
+
+<style>
+  .sha-logo {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+</style>

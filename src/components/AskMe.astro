@@ -1,0 +1,528 @@
+---
+import { profile } from '../data/portfolio';
+
+const suggestions = [
+  'What do you do?',
+  'Tell me about Balary',
+  'Which technologies do you use?',
+  'How can I hire you?',
+];
+---
+
+<div class="askme" data-askme data-email={profile.email}>
+  <!-- Animated magic launcher -->
+  <button class="askme-fab" data-askme-toggle aria-label="Ask about me" aria-expanded="false">
+    <span class="askme-fab-glow" aria-hidden="true"></span>
+    <span class="askme-fab-inner">
+      <svg class="askme-spark" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M12 2.5l1.8 5.2 5.2 1.8-5.2 1.8L12 16.5l-1.8-5.2L5 9.5l5.2-1.8L12 2.5z" fill="currentColor"/>
+        <path d="M19 14l.8 2.2 2.2.8-2.2.8L19 20l-.8-2.2-2.2-.8 2.2-.8L19 14z" fill="currentColor" opacity="0.8"/>
+      </svg>
+      <span class="askme-fab-label">Ask about me</span>
+    </span>
+  </button>
+
+  <!-- Inline chat panel -->
+  <section class="askme-panel" data-askme-panel role="dialog" aria-modal="false" aria-label={`Chat with ${profile.name}`} hidden>
+    <header class="askme-head">
+      <span class="askme-avatar" aria-hidden="true">{profile.initials}</span>
+      <span class="askme-head-text">
+        <strong>{profile.name.split(' ')[0]} <em class="italic">{profile.name.split(' ')[1]}</em></strong>
+        <span class="askme-status"><i></i>Ask me anything about my work</span>
+      </span>
+      <button class="askme-close" data-askme-close aria-label="Close chat">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div class="askme-log" data-askme-log>
+      <div class="askme-msg bot">
+        <div class="askme-bubble">
+          Hi! I'm {profile.name.split(' ')[0]} — well, an AI trained on my portfolio. 👋
+          Ask me about my projects, skills, experience, or how to work together.
+        </div>
+      </div>
+    </div>
+
+    <div class="askme-suggest" data-askme-suggest>
+      {suggestions.map((s) => <button class="askme-chip" data-askme-chip>{s}</button>)}
+    </div>
+
+    <form class="askme-form" data-askme-form>
+      <input
+        class="askme-input"
+        data-askme-input
+        type="text"
+        autocomplete="off"
+        placeholder="Type your question…"
+        aria-label="Your message"
+        maxlength="2000"
+      />
+      <button class="askme-send" type="submit" aria-label="Send" disabled>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12l16-8-6 16-3-7-7-1z" fill="currentColor"/></svg>
+      </button>
+    </form>
+  </section>
+</div>
+
+<style>
+  .askme {
+    position: fixed;
+    right: clamp(16px, 3vw, 28px);
+    bottom: clamp(16px, 3vw, 28px);
+    z-index: 120;
+    font-family: var(--sans);
+  }
+
+  /* ---- Launcher button ---- */
+  .askme-fab {
+    position: relative;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    background: none;
+    border-radius: 100px;
+    isolation: isolate;
+  }
+  .askme-fab-glow {
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    background: conic-gradient(from 0deg, var(--accent), var(--lavender), var(--yellow), var(--coral), var(--accent));
+    filter: blur(7px);
+    opacity: 0.55;
+    z-index: -1;
+    animation: askme-spin 6s linear infinite;
+  }
+  .askme-fab-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 13px 20px;
+    border-radius: 100px;
+    background: var(--green-800);
+    color: var(--cream);
+    box-shadow: 0 14px 34px -10px rgba(16, 42, 19, 0.6);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .askme-fab-label {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .askme-spark {
+    width: 19px;
+    height: 19px;
+    color: var(--accent);
+    flex: none;
+    animation: askme-pulse 2.6s ease-in-out infinite;
+  }
+  .askme-fab:hover .askme-fab-inner { transform: translateY(-2px) scale(1.03); }
+  .askme-fab:hover .askme-fab-glow { opacity: 0.85; }
+  .askme-fab:active .askme-fab-inner { transform: translateY(0) scale(0.98); }
+
+  /* hide launcher while the panel is open */
+  .askme[data-open] .askme-fab {
+    opacity: 0;
+    transform: scale(0.6);
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+
+  @keyframes askme-spin { to { transform: rotate(360deg); } }
+  @keyframes askme-pulse {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    50% { transform: scale(1.18) rotate(8deg); opacity: 0.85; }
+  }
+
+  /* ---- Panel ---- */
+  .askme-panel {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: min(384px, calc(100vw - 32px));
+    height: min(580px, calc(100dvh - 120px));
+    display: flex;
+    flex-direction: column;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    box-shadow: 0 30px 70px -20px rgba(16, 42, 19, 0.5);
+    overflow: hidden;
+    transform-origin: bottom right;
+    transform: translateY(14px) scale(0.92);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.34s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.28s ease;
+  }
+  .askme[data-open] .askme-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .askme-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 16px 15px;
+    background: var(--green-800);
+    color: var(--cream);
+  }
+  .askme-avatar {
+    width: 38px;
+    height: 38px;
+    flex: none;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(140deg, var(--accent), var(--accent-deep));
+    color: var(--green-900);
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .askme-head-text { display: flex; flex-direction: column; gap: 2px; line-height: 1.2; flex: 1; min-width: 0; }
+  .askme-head-text strong { font-family: var(--serif); font-weight: 500; font-size: 19px; }
+  .askme-head-text em { color: var(--accent); }
+  .askme-status {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: rgba(243, 244, 221, 0.62);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .askme-status i {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent);
+    animation: askme-live 2s ease-out infinite;
+  }
+  @keyframes askme-live {
+    0% { box-shadow: 0 0 0 0 rgba(0, 199, 88, 0.6); }
+    70% { box-shadow: 0 0 0 6px rgba(0, 199, 88, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 199, 88, 0); }
+  }
+  .askme-close {
+    flex: none;
+    width: 32px; height: 32px;
+    display: grid; place-items: center;
+    border: 0; border-radius: 50%;
+    background: rgba(243, 244, 221, 0.1);
+    color: var(--cream);
+    cursor: pointer;
+    transition: background 0.25s ease;
+  }
+  .askme-close:hover { background: rgba(243, 244, 221, 0.22); }
+  .askme-close svg { width: 17px; height: 17px; }
+
+  /* ---- Message log ---- */
+  .askme-log {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain; /* don't chain scroll into the page at the edges */
+    padding: 18px 16px 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    scrollbar-width: thin;
+    -webkit-overflow-scrolling: touch;
+  }
+  .askme-msg { display: flex; max-width: 100%; }
+  .askme-msg.user { justify-content: flex-end; }
+  .askme-bubble {
+    max-width: 84%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 14.5px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+  }
+  .askme-msg.bot .askme-bubble {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-bottom-left-radius: 5px;
+    color: var(--ink);
+  }
+  .askme-msg.user .askme-bubble {
+    background: var(--green-800);
+    color: var(--cream);
+    border-bottom-right-radius: 5px;
+  }
+  .askme-bubble :global(a) { color: var(--accent-deep); text-decoration: underline; }
+  .askme-bubble :global(ul) { margin: 6px 0; padding-left: 18px; }
+  .askme-bubble :global(li) { margin: 2px 0; }
+  .askme-bubble :global(strong) { font-weight: 600; }
+  /* thinking state */
+  .askme-bubble.thinking { padding-block: 9px; }
+  .askme-bubble :global(.askme-think) {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .askme-bubble :global(.askme-think-label) {
+    font-size: 13.5px;
+    font-weight: 500;
+    background: linear-gradient(90deg, var(--ink-faint) 0%, var(--ink) 45%, var(--accent-deep) 50%, var(--ink) 55%, var(--ink-faint) 100%);
+    background-size: 220% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: askme-shimmer 1.6s linear infinite;
+  }
+  @keyframes askme-shimmer {
+    0% { background-position: 120% 0; }
+    100% { background-position: -120% 0; }
+  }
+  .askme-bubble :global(.askme-dots) { display: inline-flex; gap: 4px; padding: 2px 0; }
+  .askme-bubble :global(.askme-dots span) {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent-deep);
+    animation: askme-bounce 1.2s infinite ease-in-out;
+  }
+  .askme-bubble :global(.askme-dots span:nth-child(2)) { animation-delay: 0.15s; }
+  .askme-bubble :global(.askme-dots span:nth-child(3)) { animation-delay: 0.3s; }
+  @keyframes askme-bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* ---- Suggestion chips ---- */
+  .askme-suggest {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 8px 16px 4px;
+  }
+  .askme-suggest[hidden] { display: none; }
+  .askme-chip {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    padding: 7px 12px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+  }
+  .askme-chip:hover { border-color: var(--accent-deep); color: var(--ink); background: rgba(0, 199, 88, 0.06); }
+
+  /* ---- Composer ---- */
+  .askme-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px 14px;
+    border-top: 1px solid var(--line);
+  }
+  .askme-input {
+    flex: 1;
+    min-width: 0;
+    font-family: var(--sans);
+    /* 16px min keeps iOS Safari from auto-zooming on focus. */
+    font-size: 16px;
+    padding: 11px 15px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: #fff;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.25s ease;
+  }
+  .askme-input:focus { border-color: var(--accent-deep); }
+  .askme-send {
+    flex: none;
+    width: 42px; height: 42px;
+    display: grid; place-items: center;
+    border: 0; border-radius: 50%;
+    background: var(--green-800);
+    color: var(--cream);
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+  }
+  .askme-send svg { width: 19px; height: 19px; transform: translateX(-1px); }
+  .askme-send:not(:disabled):hover { background: var(--accent-deep); transform: scale(1.06); }
+  .askme-send:disabled { opacity: 0.4; cursor: default; }
+
+  @media (max-width: 480px) {
+    /* Full-width panel, but keep the launcher a compact icon in the
+       bottom-right corner instead of a wide labelled pill over content. */
+    .askme { right: 14px; bottom: 14px; left: 14px; text-align: right; }
+    .askme-panel { width: 100%; height: min(76dvh, calc(100dvh - 96px)); }
+    .askme-fab-label { display: none; }
+    .askme-fab-inner { padding: 15px; gap: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .askme-fab-glow, .askme-spark, .askme-status i,
+    .askme-bubble :global(.askme-think-label),
+    .askme-bubble :global(.askme-dots span) { animation: none; }
+    /* shimmer text is transparent while animating — restore a solid colour */
+    .askme-bubble :global(.askme-think-label) {
+      -webkit-text-fill-color: var(--ink-soft);
+      color: var(--ink-soft);
+    }
+  }
+</style>
+
+<script>
+  type Role = 'user' | 'model';
+  interface Msg { role: Role; text: string; }
+
+  const root = document.querySelector<HTMLElement>('[data-askme]');
+  if (root) {
+    const toggle = root.querySelector<HTMLButtonElement>('[data-askme-toggle]')!;
+    const closeBtn = root.querySelector<HTMLButtonElement>('[data-askme-close]')!;
+    const panel = root.querySelector<HTMLElement>('[data-askme-panel]')!;
+    const log = root.querySelector<HTMLElement>('[data-askme-log]')!;
+    const form = root.querySelector<HTMLFormElement>('[data-askme-form]')!;
+    const input = root.querySelector<HTMLInputElement>('[data-askme-input]')!;
+    const sendBtn = root.querySelector<HTMLButtonElement>('.askme-send')!;
+    const suggest = root.querySelector<HTMLElement>('[data-askme-suggest]')!;
+
+    const history: Msg[] = [];
+    let busy = false;
+
+    const open = (state: boolean) => {
+      root.toggleAttribute('data-open', state);
+      toggle.setAttribute('aria-expanded', String(state));
+      panel.hidden = !state;
+      if (state) setTimeout(() => input.focus(), 320);
+    };
+
+    toggle.addEventListener('click', () => open(!root.hasAttribute('data-open')));
+    closeBtn.addEventListener('click', () => open(false));
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && root.hasAttribute('data-open')) open(false);
+    });
+
+    // GSAP ScrollSmoother runs `normalizeScroll: true`, which intercepts wheel
+    // & touch globally and would otherwise scroll the page instead of the chat.
+    // Stop those events from bubbling out of the panel so the log scrolls on its
+    // own; the page stays put while the pointer is over the chat.
+    ['wheel', 'touchmove', 'touchstart'].forEach((evt) =>
+      panel.addEventListener(evt, (e) => e.stopPropagation(), { passive: false }),
+    );
+
+    input.addEventListener('input', () => {
+      sendBtn.disabled = busy || input.value.trim() === '';
+    });
+
+    // --- tiny safe markdown: escape, then bold / links / bullet lists ---
+    const esc = (s: string) =>
+      s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+    function render(text: string): string {
+      const lines = esc(text).split('\n');
+      let html = '';
+      let inList = false;
+      for (const line of lines) {
+        const bullet = line.match(/^\s*[-*•]\s+(.*)$/);
+        if (bullet) {
+          if (!inList) { html += '<ul>'; inList = true; }
+          html += `<li>${inline(bullet[1])}</li>`;
+        } else {
+          if (inList) { html += '</ul>'; inList = false; }
+          html += line.trim() === '' ? '<br>' : `${inline(line)}<br>`;
+        }
+      }
+      if (inList) html += '</ul>';
+      return html.replace(/(<br>)+$/, '');
+    }
+    function inline(s: string): string {
+      return s
+        .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+        .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>')
+        .replace(/\b([\w.+-]+@[\w-]+\.[\w.-]+)\b/g, '<a href="mailto:$1">$1</a>');
+    }
+
+    function addBubble(role: Role): HTMLElement {
+      const wrap = document.createElement('div');
+      wrap.className = `askme-msg ${role === 'user' ? 'user' : 'bot'}`;
+      const bubble = document.createElement('div');
+      bubble.className = 'askme-bubble';
+      wrap.appendChild(bubble);
+      log.appendChild(wrap);
+      scrollDown();
+      return bubble;
+    }
+    const scrollDown = () => { log.scrollTop = log.scrollHeight; };
+
+    async function send(text: string) {
+      const q = text.trim();
+      if (!q || busy) return;
+      suggest.hidden = true;
+      busy = true;
+      input.value = '';
+      sendBtn.disabled = true;
+
+      const userBubble = addBubble('user');
+      userBubble.textContent = q;
+      history.push({ role: 'user', text: q });
+
+      const botBubble = addBubble('model');
+      botBubble.classList.add('thinking');
+      botBubble.innerHTML =
+        '<span class="askme-think"><span class="askme-think-label">Thinking</span>' +
+        '<span class="askme-dots"><span></span><span></span><span></span></span></span>';
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages: history }),
+        });
+
+        if (!res.ok || !res.body) {
+          const data = await res.json().catch(() => null);
+          throw new Error(data?.error || 'Request failed');
+        }
+
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let answer = '';
+        let first = true;
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          answer += decoder.decode(value, { stream: true });
+          if (first) { botBubble.classList.remove('thinking'); botBubble.innerHTML = ''; first = false; }
+          botBubble.innerHTML = render(answer);
+          scrollDown();
+        }
+        if (!answer.trim()) {
+          botBubble.textContent = "Sorry, I didn't catch that — could you rephrase?";
+        } else {
+          history.push({ role: 'model', text: answer });
+        }
+      } catch (err) {
+        botBubble.innerHTML = '';
+        const email = root.dataset.email || 'multiplatform00@gmail.com';
+        botBubble.textContent =
+          `Sorry, I couldn't answer just now. You can always reach me at ${email}.`;
+      } finally {
+        busy = false;
+        sendBtn.disabled = input.value.trim() === '';
+        input.focus();
+      }
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      send(input.value);
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('[data-askme-chip]').forEach((chip) =>
+      chip.addEventListener('click', () => send(chip.textContent || '')),
+    );
+  }
+</script>

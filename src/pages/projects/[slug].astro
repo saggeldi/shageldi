@@ -1,0 +1,672 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import Flower from '../../components/Flower.astro';
+import AskMe from '../../components/AskMe.astro';
+import { projects } from '../../data/portfolio';
+
+export function getStaticPaths() {
+  return projects.map((p, i) => ({
+    params: { slug: p.slug },
+    props: { project: p, next: projects[(i + 1) % projects.length] },
+  }));
+}
+
+const { project, next } = Astro.props;
+const [cover, ...gallery] = project.images;
+const description = project.summary;
+const icon = project.logo ?? cover;
+const primaryLink = project.links[0];
+
+// "More projects to try" — a handful of other projects for the sidebar list.
+const more = projects.filter((p) => p.slug !== project.slug).slice(0, 4);
+---
+
+<Base
+  title={`${project.name} — Shageldi Alyyev`}
+  description={description}
+  type="article"
+  imageAlt={`${project.name} — project by Shageldi Alyyev`}
+>
+  <Nav />
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <main class="detail">
+        <div class="detail-grad"></div>
+        <div class="wrap">
+          <a href="/#projects" class="back" data-reveal>← Return to projects</a>
+
+          <!-- Listing header: title block (left) + app icon (right) -->
+          <header class="listing-head">
+            <div class="listing-intro">
+              <h1 class="listing-title" data-reveal>{project.name}</h1>
+              <span class="listing-sub" data-reveal>{project.category}</span>
+
+              <div class="listing-meta" data-reveal>
+                <div class="meta-stat">
+                  <span class="meta-value">{project.images.length}</span>
+                  <span class="meta-label">Screens</span>
+                </div>
+              </div>
+
+              <div class="listing-actions" data-reveal>
+                {primaryLink && (
+                  <a href={primaryLink.url} target="_blank" rel="noopener" class="btn-primary">
+                    Open {primaryLink.title}
+                  </a>
+                )}
+                <button type="button" class="btn-share" data-share data-title={project.name}>
+                  ⤴ Share
+                </button>
+              </div>
+
+              <p class="listing-note" data-reveal>{project.summary}</p>
+            </div>
+
+            <figure class="listing-icon" data-hero-portrait>
+              <img src={icon} alt={`${project.name} logo`} width="180" height="180" loading="eager" />
+            </figure>
+          </header>
+
+          <!-- Body: main column (gallery + about) + sidebar -->
+          <div class="listing-body">
+            <div class="listing-main">
+              <section class="screens" data-reveal>
+                <div class="screens-row" data-screens-row>
+                  <figure class="screen-cover" data-screen-open data-index="0" role="button" tabindex="0" aria-label={`Preview screenshot 1 of ${project.images.length}`}>
+                    <img src={cover} alt={project.name} loading="eager" />
+                    <span class="screen-zoom" aria-hidden="true">⤢</span>
+                  </figure>
+                  {gallery.map((img, i) => (
+                    <figure class="screen-shot" data-screen-open data-index={i + 1} role="button" tabindex="0" aria-label={`Preview screenshot ${i + 2} of ${project.images.length}`}>
+                      <img src={img} alt={project.name} loading="lazy" />
+                      <span class="screen-zoom" aria-hidden="true">⤢</span>
+                    </figure>
+                  ))}
+                </div>
+                {project.images.length > 1 && (
+                  <>
+                    <button type="button" class="screens-nav screens-prev" data-screens-prev aria-label="Previous screenshots">‹</button>
+                    <button type="button" class="screens-nav screens-next" data-screens-next aria-label="Next screenshots">›</button>
+                  </>
+                )}
+              </section>
+
+              <section class="about" data-reveal>
+                <h2 class="about-title">About this project</h2>
+                <p class="about-text">{project.description}</p>
+              </section>
+
+              {project.tech.length > 0 && (
+                <section class="about" data-reveal>
+                  <h2 class="about-title">Stack</h2>
+                  <div class="tech-tags">
+                    {project.tech.map((tag) => <span class="pill">{tag}</span>)}
+                  </div>
+                </section>
+              )}
+
+              {project.video && (
+                <section class="about" data-reveal>
+                  <h2 class="about-title">Watch</h2>
+                  <div class="video-frame">
+                    <iframe
+                      src={project.video}
+                      title={`${project.name} — video`}
+                      loading="lazy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowfullscreen
+                    ></iframe>
+                  </div>
+                </section>
+              )}
+            </div>
+
+            <aside class="listing-side">
+              <div class="side-card" data-reveal>
+                <span class="eyebrow">Category</span>
+                <p class="side-card-main">{project.category}</p>
+                {project.featured && <span class="side-flag">★ Featured</span>}
+              </div>
+
+              {project.links.length > 0 && (
+                <div class="side-card" data-reveal>
+                  <span class="eyebrow">Links &amp; support</span>
+                  <ul class="side-links">
+                    {project.links.map((l) => (
+                      <li>
+                        <a href={l.url} target="_blank" rel="noopener">{l.title} ↗</a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              <div class="side-card" data-reveal>
+                <span class="eyebrow">More projects to try</span>
+                <ul class="side-more">
+                  {more.map((p) => (
+                    <li>
+                      <a href={`/projects/${p.slug}`} class="more-item">
+                        <span class="more-thumb"><img src={p.images[0]} alt={p.name} loading="lazy" /></span>
+                        <span class="more-meta">
+                          <span class="more-name">{p.name}</span>
+                          <span class="more-cat">{p.category}</span>
+                        </span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </aside>
+          </div>
+
+          <a href={`/projects/${next.slug}`} class="next-proj" data-reveal>
+            <span class="eyebrow">Next project</span>
+            <span class="next-name">{next.name} <Flower /></span>
+          </a>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  </div>
+
+  <!-- Screenshot preview lightbox (outside #smooth-wrapper so position:fixed is viewport-relative) -->
+  <div class="lightbox" data-lightbox hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label={`${project.name} screenshots`}>
+    <div class="lightbox-backdrop" data-lightbox-close></div>
+    <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close preview">✕</button>
+    {project.images.length > 1 && (
+      <button type="button" class="lightbox-arrow lightbox-arrow-prev" data-lightbox-prev aria-label="Previous screenshot">‹</button>
+    )}
+    <figure class="lightbox-stage">
+      <img class="lightbox-img" data-lightbox-img src={cover} alt={project.name} />
+      {project.images.length > 1 && (
+        <figcaption class="lightbox-counter" data-lightbox-counter>1 / {project.images.length}</figcaption>
+      )}
+    </figure>
+    {project.images.length > 1 && (
+      <button type="button" class="lightbox-arrow lightbox-arrow-next" data-lightbox-next aria-label="Next screenshot">›</button>
+    )}
+    <div class="lightbox-images" hidden>
+      {project.images.map((img) => <span data-lightbox-src={img}></span>)}
+    </div>
+  </div>
+
+  <AskMe />
+</Base>
+
+<style>
+  .detail { position: relative; padding-top: 130px; padding-bottom: 60px; }
+  .detail-grad {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 70vh;
+    background: var(--hero-grad);
+    z-index: -1;
+  }
+  .back {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: clamp(28px, 4vw, 50px);
+    transition: color 0.3s ease;
+  }
+  .back:hover { color: var(--ink); }
+
+  /* ---- Listing header (title block + app icon) ---- */
+  .listing-head {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(24px, 4vw, 60px);
+    align-items: start;
+    margin-bottom: clamp(34px, 5vw, 56px);
+  }
+  .listing-title {
+    font-family: var(--serif);
+    font-size: clamp(34px, 5vw, 64px);
+    line-height: 1;
+    font-weight: 500;
+    margin: 0 0 10px;
+  }
+  .listing-sub {
+    display: block;
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--accent-deep);
+    margin-bottom: 22px;
+  }
+  .listing-meta { display: flex; gap: 28px; margin-bottom: 24px; }
+  .meta-stat { display: flex; flex-direction: column; }
+  .meta-value { font-family: var(--serif); font-size: 22px; font-weight: 500; }
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .listing-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+  .btn-primary {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 13px 26px;
+    border-radius: 100px;
+    background: var(--green-800);
+    color: var(--cream);
+    transition: background 0.3s ease;
+  }
+  .btn-primary:hover { background: var(--green-900); }
+  .btn-share {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    border-radius: 100px;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .btn-share:hover { background: var(--green-800); color: var(--cream); }
+  .listing-note { color: var(--ink-soft); font-size: 15px; line-height: 1.6; margin: 0; max-width: 52ch; }
+
+  .listing-icon {
+    margin: 0;
+    width: clamp(110px, 14vw, 180px);
+    aspect-ratio: 1;
+    border-radius: 26px;
+    overflow: hidden;
+    background: linear-gradient(160deg, var(--green-700), var(--green-900));
+    box-shadow: 0 30px 70px -30px rgba(16, 42, 19, 0.5);
+  }
+  .listing-icon img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* ---- Body grid: main + sidebar ---- */
+  .listing-body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+  }
+
+  /* Horizontal screenshot rail */
+  .screens { position: relative; margin-bottom: clamp(34px, 5vw, 56px); }
+  .screens-row {
+    display: flex;
+    gap: clamp(12px, 1.4vw, 18px);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding-bottom: 10px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .screens-row::-webkit-scrollbar { display: none; }
+  .screen-cover, .screen-shot {
+    position: relative;
+    margin: 0;
+    flex: 0 0 auto;
+    width: clamp(150px, 22vw, 230px);
+    aspect-ratio: 9 / 16;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--cream-dim);
+    scroll-snap-align: start;
+    cursor: zoom-in;
+  }
+  .screen-cover img, .screen-shot img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.4s ease;
+  }
+  .screen-cover:hover img, .screen-shot:hover img { transform: scale(1.05); }
+  .screen-cover:focus-visible, .screen-shot:focus-visible {
+    outline: 2px solid var(--green-800);
+    outline-offset: 3px;
+  }
+  .screen-zoom {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(16, 42, 19, 0.72);
+    color: var(--cream);
+    font-size: 15px;
+    line-height: 1;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+  }
+  .screen-cover:hover .screen-zoom,
+  .screen-shot:hover .screen-zoom,
+  .screen-cover:focus-visible .screen-zoom,
+  .screen-shot:focus-visible .screen-zoom { opacity: 1; transform: translateY(0); }
+
+  /* ---- Lightbox preview ---- */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(16px, 4vw, 48px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .lightbox[hidden] { display: none; }
+  .lightbox.is-open { opacity: 1; }
+  .lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 22, 10, 0.82);
+    backdrop-filter: blur(6px);
+    cursor: zoom-out;
+  }
+  .lightbox-stage {
+    position: relative;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    max-width: 100%;
+    max-height: 100%;
+    transition: transform 0.3s ease;
+  }
+  .lightbox.is-open .lightbox-stage { transform: scale(1); }
+  .lightbox:not(.is-open) .lightbox-stage { transform: scale(0.94); }
+  .lightbox-img {
+    max-width: min(440px, 90vw);
+    max-height: 82vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: var(--radius);
+    box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.7);
+  }
+  .lightbox-counter {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--cream);
+    opacity: 0.8;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: clamp(14px, 3vw, 28px);
+    right: clamp(14px, 3vw, 28px);
+    z-index: 2;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(243, 244, 221, 0.3);
+    background: rgba(8, 22, 10, 0.5);
+    color: var(--cream);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid rgba(243, 244, 221, 0.3);
+    background: rgba(8, 22, 10, 0.5);
+    color: var(--cream);
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .lightbox-close:hover, .lightbox-arrow:hover { background: var(--green-800); }
+  .lightbox-arrow-prev { left: clamp(10px, 3vw, 32px); }
+  .lightbox-arrow-next { right: clamp(10px, 3vw, 32px); }
+  @media (max-width: 560px) {
+    .lightbox-arrow { width: 42px; height: 42px; font-size: 22px; }
+  }
+  /* Touch users swipe the rail natively — the overlaid arrows just cover
+     screenshots, so drop them on small screens. */
+  @media (max-width: 640px) {
+    .screens-nav { display: none; }
+  }
+  .screens-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 12px 28px -12px rgba(16, 42, 19, 0.5);
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .screens-prev { left: -6px; }
+  .screens-next { right: -6px; }
+  .screens-nav:hover { background: var(--green-800); color: var(--cream); }
+
+  .about { margin-bottom: clamp(28px, 4vw, 44px); }
+  .about-title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 28px);
+    font-weight: 500;
+    margin: 0 0 14px;
+  }
+  .about-text { color: var(--ink-soft); font-size: 16px; line-height: 1.7; margin: 0; }
+  .tech-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .video-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    overflow: hidden;
+    background: var(--green-900);
+    box-shadow: 0 40px 90px -40px rgba(16, 42, 19, 0.5);
+  }
+  .video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* ---- Sidebar ---- */
+  .listing-side { display: flex; flex-direction: column; gap: 16px; }
+  .side-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  .side-card-main { font-family: var(--serif); font-size: 18px; font-weight: 500; margin: 10px 0 0; }
+  .side-flag {
+    display: inline-block;
+    margin-top: 12px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent-deep);
+  }
+  .side-links { list-style: none; margin: 12px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+  .side-links a {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink);
+    transition: color 0.3s ease;
+  }
+  .side-links a:hover { color: var(--accent-deep); }
+
+  .side-more { list-style: none; margin: 14px 0 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+  .more-item { display: flex; align-items: center; gap: 12px; }
+  .more-thumb {
+    flex: 0 0 auto;
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--cream-dim);
+  }
+  .more-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .more-meta { display: flex; flex-direction: column; min-width: 0; }
+  .more-name {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: color 0.3s ease;
+  }
+  .more-item:hover .more-name { color: var(--accent-deep); }
+  .more-cat { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); }
+
+  .next-proj {
+    display: block;
+    margin-top: clamp(50px, 8vw, 100px);
+    padding-top: clamp(30px, 4vw, 50px);
+    border-top: 1px solid var(--line);
+  }
+  .next-name {
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+    font-family: var(--serif);
+    font-size: clamp(38px, 7vw, 92px);
+    font-weight: 500;
+    margin-top: 12px;
+    transition: color 0.3s ease;
+  }
+  .next-proj:hover .next-name { color: var(--accent-deep); }
+
+  @media (max-width: 920px) {
+    .listing-body { grid-template-columns: 1fr; }
+    .listing-side { flex-direction: column; }
+  }
+  @media (max-width: 560px) {
+    .listing-head { grid-template-columns: 1fr; }
+    .listing-icon { order: -1; }
+  }
+</style>
+
+<script>
+  import { ScrollSmoother } from 'gsap/ScrollSmoother';
+  import '../../scripts/animations.ts';
+
+  // Horizontal screenshot rail: scroll on arrow click.
+  const scrollRail = (btn: HTMLElement, dir: number) => {
+    const row = btn.parentElement?.querySelector<HTMLElement>('[data-screens-row]');
+    if (row) row.scrollBy({ left: row.clientWidth * 0.8 * dir, behavior: 'smooth' });
+  };
+  document.querySelectorAll<HTMLButtonElement>('[data-screens-next]').forEach((btn) => {
+    btn.addEventListener('click', () => scrollRail(btn, 1));
+  });
+  document.querySelectorAll<HTMLButtonElement>('[data-screens-prev]').forEach((btn) => {
+    btn.addEventListener('click', () => scrollRail(btn, -1));
+  });
+
+  // Screenshot preview lightbox.
+  (() => {
+    const box = document.querySelector<HTMLElement>('[data-lightbox]');
+    if (!box) return;
+    const img = box.querySelector<HTMLImageElement>('[data-lightbox-img]');
+    const counter = box.querySelector<HTMLElement>('[data-lightbox-counter]');
+    const sources = Array.from(
+      box.querySelectorAll<HTMLElement>('[data-lightbox-src]'),
+    ).map((el) => el.dataset.lightboxSrc ?? '');
+    if (!img || sources.length === 0) return;
+
+    let current = 0;
+    let lastFocused: HTMLElement | null = null;
+
+    const render = () => {
+      img.src = sources[current];
+      if (counter) counter.textContent = `${current + 1} / ${sources.length}`;
+    };
+
+    const go = (dir: number) => {
+      current = (current + dir + sources.length) % sources.length;
+      render();
+    };
+
+    const open = (index: number) => {
+      current = Math.min(Math.max(index, 0), sources.length - 1);
+      lastFocused = document.activeElement as HTMLElement;
+      render();
+      box.hidden = false;
+      box.setAttribute('aria-hidden', 'false');
+      ScrollSmoother.get()?.paused(true);
+      document.body.style.overflow = 'hidden';
+      requestAnimationFrame(() => box.classList.add('is-open'));
+      box.querySelector<HTMLButtonElement>('[data-lightbox-close]')?.focus();
+    };
+
+    const close = () => {
+      box.classList.remove('is-open');
+      box.setAttribute('aria-hidden', 'true');
+      ScrollSmoother.get()?.paused(false);
+      document.body.style.overflow = '';
+      const done = () => {
+        box.hidden = true;
+        box.removeEventListener('transitionend', done);
+      };
+      box.addEventListener('transitionend', done);
+      lastFocused?.focus();
+    };
+
+    document.querySelectorAll<HTMLElement>('[data-screen-open]').forEach((fig) => {
+      const trigger = () => open(Number(fig.dataset.index ?? 0));
+      fig.addEventListener('click', trigger);
+      fig.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger(); }
+      });
+    });
+
+    box.querySelectorAll<HTMLElement>('[data-lightbox-close]').forEach((el) =>
+      el.addEventListener('click', close),
+    );
+    box.querySelector<HTMLElement>('[data-lightbox-prev]')?.addEventListener('click', () => go(-1));
+    box.querySelector<HTMLElement>('[data-lightbox-next]')?.addEventListener('click', () => go(1));
+
+    document.addEventListener('keydown', (e) => {
+      if (box.hidden) return;
+      if (e.key === 'Escape') close();
+      else if (e.key === 'ArrowLeft') go(-1);
+      else if (e.key === 'ArrowRight') go(1);
+    });
+  })();
+
+  // Share button: Web Share API with clipboard fallback.
+  document.querySelectorAll<HTMLButtonElement>('[data-share]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const url = window.location.href;
+      const title = btn.dataset.title ?? document.title;
+      if (navigator.share) {
+        try { await navigator.share({ title, url }); } catch { /* dismissed */ }
+      } else {
+        try {
+          await navigator.clipboard.writeText(url);
+          const original = btn.textContent;
+          btn.textContent = '✓ Copied';
+          setTimeout(() => { btn.textContent = original; }, 1600);
+        } catch { /* noop */ }
+      }
+    });
+  });
+</script>
