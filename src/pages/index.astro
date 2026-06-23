@@ -1,0 +1,44 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Clients from '../components/Clients.astro';
+import About from '../components/About.astro';
+import Stats from '../components/Stats.astro';
+import Projects from '../components/Projects.astro';
+import Libraries from '../components/Libraries.astro';
+import Services from '../components/Services.astro';
+import Faq from '../components/Faq.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import AskMe from '../components/AskMe.astro';
+---
+
+<Base
+  title="Shageldi Alyyev — Pro Mobile Developer | Android, Kotlin Multiplatform & Web"
+  description="Trusted, proficient, proven mobile developer with 6+ years shipping 20+ production apps across Android, Kotlin Multiplatform and the web. Built with Kotlin, Jetpack Compose, React & NestJS."
+>
+  <Nav />
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+      <main>
+        <Hero />
+        <Clients />
+        <About />
+        <Stats />
+        <Projects />
+        <Libraries />
+        <Services />
+        <Faq />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  </div>
+  <!-- Outside #smooth-wrapper so position:fixed isn't broken by ScrollSmoother's transform -->
+  <AskMe />
+</Base>
+
+<script>
+  import '../scripts/animations.ts';
+</script>

@@ -1,0 +1,238 @@
+---
+import { projects } from '../data/portfolio';
+import Flower from './Flower.astro';
+
+const withIndex = projects.map((p, i) => ({ ...p, n: i }));
+---
+
+<section class="projects" id="projects" data-h-scroll>
+  <div class="pin-wrap" data-pin-wrap>
+    <div class="wrap proj-head">
+      <h2 class="section-title" data-reveal>
+        Projects <Flower />
+      </h2>
+      <span class="eyebrow proj-count" data-reveal>
+        {projects.length} selected · scroll to explore →
+      </span>
+    </div>
+
+    <div class="h-track-outer">
+      <div class="h-track" data-h-track>
+        <div class="h-grid">
+          {withIndex.map((p) => (
+            <a class="card hover-3d" href={`/projects/${p.slug}`} data-card aria-label={p.name}>
+              <div class="folder" data-tilt>
+                <span class="folder-tab"></span>
+                <span class="card-index">{String(p.n + 1).padStart(2, '0')}</span>
+                <div class="doc">
+                  <img src={p.images[0]} alt={p.name} loading="lazy" />
+                </div>
+                <div class="front">
+                  <span class="card-cat">{p.category}</span>
+                  <h3 class="card-name">{p.name}</h3>
+                  <span class="card-go">View project ↗</span>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div class="track-end" aria-hidden="true">
+          <span class="eyebrow">End of selected work</span>
+          <a href="/#contact" class="track-end-cta">Start a project →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects { position: relative; background: var(--cream); }
+  .pin-wrap {
+    height: 100vh;
+    height: 100svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(20px, 3vw, 38px);
+    overflow: hidden;
+    padding-block: 40px;
+  }
+  .proj-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .h-track-outer { overflow: visible; }
+  .h-track {
+    display: flex;
+    align-items: stretch;
+    gap: clamp(22px, 3vw, 52px);
+    padding-inline: var(--gutter);
+    width: max-content;
+    will-change: transform;
+  }
+  /* Clean two-row grid — columns align, gaps are uniform. */
+  .h-grid {
+    flex: 0 0 auto;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(2, min(33vh, 290px));
+    grid-auto-columns: clamp(232px, 24vw, 336px);
+    column-gap: clamp(30px, 3vw, 52px);
+    row-gap: clamp(34px, 3.6vw, 52px);
+  }
+
+  /* ---- 3D hover wrapper (grid item) ---- */
+  .card {
+    perspective: 900px;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ---- Realistic folder ---- */
+  .folder {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    will-change: transform;
+    /* back panel of the folder */
+    background: linear-gradient(170deg, var(--green-600), var(--green-800));
+    border-radius: 6px 16px 16px 16px;
+    box-shadow:
+      0 16px 30px -22px rgba(16, 42, 19, 0.6),
+      inset 0 1px 0 rgba(243, 244, 221, 0.12);
+  }
+  /* the folder tab — trapezoid with slanted sides */
+  .folder-tab {
+    position: absolute;
+    top: -14px;
+    left: 10px;
+    width: 44%;
+    height: 18px;
+    background: linear-gradient(170deg, var(--green-600), var(--green-700));
+    border-radius: 7px 10px 0 0;
+    clip-path: polygon(0 0, 86% 0, 100% 100%, 0 100%);
+    box-shadow: inset 0 1px 0 rgba(243, 244, 221, 0.14);
+    transform: translateZ(6px);
+  }
+  .card-index {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    z-index: 5;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    color: rgba(243, 244, 221, 0.65);
+    transform: translateZ(28px);
+  }
+
+  /* the document (screenshot) tucked inside, peeking above the front */
+  .doc {
+    position: absolute;
+    top: 11px;
+    left: 9px;
+    right: 9px;
+    bottom: 34%;
+    border-radius: 3px 10px 4px 4px;
+    overflow: hidden;
+    background: var(--green-900);
+    box-shadow: 0 5px 10px -3px rgba(16, 42, 19, 0.4);
+    transform: translateZ(16px);
+  }
+  .doc img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .card:hover .doc img { transform: scale(1.06); }
+
+  /* the front panel of the folder */
+  .front {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 41%;
+    padding: clamp(14px, 1.5vw, 22px) clamp(15px, 1.6vw, 24px) clamp(13px, 1.4vw, 20px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 5px;
+    background: linear-gradient(175deg, var(--green-800), var(--green-900));
+    border-radius: 0 0 16px 16px;
+    box-shadow:
+      0 -6px 12px -3px rgba(16, 42, 19, 0.4),
+      inset 0 1px 0 rgba(243, 244, 221, 0.1);
+    transform: translateZ(24px);
+    color: var(--cream);
+  }
+  .card-cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mint);
+  }
+  .card-name {
+    font-family: var(--serif);
+    font-size: clamp(19px, 1.8vw, 28px);
+    line-height: 1.04;
+    font-weight: 500;
+  }
+  .card-go {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(243, 244, 221, 0.75);
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .card:hover .card-go { opacity: 1; transform: translateY(0); }
+
+  .track-end {
+    align-self: stretch;
+    width: clamp(220px, 22vw, 300px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+  }
+  .track-end-cta {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3vw, 46px);
+    font-weight: 500;
+    color: var(--ink);
+    transition: color 0.3s ease;
+  }
+  .track-end-cta:hover { color: var(--accent-deep); }
+
+  /* Fallback: native horizontal scroll when motion is reduced / on touch.
+     Height auto removes the pinned-section clipping; snap + contained
+     overscroll make the swipe feel native and stop it triggering back-nav. */
+  .projects.native .pin-wrap { height: auto; }
+  .projects.native .h-track-outer {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: var(--gutter);
+  }
+  .projects.native .card { scroll-snap-align: start; }
+
+  @media (max-width: 760px) {
+    .h-grid {
+      grid-template-rows: repeat(2, 40vh);
+      grid-auto-columns: 74vw;
+      row-gap: 28px;
+    }
+  }
+</style>

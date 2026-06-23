@@ -1,0 +1,53 @@
+Yedu Rides
+
+Smart request flow, route optimization, and a clean earnings dashboard. Go online with one tap, get paid by the trip
+
+
+https://play.google.com/store/apps/details?id=com.yedu.taxi.driver.android&hl=en-US&ah=dT_iUmxPIkngbZi5-t0_NnAIvbg
+https://apps.apple.com/tm/app/yedu-rides/id6773292030
+
+website: https://yedu.ae
+
+images: /Users/shageldi/WebstormProjects/shageldi/new-site/public/images/yedu-rides
+youtube video inline video embed: https://youtu.be/0Lp_79x9710
+
+2) Yedu taxi
+
+Yedu is the smart taxi platform with AI on board. Book a ride by tapping, talking, or sending EVA a photo — and let the city come to you
+
+https://play.google.com/store/apps/details?id=com.yedu.taxi.android&hl=en-US
+https://apps.apple.com/tm/app/yedu-taxi/id6774180131
+
+website: https://yedu.ae
+
+images: /Users/shageldi/WebstormProjects/shageldi/new-site/public/images/yedu-taxi
+
+youtube video inline video embed: https://youtu.be/-Bct7841IqY
+
+
+3) Кампус - Расписание занятий
+
+Кампус - приложение №1 для студентов! У нас все ВУЗы!
+
+Легко управляй своей учебной и студенческой жизнью с помощью Кампуса. Мы собрали всё необходимое для комфортного обучения и взаимодействия внутри вуза в одном месте.
+
+Основные функции:
+- Расписание: актуальные данные о парах и возможность добавлять заметки.
+- Социальная сеть "Подслушано": делись историями, ставь лайки и общайся с одногруппниками.
+- Курсы и материалы: полезные методички и курсы подготовки к экзаменам.
+- Вакансии и подработки: найди свою первую работу или стажировку, подготовь резюме с помощью советов.
+- Оценки преподавателей: оставляй отзывы и читай мнения других студентов.
+- Скидки и акции: эксклюзивные предложения от партнеров специально для студентов.
+
+
+https://play.google.com/store/apps/details?id=ru.dewish.campus&hl=ru
+
+images: logo(https://play-lh.googleusercontent.com/OAI-3sCj7rziVvtI3L5Lwv8BYgdAbYPssGk024XuQbGOeuKNO3cGOMqxgz5YFC8w7CgsW3rS0tK3er2H-ScEkw=w240-h480),
+https://play-lh.googleusercontent.com/lflAcWU9QTmz_OHEhLa-T9d77no3Tb33Yz-KJcSyZ1Zd0FWA3g4C5KNTtZkP5Ha6dK8b1vVUZF6e_SU5h80ZFA=w2560-h1440
+https://play-lh.googleusercontent.com/_h_aRRg6URJMLYxr4U9ZD00KnAAgfYBcNPNHm6JPMVdHAxbHh1m0JFdzRj7XIx6ZURkIj35kLEXLoPwDmXTDug=w2560-h1440
+https://play-lh.googleusercontent.com/wJl1sn5lQXC48ENoGLiJRgO9Yrds13UHzVJJazCv9nIYizy_4qAVJwj6GBpX807wSfUe9GAx_mXjctKM4XEL6Q=w2560-h1440
+https://play-lh.googleusercontent.com/LP0-Od7s4w4kYrMqZa6GJcxpjXep2gSsTQBli_Ree4Qbjt2QcfQH3kan5vlcVHOAd2npCHO_WGB-DOp4oqlSgH4=w2560-h1440
+https://play-lh.googleusercontent.com/T-TXpwR0Bc2y9EctdZ0mqhaOWubKfKML-uJWOqzmIXelyIkBwr24aypRdf87tRU-GjdNKFhqyswdOeG-c9FV=w2560-h1440
+https://play-lh.googleusercontent.com/KXr5jEyaCFNGe745djTADqexYmhU3EcPRkJ-OmStLFOXsU5DU2rs-OgdkGCsgesrdD8cHnvVFU61lpe44PPR=w2560-h1440
+https://play-lh.googleusercontent.com/GfNO-Tmi8ayibQFeogRLJ6-iriSBKBVHabj8ys_-lvroolaFzIhcAZA8J8OPNYbXP9YFVWiGFthj9pRQLXWht-I=w2560-h1440
+https://play-lh.googleusercontent.com/mXRF_ZyeIaX_4d20din3pz6Ht7PDJ9HPvRNRWdRf4lzRIYQDqRbviHIMj0R7mJd_B26a1SsGkXoDFixJx2njtg=w2560-h1440

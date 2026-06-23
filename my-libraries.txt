@@ -1,0 +1,42 @@
+1) yedu-kmp-gps-listener
+
+A headless (no UI) Kotlin Multiplatform library that provides background GPS location listening on Android and iOS. Ported from the Traccar GPS tracking clients for both platforms.
+
+https://klibs.io/project/yedu-taxi/yedu-kmp-gps-listener
+logo: /Users/shageldi/WebstormProjects/shageldi/new-site/public/images/libraries/yedu-gps.webp
+
+2) TmChat
+
+This chat system works like a group chat (in code chat room). One chat room includes one or many users. This is not person to person chat. This is group chat. But if chat room has 2 person it will work like person to person chat. Everytime user click the chat, chat system will create new chat room.
+
+https://www.npmjs.com/package/tm-chat
+logo: /Users/shageldi/WebstormProjects/shageldi/new-site/public/images/libraries/npm.png
+
+3) blurhash-generator
+
+Helper library to generate images hash string
+
+https://www.npmjs.com/package/blurhash-generator?activeTab=readme
+logo: /Users/shageldi/WebstormProjects/shageldi/new-site/public/images/libraries/npm.png
+
+4) turkmen-converter
+
+Turkmen Letter converter and typo generater
+
+https://www.npmjs.com/package/turkmen-converter
+
+logo: /Users/shageldi/WebstormProjects/shageldi/new-site/public/images/libraries/npm.png
+
+5) turkmen-pelias-model
+
+Pelias is a search engine for places worldwide, powered by open data. It turns addresses and place names into geographic coordinates, and turns geographic coordinates into places and addresses. With Pelias, you’re able to turn your users’ place searches into actionable geodata and transform your geodata into real places. 
+
+https://www.npmjs.com/package/turkmen-pelias-model
+logo: /Users/shageldi/WebstormProjects/shageldi/new-site/public/images/libraries/npm.png
+
+6) turkmen-pelias-query
+
+Elasticsearch geospatial and linguistic matching queries used by Pelias.
+
+https://www.npmjs.com/package/turkmen-pelias-query
+logo: /Users/shageldi/WebstormProjects/shageldi/new-site/public/images/libraries/npm.png

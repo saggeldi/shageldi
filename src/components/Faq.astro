@@ -1,0 +1,98 @@
+---
+import { faqs, profile } from '../data/portfolio';
+import Flower from './Flower.astro';
+---
+
+<section class="section faq" id="faq">
+  <div class="wrap">
+    <div class="faq-head">
+      <h2 class="section-title" data-reveal>FAQ <Flower /></h2>
+      <p class="faq-note" data-reveal>
+        Can't see yours?<br />
+        <a href="/#contact">Drop me a message ↗</a>
+      </p>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map((f, i) => (
+        <details class="faq-item" data-reveal name="faq" open={i === 0}>
+          <summary>
+            <span class="faq-no">{String(i + 1).padStart(2, '0')}</span>
+            <span class="faq-q">{f.q}</span>
+            <span class="faq-icon" aria-hidden="true"></span>
+          </summary>
+          <div class="faq-a"><p>{f.a}</p></div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: clamp(28px, 4vw, 48px);
+  }
+  .faq-note {
+    margin: 0;
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.9;
+  }
+  .faq-note a { color: var(--accent-deep); }
+  .faq-item { border-top: 1px solid var(--line); }
+  .faq-item:last-child { border-bottom: 1px solid var(--line); }
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 48px 1fr 28px;
+    align-items: center;
+    gap: 16px;
+    padding-block: clamp(20px, 2.4vw, 30px);
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-no { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); }
+  .faq-q { font-family: var(--serif); font-size: clamp(20px, 2.4vw, 32px); font-weight: 500; }
+  .faq-icon { position: relative; width: 18px; height: 18px; justify-self: end; }
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--ink);
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .faq-icon::before { inset: 8px 0; height: 1.5px; }
+  .faq-icon::after { inset: 0 8px; width: 1.5px; }
+  .faq-item[open] .faq-icon::after { transform: scaleY(0); }
+
+  .faq-a {
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+  }
+  .faq-item[open] .faq-a { grid-template-rows: 1fr; }
+  .faq-a > p {
+    min-height: 0;
+    margin: 0;
+    padding: 0 28px clamp(24px, 3vw, 36px) 64px;
+    color: var(--ink-soft);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 70ch;
+  }
+  @media (max-width: 620px) {
+    .faq-head { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .faq-note { text-align: left; }
+    .faq-item summary { grid-template-columns: 28px 1fr 22px; gap: 10px; }
+    .faq-a > p { padding-left: 38px; }
+  }
+</style>

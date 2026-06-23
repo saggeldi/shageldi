@@ -1,0 +1,88 @@
+---
+import { stats, experience } from '../data/portfolio';
+---
+
+<section class="section stats-exp">
+  <div class="wrap">
+    <div class="stats" data-reveal>
+      {stats.map((s) => (
+        <div class="stat">
+          <div class="stat-value" data-count={s.value}>{s.value}</div>
+          <div class="stat-label">{s.label}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="exp" id="experience">
+      <span class="eyebrow exp-eyebrow" data-reveal>Experience</span>
+      <ul class="exp-list">
+        {experience.map((e) => (
+          <li class="exp-row" data-reveal>
+            <a href={e.site} target="_blank" rel="noopener" class="exp-link">
+              <span class="exp-title">{e.title}</span>
+              <span class="exp-company">{e.company}</span>
+              <span class="exp-period">{e.period}</span>
+              <span class="exp-arrow">↗</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .stats {
+    display: flex;
+    gap: clamp(40px, 9vw, 130px);
+    flex-wrap: wrap;
+    padding-bottom: clamp(50px, 8vw, 100px);
+  }
+  .stat-value {
+    font-family: var(--serif);
+    font-size: clamp(54px, 8vw, 104px);
+    line-height: 1;
+    font-weight: 500;
+  }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 10px;
+  }
+
+  .exp-eyebrow { display: block; margin-bottom: 18px; }
+  .exp-list { list-style: none; margin: 0; padding: 0; }
+  .exp-row { border-top: 1px solid var(--line); }
+  .exp-row:last-child { border-bottom: 1px solid var(--line); }
+  .exp-link {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 0.7fr auto;
+    align-items: center;
+    gap: 20px;
+    padding: clamp(20px, 2.4vw, 32px) 4px;
+    transition: padding-left 0.35s ease, color 0.35s ease;
+  }
+  .exp-link:hover { padding-left: 18px; }
+  .exp-title { font-family: var(--serif); font-size: clamp(22px, 2.6vw, 34px); }
+  .exp-company,
+  .exp-period {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .exp-period { text-align: right; }
+  .exp-arrow { color: var(--ink-faint); transition: transform 0.35s ease, color 0.35s ease; }
+  .exp-link:hover .exp-arrow { transform: translate(4px, -4px); color: var(--accent-deep); }
+
+  @media (max-width: 760px) {
+    .exp-link { grid-template-columns: 1fr auto; gap: 4px 16px; }
+    .exp-company { grid-column: 1; }
+    .exp-period { grid-column: 2; grid-row: 1; }
+    .exp-arrow { display: none; }
+  }
+</style>

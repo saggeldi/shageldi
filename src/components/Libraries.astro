@@ -1,0 +1,144 @@
+---
+import { libraries } from '../data/portfolio';
+import Flower from './Flower.astro';
+---
+
+<section class="section libraries" id="libraries">
+  <div class="wrap">
+    <div class="lib-head">
+      <div>
+        <span class="eyebrow" data-reveal>Open source</span>
+        <h2 class="section-title lib-title" data-reveal>Libraries <Flower /></h2>
+      </div>
+      <p class="lib-note" data-reveal>
+        {libraries.length} packages I've authored<br />and published for the community.
+      </p>
+    </div>
+
+    <div class="lib-grid">
+      {libraries.map((lib) => (
+        <a
+          class="lib-card"
+          href={lib.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-reveal
+          aria-label={`${lib.name} on ${lib.registry}`}
+        >
+          <div class="lib-card-top">
+            <span class="lib-logo">
+              <img src={lib.logo} alt="" loading="lazy" />
+            </span>
+            <span class="pill lib-registry">{lib.registry}</span>
+          </div>
+          <h3 class="lib-name">{lib.name}</h3>
+          <p class="lib-desc">{lib.description}</p>
+          <span class="lib-go">View on {lib.registry} ↗</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .lib-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: clamp(30px, 5vw, 56px);
+  }
+  .lib-title { margin-top: 14px; }
+  .lib-note {
+    margin: 0;
+    text-align: right;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  .lib-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: clamp(16px, 2vw, 26px);
+  }
+
+  .lib-card {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: clamp(22px, 2.4vw, 32px);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.18);
+    color: var(--ink);
+    transition: border-color 0.35s ease, transform 0.35s ease, background 0.35s ease;
+  }
+  .lib-card:hover {
+    border-color: var(--accent-deep);
+    background: rgba(255, 255, 255, 0.42);
+    transform: translateY(-4px);
+  }
+
+  .lib-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .lib-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    overflow: hidden;
+    flex: none;
+  }
+  .lib-logo img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+  }
+  .lib-registry { align-self: flex-start; }
+  .lib-card:hover .lib-registry {
+    border-color: var(--accent-deep);
+    color: var(--accent-deep);
+  }
+
+  .lib-name {
+    font-family: var(--mono);
+    font-size: clamp(16px, 1.5vw, 19px);
+    font-weight: 600;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+  .lib-desc {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 15px;
+    line-height: 1.6;
+    flex: 1;
+  }
+  .lib-go {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    transition: color 0.3s ease;
+  }
+  .lib-card:hover .lib-go { color: var(--accent-deep); }
+
+  @media (max-width: 760px) {
+    .lib-head { flex-direction: column; align-items: flex-start; }
+    .lib-note { text-align: left; }
+    .lib-grid { grid-template-columns: 1fr; }
+  }
+</style>
