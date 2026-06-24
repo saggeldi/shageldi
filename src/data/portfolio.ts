@@ -231,6 +231,7 @@ export const projects: Project[] = [
     name: 'Кампус — Расписание занятий',
     category: 'Android · EdTech',
     featured: true,
+    logo: 'https://play-lh.googleusercontent.com/OAI-3sCj7rziVvtI3L5Lwv8BYgdAbYPssGk024XuQbGOeuKNO3cGOMqxgz5YFC8w7CgsW3rS0tK3er2H-ScEkw=w240-h480',
     summary: 'The #1 student app — class schedules, social feed, courses, jobs and student deals.',
     description:
       'Кампус — приложение №1 для студентов! У нас все ВУЗы! Легко управляй своей учебной и студенческой жизнью с помощью Кампуса. Мы собрали всё необходимое для комфортного обучения и взаимодействия внутри вуза в одном месте. Основные функции: расписание с актуальными данными о парах и заметками; социальная сеть «Подслушано» для историй, лайков и общения с одногруппниками; курсы и материалы для подготовки к экзаменам; вакансии и подработки с советами по резюме; оценки преподавателей с отзывами; а также эксклюзивные скидки и акции от партнёров специально для студентов.',
@@ -239,8 +240,10 @@ export const projects: Project[] = [
       'https://play-lh.googleusercontent.com/_h_aRRg6URJMLYxr4U9ZD00KnAAgfYBcNPNHm6JPMVdHAxbHh1m0JFdzRj7XIx6ZURkIj35kLEXLoPwDmXTDug=w2560-h1440',
       'https://play-lh.googleusercontent.com/wJl1sn5lQXC48ENoGLiJRgO9Yrds13UHzVJJazCv9nIYizy_4qAVJwj6GBpX807wSfUe9GAx_mXjctKM4XEL6Q=w2560-h1440',
       'https://play-lh.googleusercontent.com/LP0-Od7s4w4kYrMqZa6GJcxpjXep2gSsTQBli_Ree4Qbjt2QcfQH3kan5vlcVHOAd2npCHO_WGB-DOp4oqlSgH4=w2560-h1440',
+      'https://play-lh.googleusercontent.com/T-TXpwR0Bc2y9EctdZ0mqhaOWubKfKML-uJWOqzmIXelyIkBwr24aypRdf87tRU-GjdNKFhqyswdOeG-c9FV=w2560-h1440',
+      'https://play-lh.googleusercontent.com/KXr5jEyaCFNGe745djTADqexYmhU3EcPRkJ-OmStLFOXsU5DU2rs-OgdkGCsgesrdD8cHnvVFU61lpe44PPR=w2560-h1440',
       'https://play-lh.googleusercontent.com/GfNO-Tmi8ayibQFeogRLJ6-iriSBKBVHabj8ys_-lvroolaFzIhcAZA8J8OPNYbXP9YFVWiGFthj9pRQLXWht-I=w2560-h1440',
-      'https://play-lh.googleusercontent.com/mXRF_ZyeIaX_4d20din3pz6Ht7PDJ9HPvRNRWdRf4lzRIYQDqRbviHIMj0R7mJd_B26a1SsGkXoDFixJx2njtg=w2560-h1440',
+      'https://play-lh.googleusercontent.com/mXRF_ZyeIaX_4d20din3pz6Ht7PDJ9HPvRNRWdRf4lzRIYQDqRbviHIMj0R7mJd_B26a1SsGkXoDFixJx2njtg=w2560-h1440'
     ],
     links: [
       { url: 'https://play.google.com/store/apps/details?id=ru.dewish.campus&hl=ru', title: 'Play Store' },

@@ -24,9 +24,14 @@ const withIndex = projects.map((p, i) => ({ ...p, n: i }));
               <div class="folder" data-tilt>
                 <span class="folder-tab"></span>
                 <span class="card-index">{String(p.n + 1).padStart(2, '0')}</span>
-                <div class="doc">
-                  <img src={p.images[0]} alt={p.name} loading="lazy" />
+                <div class="docs">
+                  {p.images.slice(0, 3).map((img, di) => (
+                    <div class={`doc doc-${di + 1}`}>
+                      <img src={img} alt={p.name} loading="lazy" />
+                    </div>
+                  ))}
                 </div>
+                <span class="glass" aria-hidden="true"></span>
                 <div class="front">
                   <span class="card-cat">{p.category}</span>
                   <h3 class="card-name">{p.name}</h3>
@@ -91,7 +96,11 @@ const withIndex = projects.map((p, i) => ({ ...p, n: i }));
     display: block;
     width: 100%;
     height: 100%;
+    position: relative;
+    z-index: 1;
   }
+  /* lift the open card above its neighbours so risen docs aren't clipped */
+  .card:hover { z-index: 30; }
 
   /* ---- Realistic folder ---- */
   .folder {
@@ -132,26 +141,97 @@ const withIndex = projects.map((p, i) => ({ ...p, n: i }));
     transform: translateZ(28px);
   }
 
-  /* the document (screenshot) tucked inside, peeking above the front */
-  .doc {
+  /* stack of documents (screenshots) tucked inside the folder pocket */
+  .docs {
     position: absolute;
     top: 11px;
     left: 9px;
     right: 9px;
-    bottom: 34%;
+    bottom: 17%;
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
+  .doc {
+    position: absolute;
+    inset: 0;
     border-radius: 3px 10px 4px 4px;
     overflow: hidden;
-    background: var(--green-900);
-    box-shadow: 0 5px 10px -3px rgba(16, 42, 19, 0.4);
-    transform: translateZ(16px);
+    background: transparent;
+    transform-origin: 50% 100%;
+    backface-visibility: hidden;
+    will-change: transform;
+    transition: transform 0.6s cubic-bezier(0.34, 1.4, 0.5, 1), box-shadow 0.6s ease;
   }
+  /* closed: a neat stack fully sealed inside the folder, behind the glass */
+  .doc-1 { transform: translateZ(18px); }
+  .doc-2 { transform: translateZ(11px); }
+  .doc-3 { transform: translateZ(4px); }
+
+  /* frosted-glass front that seals & blurs the documents when closed */
+  .glass {
+    position: absolute;
+    top: 9px;
+    left: 8px;
+    right: 8px;
+    bottom: 15%;
+    border-radius: 3px 11px 5px 5px;
+    background: linear-gradient(
+      165deg,
+      rgba(16, 42, 19, 0.34),
+      rgba(16, 42, 19, 0.52) 60%,
+      rgba(16, 42, 19, 0.66)
+    );
+    border: 1px solid rgba(243, 244, 221, 0.1);
+    box-shadow:
+      inset 0 1px 0 rgba(243, 244, 221, 0.14),
+      inset 0 -10px 22px -10px rgba(16, 42, 19, 0.55);
+    transform: translateZ(22px);
+    transform-origin: 50% 100%;
+    transition: opacity 0.45s ease, transform 0.6s cubic-bezier(0.34, 1.4, 0.5, 1);
+    pointer-events: none;
+  }
+  /* a soft sheen streak across the glass */
+  .glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(115deg, transparent 40%, rgba(243, 244, 221, 0.08) 50%, transparent 62%);
+  }
+  /* opening: the glass clears so the lifted documents read sharply */
+  .card:hover .glass {
+    opacity: 0;
+    transform: translateZ(22px) translateY(-12%) scale(1.03);
+  }
+
   .doc img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    /* closed: screenshots are blurred behind the glass. Scaled up so the
+       blur fringe never exposes the doc edges. */
+    transform: scale(1.1);
+    filter: blur(7px) brightness(0.94);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), filter 0.55s ease;
   }
-  .card:hover .doc img { transform: scale(1.06); }
+  /* opening: screenshots sharpen and show in full (contain) so neither
+     mobile (portrait) nor desktop (landscape) shots get cropped. */
+  .card:hover .doc img {
+    filter: blur(0) brightness(1) drop-shadow(0 14px 20px rgba(16, 42, 19, 0.5));
+    transform: scale(1);
+    object-fit: contain;
+  }
+
+  /* open: documents rise out of the folder and fan apart */
+  .card:hover .doc-1 {
+    transform: translateZ(64px) translateY(-26%) rotate(0deg);
+  }
+  .card:hover .doc-2 {
+    transform: translateZ(46px) translateY(-30%) translateX(-30%) rotate(-13deg);
+  }
+  .card:hover .doc-3 {
+    transform: translateZ(28px) translateY(-25%) translateX(30%) rotate(13deg);
+  }
 
   /* the front panel of the folder */
   .front {
@@ -159,7 +239,9 @@ const withIndex = projects.map((p, i) => ({ ...p, n: i }));
     left: 0;
     right: 0;
     bottom: 0;
-    height: 41%;
+    /* Grow upward to fit a 2-line title instead of letting content
+       overflow the top of the panel onto the screenshot. */
+    min-height: 26%;
     padding: clamp(14px, 1.5vw, 22px) clamp(15px, 1.6vw, 24px) clamp(13px, 1.4vw, 20px);
     display: flex;
     flex-direction: column;
@@ -171,7 +253,13 @@ const withIndex = projects.map((p, i) => ({ ...p, n: i }));
       0 -6px 12px -3px rgba(16, 42, 19, 0.4),
       inset 0 1px 0 rgba(243, 244, 221, 0.1);
     transform: translateZ(24px);
+    transform-origin: 50% 100%;
+    transition: transform 0.6s cubic-bezier(0.34, 1.4, 0.5, 1);
     color: var(--cream);
+  }
+  /* the pocket tips forward, opening like a folder flap */
+  .card:hover .front {
+    transform: translateZ(40px) rotateX(-32deg);
   }
   .card-cat {
     font-family: var(--mono);
@@ -185,6 +273,12 @@ const withIndex = projects.map((p, i) => ({ ...p, n: i }));
     font-size: clamp(19px, 1.8vw, 28px);
     line-height: 1.04;
     font-weight: 500;
+    /* Cap at two lines so the panel never grows unbounded. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .card-go {
     font-family: var(--mono);

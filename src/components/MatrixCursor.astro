@@ -1,0 +1,139 @@
+---
+/**
+ * Matrix-rain cursor trail. Spawns falling 0/1 glyphs that follow the pointer,
+ * fade and shrink over their lifespan. Vanilla-canvas port of the classic
+ * React `CharacterCursor` — no framework runtime, disabled for touch-only
+ * devices and when the user prefers reduced motion.
+ */
+---
+
+<canvas data-matrix-cursor aria-hidden="true"></canvas>
+
+<style>
+  canvas[data-matrix-cursor] {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 110;
+  }
+</style>
+
+<script>
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-matrix-cursor]');
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const isTouchOnly = window.matchMedia('(hover: none)').matches;
+
+  if (canvas && !prefersReducedMotion.matches && !isTouchOnly) {
+    // --- config: matrix 0/1 glyphs in the site's green palette ---
+    const characters = ['0', '1'];
+    const colors = ['#00c758', '#009767', '#5b6f5b', '#2e522f', '#becaec'];
+    const font = '15px "JetBrains Mono", monospace';
+    const cursorOffset = { x: 0, y: 0 };
+
+    const lifeSpanFn = () => Math.floor(Math.random() * 60 + 80);
+    // Matrix rain: drift sideways a touch, fall downward.
+    const initialVelocityFn = () => ({
+      x: (Math.random() < 0.5 ? -1 : 1) * Math.random() * 2,
+      y: Math.random() * 3 + 1,
+    });
+    const velocityChangeFn = {
+      x: () => 0,
+      y: () => 0.15, // gravity — accelerate the fall
+    };
+    const scalingFn = (age: number, lifeSpan: number) =>
+      Math.max(((lifeSpan - age) / lifeSpan) * 1.6, 0);
+
+    const context = canvas.getContext('2d');
+    if (context) {
+      let width = window.innerWidth;
+      let height = window.innerHeight;
+
+      const sizeCanvas = () => {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        // resizing resets the context font/baseline
+        context.font = font;
+        context.textBaseline = 'middle';
+        context.textAlign = 'center';
+      };
+      sizeCanvas();
+
+      // Pre-render each glyph (in each colour) to an offscreen canvas once,
+      // so the loop only does cheap drawImage calls.
+      const glyphs: HTMLCanvasElement[] = [];
+      characters.forEach((char) => {
+        const measure = context.measureText(char);
+        const ascent = measure.actualBoundingBoxAscent || 12;
+        const bg = document.createElement('canvas');
+        const bgCtx = bg.getContext('2d');
+        if (!bgCtx) return;
+        bg.width = Math.ceil(measure.width) || 10;
+        bg.height = Math.ceil(ascent * 2.5);
+        bgCtx.font = font;
+        bgCtx.textAlign = 'center';
+        bgCtx.textBaseline = 'middle';
+        bgCtx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+        bgCtx.fillText(char, bg.width / 2, ascent);
+        glyphs.push(bg);
+      });
+
+      class Particle {
+        age = 0;
+        lifeSpan: number;
+        readonly initialLifeSpan: number;
+        position: { x: number; y: number };
+        velocity: { x: number; y: number };
+
+        constructor(x: number, y: number, readonly glyph: HTMLCanvasElement) {
+          this.initialLifeSpan = lifeSpanFn();
+          this.lifeSpan = this.initialLifeSpan;
+          this.position = { x: x + cursorOffset.x, y: y + cursorOffset.y };
+          this.velocity = initialVelocityFn();
+        }
+
+        update(ctx: CanvasRenderingContext2D) {
+          this.position.x += this.velocity.x;
+          this.position.y += this.velocity.y;
+          this.velocity.x += velocityChangeFn.x();
+          this.velocity.y += velocityChangeFn.y();
+          this.lifeSpan--;
+          this.age++;
+
+          const scale = scalingFn(this.age, this.initialLifeSpan);
+          ctx.globalAlpha = Math.max(this.lifeSpan / this.initialLifeSpan, 0);
+          ctx.drawImage(
+            this.glyph,
+            this.position.x - (this.glyph.width / 2) * scale,
+            this.position.y - this.glyph.height / 2,
+            this.glyph.width * scale,
+            this.glyph.height * scale,
+          );
+          ctx.globalAlpha = 1;
+        }
+      }
+
+      let particles: Particle[] = [];
+
+      const addParticle = (x: number, y: number) => {
+        const glyph = glyphs[Math.floor(Math.random() * glyphs.length)];
+        if (glyph) particles.push(new Particle(x, y, glyph));
+      };
+
+      const onMouseMove = (e: MouseEvent) => addParticle(e.clientX, e.clientY);
+
+      const loop = () => {
+        context.clearRect(0, 0, width, height);
+        for (const p of particles) p.update(context);
+        particles = particles.filter((p) => p.lifeSpan >= 0);
+        requestAnimationFrame(loop);
+      };
+
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('resize', sizeCanvas);
+      requestAnimationFrame(loop);
+    }
+  }
+</script>
