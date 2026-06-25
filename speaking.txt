@@ -1,0 +1,22 @@
+Add new section on main page before projects:
+
+/Users/shageldi/WebstormProjects/shageldi/public/speaking/544837740_18082884046909196_3325981593254815036_n.jpg
+'Android Evolution Unleashed: From Al-powered
+Android 16 to Cross-Platform Mastery with
+Kotlin Multiplatform' at google io extended
+
+/Users/shageldi/WebstormProjects/shageldi/public/speaking/Gemini + RHVoice komekchi programma görüş ukuby pesler üçin.mp4
+
+Gemini + RHVoice blind voice helper application in turkmen language at google io extended
+
+/Users/shageldi/WebstormProjects/shageldi/public/speaking/Screenshot 2026-06-25 at 10.12.11.png
+
+Speaking at Google IO extended
+
+
+/Users/shageldi/WebstormProjects/shageldi/public/speaking/Screenshot 2026-06-25 at 10.12.27.png
+Keep It Native: Boost Your Kotlin/Compose Multiplatform Project with Gemini
+at Devfest 2025
+
+https://youtu.be/NgcXKr1YIzw
+Speaking at Devfest 2025

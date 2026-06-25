@@ -62,6 +62,47 @@ export const experience: Experience[] = [
   { title: 'Full-Stack Developer', company: 'Geekspace Turkmenistan', period: '2020 — 2023', location: 'Ashgabat, Turkmenistan', site: 'https://geekspace.dev' },
 ];
 
+export interface Talk {
+  // Path under /public. May contain spaces / non-ASCII — encoded in the view.
+  media: string;
+  type: 'image' | 'video';
+  event: string;
+  title: string;
+  // Optional external recording (e.g. YouTube).
+  link?: string;
+}
+
+// Conference & community talks. Media lives in public/speaking/.
+export const speaking: Talk[] = [
+  {
+    media: '/speaking/544837740_18082884046909196_3325981593254815036_n.jpg',
+    type: 'image',
+    event: 'Google I/O Extended',
+    title:
+      'Android Evolution Unleashed: From AI-powered Android 16 to Cross-Platform Mastery with Kotlin Multiplatform',
+  },
+  {
+    media: '/speaking/video.mp4',
+    type: 'video',
+    event: 'Google I/O Extended',
+    title: 'Gemini + RHVoice — a voice helper for the blind, in Turkmen',
+  },
+  {
+    media: '/speaking/Screenshot 2026-06-25 at 10.12.11.png',
+    type: 'image',
+    event: 'Google I/O Extended',
+    title: 'On stage at Google I/O Extended',
+  },
+  {
+    media: '/speaking/Screenshot 2026-06-25 at 10.12.27.png',
+    type: 'image',
+    event: 'DevFest 2025',
+    title:
+      'Keep It Native: Boost Your Kotlin/Compose Multiplatform Project with Gemini',
+    link: 'https://youtu.be/NgcXKr1YIzw',
+  },
+];
+
 // Disciplines (the old "Skills" + "Advantages" reframed as services).
 export interface Service {
   title: string;
@@ -251,6 +292,43 @@ export const projects: Project[] = [
     tech: [],
   },
   {
+    slug: 'tmsargyt',
+    name: 'Tmsargyt',
+    category: 'Kotlin Multiplatform · E-commerce',
+    logo: 'https://play-lh.googleusercontent.com/gFHR57H3OoezIrc7CAtMAwHuPvZUiQZSnXCrgZCeSTnBSndn6n-UvKqQLDFWp9N89HgGmK6MldfrZ2rPh51nIw=w240-h480',
+    summary: 'Simple, safe online shopping from China — thousands of Chinese stores in one place.',
+    description:
+      'Hytaýdan onlaýn ýönekeý we howpsuz söwda. Müňlerçe hytaý dükanlarynyň önümlerini bir ýerde. Tmsargyt brings the products of thousands of Chinese shops together in one app, built with Kotlin & Compose Multiplatform for a shared experience across platforms.',
+    images: [
+      'https://play-lh.googleusercontent.com/kJwGdyahsZwyS4omh3dvxFApZsKEC-8DDTCVubvpozzM1gJmz8KCTSxzVmpwhhSUArx8ireC19ooEezuTUvveA=w2560-h1440',
+      'https://play-lh.googleusercontent.com/rpcBuXogHBlikN0CBH2xjTqo5fNa9n4UsZshZGETzv6fuTRzlnsYV51jQ41_XY-8iec72_VSQvxSeljUiM_F=w2560-h1440',
+      'https://play-lh.googleusercontent.com/2YXe-HXnCKD3EiPc04ngRRYWahWb7MaCm7WrlxfTeKoXWR3VMTinfrc4gi6KA5_p_k_7k6ctG4P9BR-AQOp-=w2560-h1440',
+      'https://play-lh.googleusercontent.com/IejX6Bg7uaIX01t3Fp6BaSpzc7WrYrsQzJc8AojppBELBGSWMisYP3EvS7KgjiWPx8r2fno4r6GQ6f12jOCl=w2560-h1440',
+    ],
+    links: [
+      { url: 'https://play.google.com/store/apps/details?id=com.sargyt.tm&hl=en', title: 'Play Store' },
+    ],
+    tech: t(['🧩 Compose Multiplatform', '🌐 Ktor', '📦 Koin', '☕ Kotlin']),
+    video: 'https://www.youtube.com/embed/zIVra4bTgNo',
+  },
+  {
+    slug: 'baopals',
+    name: 'Baopals Products Scraper',
+    category: 'Compose Desktop · Scraper',
+    logo: 'https://play-lh.googleusercontent.com/gFHR57H3OoezIrc7CAtMAwHuPvZUiQZSnXCrgZCeSTnBSndn6n-UvKqQLDFWp9N89HgGmK6MldfrZ2rPh51nIw=w240-h480',
+    summary: 'Desktop scraper for Baopals products, powered by an embedded JCEF webview.',
+    description:
+      'A Compose for Desktop application that scrapes product data from Baopals using an embedded JCEF webview to render and extract content. Built with Ktor for networking and Koin for dependency injection, all in Kotlin.',
+    images: [
+      '/images/baopals/Screenshot 2026-06-25 at 10.52.56.png',
+      '/images/baopals/Screenshot 2026-06-25 at 10.53.05.png',
+      '/images/baopals/Screenshot 2026-06-25 at 10.53.11.png',
+    ],
+    links: [],
+    tech: t(['🖥️ Compose for Desktop', '🌐 JCEF Webview', '🌐 Ktor', '📦 Koin', '☕ Kotlin']),
+    video: 'https://www.youtube.com/embed/4Pyxq9SVr6o',
+  },
+  {
     slug: 'kiosk',
     name: 'Kiosk — Self-Service Payment Terminal',
     category: 'Full-Stack · KMP',
@@ -333,7 +411,7 @@ export const projects: Project[] = [
       '/images/ytm/screen-1.jpg', '/images/ytm/screen-2.jpg', '/images/ytm/screen-3.jpg', '/images/ytm/screen-4.jpg',
       '/images/ytm/screen-5.jpg', '/images/ytm/screen-6.jpg', '/images/ytm/screen-7.jpg', '/images/ytm/screen-8.jpg',
     ],
-    links: [{ url: 'https://play.google.com/store/apps/details?id=com.gs.wialonlocal.android&hl=en', title: 'Play Store' }],
+    links: [{ url: 'https://play.google.com/store/apps/details?id=com.gs.wialonlocal.android&hl=en', title: 'Play Store' }, {url:"https://apps.apple.com/us/app/ytm-gps/id6774892984?platform=ipad", title:"App Store"}, {url:"https://ytm.tm", title:"Website"}],
     tech: t(['🧩 Compose Multiplatform', '🗺️ Google Maps', '📦 Koin', '🧭 Compose Navigation', '🌐 Ktor Client']),
   },
   {

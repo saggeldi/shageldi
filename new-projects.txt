@@ -51,3 +51,39 @@ https://play-lh.googleusercontent.com/T-TXpwR0Bc2y9EctdZ0mqhaOWubKfKML-uJWOqzmIX
 https://play-lh.googleusercontent.com/KXr5jEyaCFNGe745djTADqexYmhU3EcPRkJ-OmStLFOXsU5DU2rs-OgdkGCsgesrdD8cHnvVFU61lpe44PPR=w2560-h1440
 https://play-lh.googleusercontent.com/GfNO-Tmi8ayibQFeogRLJ6-iriSBKBVHabj8ys_-lvroolaFzIhcAZA8J8OPNYbXP9YFVWiGFthj9pRQLXWht-I=w2560-h1440
 https://play-lh.googleusercontent.com/mXRF_ZyeIaX_4d20din3pz6Ht7PDJ9HPvRNRWdRf4lzRIYQDqRbviHIMj0R7mJd_B26a1SsGkXoDFixJx2njtg=w2560-h1440
+
+
+
+4) Tmsargyt 
+
+logo: https://play-lh.googleusercontent.com/gFHR57H3OoezIrc7CAtMAwHuPvZUiQZSnXCrgZCeSTnBSndn6n-UvKqQLDFWp9N89HgGmK6MldfrZ2rPh51nIw=w240-h480
+
+https://play-lh.googleusercontent.com/kJwGdyahsZwyS4omh3dvxFApZsKEC-8DDTCVubvpozzM1gJmz8KCTSxzVmpwhhSUArx8ireC19ooEezuTUvveA=w2560-h1440
+https://play-lh.googleusercontent.com/rpcBuXogHBlikN0CBH2xjTqo5fNa9n4UsZshZGETzv6fuTRzlnsYV51jQ41_XY-8iec72_VSQvxSeljUiM_F=w2560-h1440
+https://play-lh.googleusercontent.com/2YXe-HXnCKD3EiPc04ngRRYWahWb7MaCm7WrlxfTeKoXWR3VMTinfrc4gi6KA5_p_k_7k6ctG4P9BR-AQOp-=w2560-h1440
+https://play-lh.googleusercontent.com/IejX6Bg7uaIX01t3Fp6BaSpzc7WrYrsQzJc8AojppBELBGSWMisYP3EvS7KgjiWPx8r2fno4r6GQ6f12jOCl=w2560-h1440
+
+
+Play Store: https://play.google.com/store/apps/details?id=com.sargyt.tm&hl=en
+
+youtube video: https://youtube.com/shorts/zIVra4bTgNo
+
+
+Description: 
+Hytaýdan onlaýn ýönekeý we howpsuz söwda
+Müňlerçe hytaý dükanlarynyň önümlerini bir ýerde.
+
+Used technologies:
+Compose Multiplatform, Ktor, Koin, Kotlin
+
+5) Baopals Products Scraper
+
+logo: https://play-lh.googleusercontent.com/gFHR57H3OoezIrc7CAtMAwHuPvZUiQZSnXCrgZCeSTnBSndn6n-UvKqQLDFWp9N89HgGmK6MldfrZ2rPh51nIw=w240-h480
+
+Video Youtube: https://youtu.be/4Pyxq9SVr6o
+
+images: /Users/shageldi/WebstormProjects/shageldi/public/images/baopals/*.png
+
+Used technologies:
+
+Compose for Desktop, JCEF Webview, Ktor, Koin, Kotlin
