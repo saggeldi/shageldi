@@ -218,6 +218,29 @@ const t = (raw: string[]) =>
 
 export const projects: Project[] = [
   {
+    slug: 'jule-ai',
+    name: 'jule.ai — Onsite Engagement Platform',
+    category: 'Full-Stack · SaaS',
+    featured: true,
+    logo: '/images/jule/logo.svg',
+    summary: 'No-code builder for onsite popups, surveys and preference centers — embed anywhere, sync to Iterable, measure in real time.',
+    description:
+      'jule.ai is a SaaS platform that lets marketing teams build and ship onsite widgets — popups, surveys, signup forms and preference centers — without engineering. A drag-and-drop canvas editor (with A/B testing, conditional logic and live preview) produces an embeddable widget that matches any brand and runs anywhere. Submissions sync automatically to Iterable, and a real-time analytics dashboard tracks response rates and performance. I worked across the whole stack: a NestJS + PostgreSQL + TypeORM backend with JWT/2FA auth, BullMQ + Redis job queues, Stripe billing, S3 uploads and Sentry monitoring; a Next.js + TypeScript frontend with a Konva-based editor, React Flow logic graphs, TanStack Query and Zustand; a separate super-admin panel; Tinybird-powered event analytics; reliable coupon delivery (idempotent Iterable signals with an hourly self-healing sweeper); and usage-cost tracking with versioned pricing and per-organization revenue history.',
+    images: [
+      '/images/jule/dashboard.png',
+      '/images/jule/editor.png',
+      '/images/jule/embed.png',
+      '/images/jule/preference-center.png',
+      '/images/jule/iterable-sync.png',
+      '/images/jule/analytics.png',
+      '/images/jule/multi-brand.png',
+    ],
+    links: [
+      { url: 'https://jule.ai', title: 'Website' },
+    ],
+    tech: t(['🦄 NestJS', '📝 TypeScript', '🐘 PostgreSQL', '🗄️ TypeORM', '⚛️ Next.js', '🎨 Konva Editor', '🔀 React Flow', '🟥 Redis + BullMQ', '💳 Stripe', '📊 Tinybird', '☁️ AWS S3', '🐞 Sentry']),
+  },
+  {
     slug: 'yedu-rides',
     name: 'Yedu Rides — Driver App',
     category: 'Mobile · Ride-Hailing',
