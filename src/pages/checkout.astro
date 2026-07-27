@@ -1,0 +1,908 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Flower from '../components/Flower.astro';
+
+// Example catalogue — digital goods, so no shipping step.
+const products = [
+  {
+    id: 'kmp-starter',
+    name: 'KMP Starter Kit',
+    blurb: 'Kotlin Multiplatform scaffold with DI, networking and CI wired up.',
+    price: 89,
+    tint: 'linear-gradient(150deg, #d4f1d4, #becaec)',
+    qty: 1,
+  },
+  {
+    id: 'compose-ui-pack',
+    name: 'Compose UI Pack',
+    blurb: '48 production-ready Jetpack Compose components and motion presets.',
+    price: 64,
+    tint: 'linear-gradient(150deg, #f7cc4b, #ff6568)',
+    qty: 1,
+  },
+  {
+    id: 'android-audit',
+    name: 'Android Release Audit',
+    blurb: 'A written teardown of your app: performance, size, store readiness.',
+    price: 240,
+    tint: 'linear-gradient(150deg, #becaec, #00c758)',
+    qty: 0,
+  },
+  {
+    id: 'motion-library',
+    name: 'Motion Library License',
+    blurb: 'One-year team licence for the animation library used across my apps.',
+    price: 129,
+    tint: 'linear-gradient(150deg, #e7e8cf, #5b6f5b)',
+    qty: 0,
+  },
+];
+
+const TAX_RATE = 0.08;
+---
+
+<Base
+  title="Checkout — Shageldi Alyyev"
+  description="Example checkout with live coupon validation and redemption."
+  noindex={true}
+>
+  <Nav />
+  <main class="checkout">
+    <div class="checkout-grad"></div>
+    <div class="wrap">
+      <header class="head">
+        <span class="eyebrow">Demo store</span>
+        <h1 class="head-title">Checkout <Flower class="flower-mark" /></h1>
+        <p class="head-note">
+          A sandbox order flow. Coupon codes are validated when applied and redeemed the
+          moment the order is placed — both through the server, never from the browser.
+        </p>
+      </header>
+
+      <div class="grid">
+        <!-- ─────────── Left: products + details ─────────── -->
+        <section class="col-main">
+          <h2 class="block-title">1 · Your items</h2>
+          <ul class="products">
+            {products.map((p) => (
+              <li class="product" data-product data-id={p.id} data-price={p.price} data-name={p.name}>
+                <span class="product-thumb" style={`background:${p.tint}`} aria-hidden="true"></span>
+                <div class="product-info">
+                  <span class="product-name">{p.name}</span>
+                  <span class="product-blurb">{p.blurb}</span>
+                </div>
+                <span class="product-price">${p.price.toFixed(2)}</span>
+                <div class="qty" role="group" aria-label={`Quantity for ${p.name}`}>
+                  <button type="button" class="qty-btn" data-step="-1" aria-label={`Remove one ${p.name}`}>−</button>
+                  <input
+                    class="qty-input"
+                    type="number"
+                    inputmode="numeric"
+                    min="0"
+                    max="99"
+                    value={p.qty}
+                    data-qty
+                    aria-label={`Quantity of ${p.name}`}
+                  />
+                  <button type="button" class="qty-btn" data-step="1" aria-label={`Add one ${p.name}`}>+</button>
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          <h2 class="block-title">2 · Your details</h2>
+          <form class="details" novalidate data-form>
+            <div class="field">
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" autocomplete="name" data-validate="required" />
+              <p class="field-error" data-error-for="name" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" data-validate="email" />
+              <p class="field-error" data-error-for="email" role="alert"></p>
+            </div>
+
+            <div class="field field-wide">
+              <label for="address">Billing address</label>
+              <input id="address" name="address" type="text" autocomplete="street-address" data-validate="required" />
+              <p class="field-error" data-error-for="address" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" autocomplete="address-level2" data-validate="required" />
+              <p class="field-error" data-error-for="city" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="zip">Postal code</label>
+              <input id="zip" name="zip" type="text" autocomplete="postal-code" data-validate="required" />
+              <p class="field-error" data-error-for="zip" role="alert"></p>
+            </div>
+
+            <div class="field field-wide">
+              <label for="card">Card number</label>
+              <input
+                id="card"
+                name="card"
+                type="text"
+                inputmode="numeric"
+                autocomplete="cc-number"
+                placeholder="4242 4242 4242 4242"
+                data-validate="card"
+              />
+              <p class="field-error" data-error-for="card" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="expiry">Expiry</label>
+              <input
+                id="expiry"
+                name="expiry"
+                type="text"
+                inputmode="numeric"
+                autocomplete="cc-exp"
+                placeholder="MM/YY"
+                data-validate="expiry"
+              />
+              <p class="field-error" data-error-for="expiry" role="alert"></p>
+            </div>
+
+            <div class="field">
+              <label for="cvc">CVC</label>
+              <input
+                id="cvc"
+                name="cvc"
+                type="text"
+                inputmode="numeric"
+                autocomplete="cc-csc"
+                placeholder="123"
+                data-validate="cvc"
+              />
+              <p class="field-error" data-error-for="cvc" role="alert"></p>
+            </div>
+          </form>
+        </section>
+
+        <!-- ─────────── Right: order summary ─────────── -->
+        <aside class="col-side">
+          <div class="summary" data-summary>
+            <h2 class="summary-title">Order summary</h2>
+
+            <ul class="lines" data-lines>
+              {products.map((p) => (
+                <li class="line" data-line-for={p.id} hidden={p.qty === 0}>
+                  <span class="line-name">
+                    {p.name} <span class="line-qty" data-line-qty>×{p.qty}</span>
+                  </span>
+                  <span class="line-total" data-line-total>${(p.price * p.qty).toFixed(2)}</span>
+                </li>
+              ))}
+              <li class="line line-empty" data-empty hidden>Your cart is empty.</li>
+            </ul>
+
+            <div class="coupon">
+              <label for="coupon" class="eyebrow">Coupon code</label>
+              <div class="coupon-row">
+                <input
+                  id="coupon"
+                  type="text"
+                  autocomplete="off"
+                  spellcheck="false"
+                  placeholder="SUMMER20"
+                  data-coupon-input
+                />
+                <button type="button" class="btn-apply" data-coupon-apply>Apply</button>
+              </div>
+              <p class="coupon-msg" data-coupon-msg role="status" hidden></p>
+              <button type="button" class="coupon-remove" data-coupon-remove hidden>Remove coupon</button>
+            </div>
+
+            <dl class="totals">
+              <div class="total-row">
+                <dt>Subtotal</dt>
+                <dd data-subtotal>$0.00</dd>
+              </div>
+              <div class="total-row total-discount" data-discount-row hidden>
+                <dt>Discount <span class="discount-label" data-discount-label></span></dt>
+                <dd data-discount>−$0.00</dd>
+              </div>
+              <div class="total-row">
+                <dt>Tax (8%)</dt>
+                <dd data-tax>$0.00</dd>
+              </div>
+              <div class="total-row total-grand">
+                <dt>Total</dt>
+                <dd data-grand>$0.00</dd>
+              </div>
+            </dl>
+
+            <button type="button" class="btn-pay" data-pay>
+              <span data-pay-label>Place order</span>
+            </button>
+            <p class="pay-msg" data-pay-msg role="alert" hidden></p>
+            <p class="pay-note">Demo only — no card is charged.</p>
+          </div>
+
+          <!-- Success panel, swapped in after a successful redemption -->
+          <div class="receipt" data-receipt hidden>
+            <span class="receipt-mark" aria-hidden="true">✓</span>
+            <h2 class="receipt-title">Order placed</h2>
+            <p class="receipt-note">
+              Thanks — a confirmation is on its way to <span data-receipt-email>you</span>.
+            </p>
+            <dl class="receipt-meta">
+              <div><dt>Order</dt><dd data-receipt-order>—</dd></div>
+              <div><dt>Total paid</dt><dd data-receipt-total>—</dd></div>
+              <div data-receipt-coupon-row hidden><dt>Coupon</dt><dd data-receipt-coupon>—</dd></div>
+            </dl>
+            <a href="/checkout" class="receipt-again">Start another order →</a>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .checkout { position: relative; padding-top: 130px; padding-bottom: clamp(60px, 8vw, 110px); }
+  .checkout-grad {
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 60vh;
+    background: var(--hero-grad);
+    z-index: -1;
+  }
+
+  .head { max-width: 60ch; margin-bottom: clamp(36px, 5vw, 64px); }
+  .head-title {
+    display: flex;
+    align-items: center;
+    gap: 0.2em;
+    font-family: var(--serif);
+    font-size: clamp(46px, 8vw, 96px);
+    font-weight: 500;
+    line-height: 0.95;
+    margin: 10px 0 18px;
+  }
+  .head-note { color: var(--ink-soft); font-size: 16px; line-height: 1.7; margin: 0; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 380px;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
+  }
+
+  .block-title {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin: 0 0 18px;
+  }
+  .block-title + .details, .products + .block-title { margin-top: clamp(38px, 5vw, 60px); }
+
+  /* ---- products ---- */
+  .products { list-style: none; margin: 0; padding: 0; }
+  .product {
+    display: grid;
+    grid-template-columns: 62px minmax(0, 1fr) auto auto;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 0;
+    border-top: 1px solid var(--line);
+  }
+  .product:last-child { border-bottom: 1px solid var(--line); }
+  .product-thumb { width: 62px; height: 62px; border-radius: 14px; flex: none; }
+  .product-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .product-name { font-weight: 500; font-size: 16px; }
+  .product-blurb { color: var(--ink-soft); font-size: 13px; line-height: 1.5; }
+  .product-price { font-family: var(--mono); font-size: 14px; white-space: nowrap; }
+
+  .qty {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .qty-btn {
+    width: 34px;
+    height: 34px;
+    border: 0;
+    background: transparent;
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+  .qty-btn:hover { background: var(--green-800); color: var(--cream); }
+  .qty-input {
+    width: 40px;
+    height: 34px;
+    border: 0;
+    background: transparent;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink);
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+  .qty-input::-webkit-outer-spin-button,
+  .qty-input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .qty-input:focus-visible { outline: 2px solid var(--green-800); outline-offset: -2px; }
+
+  /* ---- details form ---- */
+  .details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .field { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
+  .field-wide { grid-column: 1 / -1; }
+  .field label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .field input {
+    height: 46px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.5);
+    font-family: var(--sans);
+    font-size: 15px;
+    color: var(--ink);
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .field input:focus {
+    outline: none;
+    border-color: var(--green-800);
+    background: rgba(255, 255, 255, 0.85);
+  }
+  .field input[aria-invalid='true'] { border-color: var(--coral); }
+  .field-error {
+    margin: 0;
+    min-height: 0;
+    font-size: 12.5px;
+    color: #c0413f;
+  }
+  .field-error:empty { display: none; }
+
+  /* ---- summary ---- */
+  .col-side { position: sticky; top: 100px; }
+  .summary {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(8px);
+    padding: clamp(20px, 2.4vw, 28px);
+  }
+  .summary-title {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 500;
+    margin: 0 0 18px;
+  }
+
+  .lines { list-style: none; margin: 0 0 20px; padding: 0 0 18px; border-bottom: 1px solid var(--line); }
+  .line {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 6px 0;
+    font-size: 14px;
+  }
+  .line[hidden] { display: none; }
+  .line-qty { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); }
+  .line-total { font-family: var(--mono); font-size: 13px; white-space: nowrap; }
+  .line-empty { color: var(--ink-faint); font-style: italic; }
+
+  .coupon { margin-bottom: 20px; }
+  .coupon-row { display: flex; gap: 8px; margin-top: 8px; }
+  .coupon-row input {
+    flex: 1;
+    min-width: 0;
+    height: 44px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.6);
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    transition: border-color 0.25s ease;
+  }
+  .coupon-row input:focus { outline: none; border-color: var(--green-800); }
+  .coupon-row input:disabled { color: var(--ink-soft); background: rgba(255, 255, 255, 0.3); }
+  .btn-apply {
+    height: 44px;
+    padding: 0 20px;
+    border: 1px solid var(--green-800);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+  }
+  .btn-apply:hover:not(:disabled) { background: var(--green-800); color: var(--cream); }
+  .btn-apply:disabled { opacity: 0.45; cursor: default; }
+
+  .coupon-msg {
+    margin: 10px 0 0;
+    font-size: 12.5px;
+    line-height: 1.5;
+  }
+  .coupon-msg[hidden] { display: none; }
+  .coupon-msg.is-ok { color: var(--accent-deep); }
+  .coupon-msg.is-bad { color: #c0413f; }
+  .coupon-remove {
+    margin-top: 8px;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .coupon-remove[hidden] { display: none; }
+  .coupon-remove:hover { color: var(--ink); }
+
+  .totals { margin: 0 0 20px; padding-top: 18px; border-top: 1px solid var(--line); }
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 5px 0;
+    font-size: 14px;
+  }
+  .total-row[hidden] { display: none; }
+  .total-row dt, .total-row dd { margin: 0; }
+  .total-row dd { font-family: var(--mono); font-size: 13px; }
+  .total-discount { color: var(--accent-deep); }
+  .discount-label { font-family: var(--mono); font-size: 11px; opacity: 0.8; }
+  .total-grand {
+    margin-top: 8px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    font-family: var(--serif);
+    font-size: 22px;
+  }
+  .total-grand dd { font-family: var(--serif); font-size: 22px; font-weight: 500; }
+
+  .btn-pay {
+    width: 100%;
+    height: 52px;
+    border: 0;
+    border-radius: 100px;
+    background: var(--green-800);
+    color: var(--cream);
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.25s ease, opacity 0.25s ease;
+  }
+  .btn-pay:hover:not(:disabled) { background: var(--green-900); }
+  .btn-pay:disabled { opacity: 0.5; cursor: default; }
+
+  .pay-msg { margin: 12px 0 0; font-size: 12.5px; color: #c0413f; }
+  .pay-msg[hidden] { display: none; }
+  .pay-note {
+    margin: 12px 0 0;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--ink-faint);
+    text-align: center;
+  }
+
+  /* ---- receipt ---- */
+  .receipt {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.6);
+    padding: clamp(24px, 3vw, 34px);
+    text-align: center;
+  }
+  .receipt[hidden] { display: none; }
+  .receipt-mark {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--green-900);
+    font-size: 24px;
+  }
+  .receipt-title { font-family: var(--serif); font-size: 32px; font-weight: 500; margin: 0 0 10px; }
+  .receipt-note { color: var(--ink-soft); font-size: 14px; margin: 0 0 22px; }
+  .receipt-meta { margin: 0 0 22px; text-align: left; }
+  .receipt-meta > div {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 8px 0;
+    border-top: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .receipt-meta dt { color: var(--ink-soft); margin: 0; }
+  .receipt-meta dd { margin: 0; font-family: var(--mono); font-size: 12.5px; }
+  .receipt-again {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+  }
+  .receipt-again:hover { color: var(--accent-deep); }
+
+  @media (max-width: 960px) {
+    .grid { grid-template-columns: 1fr; }
+    .col-side { position: static; }
+  }
+  @media (max-width: 620px) {
+    .product { grid-template-columns: 48px minmax(0, 1fr) auto; row-gap: 12px; }
+    .product-thumb { width: 48px; height: 48px; }
+    .qty { grid-column: 2 / -1; justify-self: start; }
+    .details { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  type Coupon = {
+    valid: boolean;
+    status: string;
+    code?: string;
+    discount_label?: string;
+    discount_type?: string;
+    discount_value?: number;
+    assigned_to?: string;
+    assigned_to_type?: string;
+    message?: string;
+  };
+
+  const TAX_RATE = 0.08;
+  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+  const $ = <T extends HTMLElement>(sel: string) => document.querySelector<T>(sel);
+  const round = (n: number) => Math.round(n * 100) / 100;
+
+  // ── cart state ────────────────────────────────────────────────
+  const rows = Array.from(document.querySelectorAll<HTMLElement>('[data-product]'));
+  let coupon: Coupon | null = null;
+
+  const cart = () =>
+    rows.map((row) => ({
+      id: row.dataset.id!,
+      name: row.dataset.name!,
+      price: Number(row.dataset.price),
+      qty: Number(row.querySelector<HTMLInputElement>('[data-qty]')!.value) || 0,
+    }));
+
+  const subtotal = () => round(cart().reduce((sum, i) => sum + i.price * i.qty, 0));
+
+  /** Discount in dollars, derived from the coupon the server validated. */
+  const discountFor = (base: number) => {
+    if (!coupon?.valid || base <= 0) return 0;
+    const value = Number(coupon.discount_value) || 0;
+    const amount = coupon.discount_type === 'percentage' ? (base * value) / 100 : value;
+    return round(Math.min(Math.max(amount, 0), base));
+  };
+
+  const totals = () => {
+    const sub = subtotal();
+    const discount = discountFor(sub);
+    const taxed = round(sub - discount);
+    const tax = round(taxed * TAX_RATE);
+    return { sub, discount, tax, grand: round(taxed + tax) };
+  };
+
+  // ── rendering ─────────────────────────────────────────────────
+  const payBtn = $<HTMLButtonElement>('[data-pay]')!;
+
+  function render() {
+    const items = cart();
+
+    for (const item of items) {
+      const line = document.querySelector<HTMLElement>(`[data-line-for="${item.id}"]`)!;
+      line.hidden = item.qty === 0;
+      line.querySelector('[data-line-qty]')!.textContent = `×${item.qty}`;
+      line.querySelector('[data-line-total]')!.textContent = money.format(item.price * item.qty);
+    }
+
+    const empty = items.every((i) => i.qty === 0);
+    $('[data-empty]')!.hidden = !empty;
+
+    const { sub, discount, tax, grand } = totals();
+    $('[data-subtotal]')!.textContent = money.format(sub);
+    $('[data-tax]')!.textContent = money.format(tax);
+    $('[data-grand]')!.textContent = money.format(grand);
+
+    const discountRow = $('[data-discount-row]')!;
+    discountRow.hidden = discount <= 0;
+    $('[data-discount]')!.textContent = `−${money.format(discount)}`;
+    $('[data-discount-label]')!.textContent = coupon?.discount_label ? `(${coupon.discount_label})` : '';
+
+    payBtn.disabled = empty;
+  }
+
+  // qty controls
+  for (const row of rows) {
+    const input = row.querySelector<HTMLInputElement>('[data-qty]')!;
+    const clamp = () => {
+      const n = Math.min(Math.max(Math.floor(Number(input.value) || 0), 0), 99);
+      input.value = String(n);
+      render();
+    };
+    input.addEventListener('input', clamp);
+    input.addEventListener('blur', clamp);
+    for (const btn of row.querySelectorAll<HTMLButtonElement>('.qty-btn')) {
+      btn.addEventListener('click', () => {
+        input.value = String((Number(input.value) || 0) + Number(btn.dataset.step));
+        clamp();
+      });
+    }
+  }
+
+  // ── field validation ──────────────────────────────────────────
+  const luhn = (digits: string) => {
+    let sum = 0;
+    let double = false;
+    for (let i = digits.length - 1; i >= 0; i--) {
+      let d = digits.charCodeAt(i) - 48;
+      if (double) { d *= 2; if (d > 9) d -= 9; }
+      sum += d;
+      double = !double;
+    }
+    return sum % 10 === 0;
+  };
+
+  const validators: Record<string, (v: string) => string> = {
+    required: (v) => (v.trim() ? '' : 'This field is required.'),
+    email: (v) =>
+      !v.trim() ? 'Email is required.'
+        : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) ? '' : 'Enter a valid email address.',
+    card: (v) => {
+      const digits = v.replace(/\D/g, '');
+      if (!digits) return 'Card number is required.';
+      if (digits.length < 13 || digits.length > 19) return 'Card number looks too short.';
+      return luhn(digits) ? '' : 'That card number is not valid.';
+    },
+    expiry: (v) => {
+      const m = v.trim().match(/^(\d{2})\s*\/\s*(\d{2})$/);
+      if (!m) return 'Use MM/YY.';
+      const month = Number(m[1]);
+      if (month < 1 || month > 12) return 'Month must be 01–12.';
+      const now = new Date();
+      // Expiry covers the whole month, so compare against the 1st of the next one.
+      const expires = new Date(2000 + Number(m[2]), month, 1);
+      return expires > now ? '' : 'That card has expired.';
+    },
+    cvc: (v) => (/^\d{3,4}$/.test(v.trim()) ? '' : 'CVC is 3 or 4 digits.'),
+  };
+
+  const fields = Array.from(document.querySelectorAll<HTMLInputElement>('[data-validate]'));
+
+  function checkField(input: HTMLInputElement) {
+    const error = validators[input.dataset.validate!](input.value);
+    document.querySelector<HTMLElement>(`[data-error-for="${input.id}"]`)!.textContent = error;
+    input.setAttribute('aria-invalid', error ? 'true' : 'false');
+    return !error;
+  }
+
+  for (const input of fields) {
+    input.addEventListener('blur', () => checkField(input));
+    input.addEventListener('input', () => {
+      if (input.getAttribute('aria-invalid') === 'true') checkField(input);
+    });
+  }
+
+  // Light formatting help on the card fields.
+  const cardInput = $<HTMLInputElement>('#card')!;
+  cardInput.addEventListener('input', () => {
+    const digits = cardInput.value.replace(/\D/g, '').slice(0, 19);
+    cardInput.value = digits.replace(/(.{4})/g, '$1 ').trim();
+  });
+  const expiryInput = $<HTMLInputElement>('#expiry')!;
+  expiryInput.addEventListener('input', () => {
+    const digits = expiryInput.value.replace(/\D/g, '').slice(0, 4);
+    expiryInput.value = digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
+  });
+
+  function validateForm() {
+    let firstBad: HTMLInputElement | null = null;
+    for (const input of fields) {
+      if (!checkField(input) && !firstBad) firstBad = input;
+    }
+    firstBad?.focus();
+    return !firstBad;
+  }
+
+  // ── coupon: validate ──────────────────────────────────────────
+  const couponInput = $<HTMLInputElement>('[data-coupon-input]')!;
+  const applyBtn = $<HTMLButtonElement>('[data-coupon-apply]')!;
+  const couponMsg = $<HTMLElement>('[data-coupon-msg]')!;
+  const removeBtn = $<HTMLButtonElement>('[data-coupon-remove]')!;
+
+  function setCouponMsg(text: string, kind: 'ok' | 'bad' | null) {
+    couponMsg.textContent = text;
+    couponMsg.hidden = !text;
+    couponMsg.classList.toggle('is-ok', kind === 'ok');
+    couponMsg.classList.toggle('is-bad', kind === 'bad');
+  }
+
+  function clearCoupon() {
+    coupon = null;
+    couponInput.disabled = false;
+    couponInput.value = '';
+    applyBtn.disabled = false;
+    applyBtn.textContent = 'Apply';
+    removeBtn.hidden = true;
+    setCouponMsg('', null);
+    render();
+  }
+
+  removeBtn.addEventListener('click', clearCoupon);
+
+  async function applyCoupon() {
+    const code = couponInput.value.trim();
+    if (!code) {
+      setCouponMsg('Enter a coupon code.', 'bad');
+      return;
+    }
+
+    applyBtn.disabled = true;
+    applyBtn.textContent = '…';
+    setCouponMsg('Checking…', null);
+
+    try {
+      const res = await fetch(`/api/coupons/validate?code=${encodeURIComponent(code)}`);
+      const data = (await res.json()) as Coupon & { error?: string };
+
+      if (!res.ok) {
+        setCouponMsg(data.error ?? 'Could not check that code.', 'bad');
+        return;
+      }
+
+      if (!data.valid) {
+        coupon = null;
+        setCouponMsg(data.message ?? 'That code cannot be used.', 'bad');
+        render();
+        return;
+      }
+
+      coupon = data;
+      // The code is locked in until removed, so the redeem call can't drift from
+      // the discount shown in the summary.
+      couponInput.value = data.code ?? code;
+      couponInput.disabled = true;
+      applyBtn.textContent = 'Applied';
+      removeBtn.hidden = false;
+      const who = data.assigned_to ? ` for ${data.assigned_to}` : '';
+      setCouponMsg(`${data.discount_label ?? 'Discount'} applied${who}.`, 'ok');
+      render();
+    } catch {
+      setCouponMsg('Network error — please try again.', 'bad');
+    } finally {
+      if (!coupon) {
+        applyBtn.disabled = false;
+        applyBtn.textContent = 'Apply';
+      }
+    }
+  }
+
+  applyBtn.addEventListener('click', applyCoupon);
+  couponInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') { e.preventDefault(); applyCoupon(); }
+  });
+
+  // Prefill + auto-check a code handed over as ?code=… (e.g. from a campaign link).
+  const linked = new URLSearchParams(location.search).get('code');
+  if (linked) {
+    couponInput.value = linked.trim();
+    applyCoupon();
+  }
+
+  // ── place order: redeem ───────────────────────────────────────
+  const payLabel = $<HTMLElement>('[data-pay-label]')!;
+  const payMsg = $<HTMLElement>('[data-pay-msg]')!;
+
+  const newOrderId = () =>
+    `ORD-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 6).toUpperCase()}`;
+
+  payBtn.addEventListener('click', async () => {
+    payMsg.hidden = true;
+
+    const items = cart();
+    if (items.every((i) => i.qty === 0)) {
+      payMsg.textContent = 'Add at least one item before checking out.';
+      payMsg.hidden = false;
+      return;
+    }
+    if (!validateForm()) {
+      payMsg.textContent = 'Please fix the highlighted fields.';
+      payMsg.hidden = false;
+      return;
+    }
+
+    const { grand } = totals();
+    const orderId = newOrderId();
+
+    payBtn.disabled = true;
+    payLabel.textContent = 'Placing order…';
+
+    // Only codes that passed validation reach the redeem endpoint.
+    if (coupon?.valid && coupon.code) {
+      try {
+        const res = await fetch('/api/coupons/redeem', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code: coupon.code, order_id: orderId, order_value: grand }),
+        });
+        const data = (await res.json()) as Coupon & { error?: string };
+
+        if (!res.ok || !data.valid) {
+          // Someone else may have burned the code between validate and redeem.
+          const reason = res.ok ? data.message : data.error;
+          const label = coupon.code;
+          clearCoupon();
+          setCouponMsg(`${label}: ${reason ?? 'could not be redeemed.'}`, 'bad');
+          payMsg.textContent = 'The coupon could not be redeemed — the order was not placed.';
+          payMsg.hidden = false;
+          payBtn.disabled = false;
+          payLabel.textContent = 'Place order';
+          return;
+        }
+      } catch {
+        payMsg.textContent = 'Network error while redeeming the coupon — nothing was charged.';
+        payMsg.hidden = false;
+        payBtn.disabled = false;
+        payLabel.textContent = 'Place order';
+        return;
+      }
+    }
+
+    // Payment would happen here in a real store.
+    $('[data-summary]')!.hidden = true;
+    const receipt = $('[data-receipt]')!;
+    $('[data-receipt-email]')!.textContent = $<HTMLInputElement>('#email')!.value.trim();
+    $('[data-receipt-order]')!.textContent = orderId;
+    $('[data-receipt-total]')!.textContent = money.format(grand);
+    if (coupon?.code) {
+      $('[data-receipt-coupon-row]')!.hidden = false;
+      $('[data-receipt-coupon]')!.textContent =
+        `${coupon.code}${coupon.discount_label ? ` · ${coupon.discount_label}` : ''}`;
+    }
+    receipt.hidden = false;
+    receipt.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  render();
+</script>
