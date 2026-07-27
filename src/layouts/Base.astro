@@ -90,5 +90,16 @@ const jsonLd = {
   </head>
   <body>
     <slot />
+
+    <!-- Jule.ai widget -->
+    <script is:inline>
+      (function () {
+        var s = document.createElement('script');
+        s.src = 'https://assets.jule.ai/widget.js';
+        s.dataset.apiKey = 'pk_workspace_532b0f2ece56586b81c3a2a09f289aeaf6630ba69c3b8a2d';
+        s.async = true;
+        (document.body || document.head).appendChild(s);
+      })();
+    </script>
   </body>
 </html>
